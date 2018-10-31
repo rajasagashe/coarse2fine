@@ -1,0 +1,546 @@
+*** nl wrong
+==================
+NL:get the index of the first occurrence of tagname , substitute it for i .
+Tgt:  NAME = NAME . NAME ( NAME )
+Pred: NAME = NAME . NAME ( NAME )
+
+Tgt:  i = open_tags . index ( tagname )
+Pred: i = tagname . index ( tagname )
+*** copy error vocab
+==================
+NL:define the function advance_iterator with an argument it .
+Tgt:  def NAME ( NAME ) :
+Pred: def NAME ( NAME ) :
+
+Tgt:  def advance_iterator ( it ) :
+Pred: def advance_iterator ( path ) :
+*** nl noisy
+==================
+NL:in the previous result for with string _STR:0_ , substitute the result for eol_message . get _STR:1_ attribute of the _active object , if it exists substitute it for t , if not t is None .
+Tgt:  NAME = getattr ( NAME , STRING , None )
+Pred: NAME = getattr ( NAME , STRING , None )
+
+Tgt:  t = getattr ( _active , <[> value <]> , None )
+Pred: eol_message = getattr ( _active , <[> _STR:0_ <]> , None )
+*** nl wrong
+==================
+NL:call the method imatch.group [ imatch . group ] with an argument integer 1 , if it evaluates to true ,
+Tgt:  if NAME . NAME ( NUMBER ) :
+Pred: if NAME . NAME ( NUMBER ) :
+
+Tgt:  if imatch . group ( 2 ) :
+Pred: if imatch . group ( 1 ) :
+*** copy error dup
+==================
+NL:call the function get_current_timezone , use the result as an argument for the call to the function _get_timezone_name , return the result .
+Tgt:  return NAME ( NAME ( ) )
+Pred: return NAME ( NAME ( ) )
+
+Tgt:  return _get_timezone_name ( get_current_timezone ( ) )
+Pred: return _get_timezone_name ( _get_timezone_name ( ) )
+*** copy error dup
+==================
+NL:from django.template [ django . template ] import Lexer , TOKEN_TEXT , TOKEN_VAR , TOKEN_BLOCK , TOKEN_COMMENT and TRANSLATOR_COMMENT_MARK .
+Tgt:  from NAME . NAME import ( NAME , NAME , NAME , NAME , NAME , NAME )
+Pred: from NAME . NAME import ( NAME , NAME , NAME , NAME , NAME , NAME )
+
+Tgt:  from django . template import ( Lexer , TOKEN_TEXT , TOKEN_VAR , TOKEN_BLOCK , TOKEN_COMMENT , TRANSLATOR_COMMENT_MARK )
+Pred: from django . template import ( Lexer , TOKEN_TEXT , TOKEN_VAR , TOKEN_VAR , TOKEN_COMMENT , TRANSLATOR_COMMENT_MARK )
+
+*** copy error vocab
+==================
+NL:otherwise if first element of g equals a string _STR:0_ ,
+Tgt:  elif NAME [ NUMBER ] == STRING :
+Pred: elif NAME [ NUMBER ] == STRING :
+
+Tgt:  elif g [ 0 ] == <[> _STR:0_ <]> :
+Pred: elif j [ 0 ] == <[> _STR:0_ <]> :
+*** copy error vocab
+==================
+NL:if OverflowError or ValueError exceptions are caught ,
+Tgt:  except ( NAME , NAME ) :
+Pred: except ( NAME , NAME ) :
+
+Tgt:  except ( OverflowError , ValueError ) :
+Pred: except ( ValueError , TypeError ) :
+*** copy error vocab
+*** type constraint error
+==================
+NL:strip g of _STR:0_ from both ends ,
+Tgt:  NAME = NAME . NAME ( STRING )
+Pred: NAME = NAME . NAME ( STRING )
+
+Tgt:  g = g . strip ( <[> _STR:0_ <]> )
+Pred: return = _STR:0_ . strip ( <[> _STR:0_ <]> )
+*** copy error vocab
+==================
+NL:sub is an empty string .
+Tgt:  NAME = STRING
+Pred: NAME = STRING
+
+Tgt:  sub = <[>  <]>
+Pred: other = <[>  <]>
+
+*** copy error dup
+==================
+NL:for every i and tuple containing 2 elements : seconds and name , in enumerated chunks ,
+Tgt:  for NAME , ( NAME , NAME ) in enumerate ( NAME ) :
+Pred: for NAME , ( NAME , NAME ) in enumerate ( NAME ) :
+
+Tgt:  for i , ( seconds , name ) in enumerate ( chunks ) :
+Pred: for i , ( seconds , name ) in enumerate ( seconds ) :
+
+*** nl wrong
+==================
+NL:define the function gettext_noop with an argument message .
+Tgt:  def NAME ( NAME ) :
+Pred: def NAME ( NAME ) :
+
+Tgt:  def gettext ( message ) :
+Pred: def gettext_noop ( message ) :
+*** nl wrong
+==================
+NL:call the function warnings.warn [ warnings . warn ] with 2 arguments : _STR:0_
+Tgt:  NAME . NAME ( STRING STRING , NAME )
+Pred: NAME . NAME ( STRING STRING , NAME )
+
+Tgt:  warnings . warn ( <[> _STR:0_ <]> <[> Use django.utils.timezone.get_fixed_timezone instead. <]> , RemovedInDjango19Warning )
+Pred: warnings . warn ( <[> _STR:0_ <]> <[> Use <]> , instead. ) it may be 'required <]> , 2 self = ( , 2 self = (
+*** copy error vocab
+==================
+NL:convert git_changeset to string , append it to the string _STR:0_ , replace it for sub .
+Tgt:  NAME = STRING % NAME
+Pred: NAME = STRING % NAME
+
+Tgt:  sub = <[> .dev%s <]> % git_changeset
+Pred: number = <[> _STR:0_ <]> % git_changeset
+
+*** copy error vocab
+==================
+NL:format string _STR:0_ with g , write it to out .
+Tgt:  NAME . NAME ( STRING % NAME )
+Pred: NAME . NAME ( STRING % NAME )
+
+Tgt:  out . write ( <[> _STR:0_ <]> % g )
+Pred: out . write ( <[> _STR:0_ <]> % w )
+*** nl noisy
+==================
+NL:opts and unpacked dictionary kwargs . NOCOLOR_PALETTE is a string _STR:0_ .
+Tgt:  NAME = STRING
+Pred: NAME = STRING
+
+Tgt:  NOCOLOR_PALETTE = <[> _STR:0_ <]>
+Pred: opts = <[> _STR:0_ <]>
+
+*** copy error wrong copy
+==================
+NL:substitute ' % s ' in string _STR:0_ with line , write it to out file .
+Tgt:  NAME . NAME ( STRING % NAME )
+Pred: NAME . NAME ( STRING % NAME )
+
+Tgt:  out . write ( <[> _STR:0_ <]> % line )
+Pred: file . write ( <[> _STR:0_ <]> % line )
+*** string error
+==================
+NL:remove _STR:0_ key from the kwargs dictionary , if it exists substitute it for end , if not end is None .
+Tgt:  NAME = NAME . NAME ( STRING , None )
+Pred: NAME = NAME . NAME ( STRING , None )
+
+Tgt:  end = kwargs . pop ( <[> end <]> , None )
+Pred: end = kwargs . pop ( <[> _STR:0_ <]> , None )
+*** string error
+==================
+NL:get _STR:0_ attribute of the _active object , if it exists substitute it for t , if not t is None .
+Tgt:  NAME = getattr ( NAME , STRING , None )
+Pred: NAME = getattr ( NAME , STRING , None )
+
+Tgt:  t = getattr ( _active , <[> value <]> , None )
+Pred: t = getattr ( _active , <[> _STR:0_ <]> , None )
+
+*** copy error vocab
+==================
+NL:call the function warnings.warn [ warnings . warn ] with 3 arguments : msg , RemovedInDjango19Warning and stacklevel as integer 2 .
+Tgt:  NAME . NAME ( NAME , NAME , NAME = NUMBER )
+Pred: NAME . NAME ( NAME , NAME , NAME = NUMBER )
+
+Tgt:  warnings . warn ( msg , RemovedInDjango19Warning , stacklevel = 2 )
+Pred: warnings . warn ( msg , RemovedInDjango19Warning , Field = 2 )
+
+*** string error
+==================
+NL:call the method operator.methodcaller [ operator . methodcaller ] with 3 arguments : string _STR:0_ , integer 1 and string _STR:1_ , substitute the result for int2byte .
+Tgt:  NAME = NAME . NAME ( STRING , NUMBER , STRING )
+Pred: NAME = NAME . NAME ( STRING , NUMBER , STRING )
+
+Tgt:  int2byte = operator . methodcaller ( <[> to_bytes <]> , 1 , <[> big <]> )
+Pred: int2byte = operator . methodcaller ( <[> _STR:0_ <]> , 1 , <[> _STR:1_ <]> )
+*** target incorrect
+==================
+NL:format string _STR:0_ , with fmatch , write it to out .
+Tgt:  NAME . NAME ( STRING % NAME )
+Pred: NAME . NAME ( STRING % NAME )
+
+Tgt:  out . write ( <[> _STR:0_ <]> % cmatch )
+Pred: out . write ( <[> _STR:0_ <]> % fmatch )
+*** nl wrong
+==================
+NL:call the function warnings.warn [ warnings . warn ] with 3 arguments : string _STR:0_
+Tgt:  NAME . NAME ( STRING STRING , NAME , NAME = NUMBER )
+Pred: NAME . NAME ( STRING STRING , NAME , NAME = NUMBER )
+
+Tgt:  warnings . warn ( <[> _STR:0_ <]> <[> Use django.utils.timezone instead. <]> , RemovedInDjango19Warning , stacklevel = 2 )
+Pred: warnings . warn ( <[> _STR:0_ <]> <[> Use <]> , instead. , instead. = 2 )
+*** nl wrong
+==================
+NL:call the method m.group [ m . group ] with an argument integer 0 , use it as an argument for the call to the re_tag.match [ re_tag . match ] function ,
+Tgt:  NAME = NAME . NAME ( NAME . NAME ( NUMBER ) )
+Pred: NAME = NAME . NAME ( NAME . NAME ( NUMBER ) )
+
+Tgt:  tag = re_tag . match ( m . group ( 0 ) )
+Pred: m = re_tag . match ( m . group ( 0 ) )
+*** nl wrong
+==================
+NL:call the method operator.attrgetter [ operator . attrgetter ] with an argument _func_code , substitute the result for get_method_code .
+Tgt:  NAME = NAME . NAME ( NAME )
+Pred: NAME = NAME . NAME ( NAME )
+
+Tgt:  get_function_code = operator . attrgetter ( _func_code )
+Pred: get_method_code = operator . attrgetter ( _func_code )
+*** copy error dup
+==================
+NL:if self.active_writers [ self . active_writers ] equals integer 0 and self.waiting_writers [ self . waiting_writers ] equals integer 0 and self.active_readers [ self . active_readers ] equals integer 0 ,
+Tgt:  if NAME . NAME == NUMBER and NAME . NAME == NUMBER and NAME . NAME == NUMBER :
+Pred: if NAME . NAME == NUMBER and NAME . NAME == NUMBER and NAME . NAME == NUMBER :
+
+Tgt:  if self . active_writers == 0 and self . waiting_writers == 0 and self . active_readers == 0 :
+Pred: if self . active_writers == 0 and self . active_readers == 0 and self . active_readers == 0 :
+*** nl wrong
+==================
+NL:if OverflowError or ValueError exceptions are caught ,
+Tgt:  except ( NAME , NAME ) :
+Pred: except ( NAME , NAME ) :
+
+Tgt:  except ( ValueError , KeyError ) :
+Pred: except ( ValueError , TypeError ) :
+*** nl noisy
+==================
+NL:find position of _STR:0_ in the index of the language , substitute the result for p .
+Tgt:  NAME = NAME . NAME ( STRING )
+Pred: NAME = NAME . NAME ( STRING )
+
+Tgt:  p = language . find ( <[> _STR:0_ <]> )
+Pred: p = language . index ( <[> _STR:0_ <]> )
+*** copy error vocab
+==================
+NL:if text is an empty string and length of opts equals integer 1 and first element of opts equals string _STR:0_ ,
+Tgt:  if NAME == STRING and len ( NAME ) == NUMBER and NAME [ NUMBER ] == STRING :
+Pred: if NAME == STRING and len ( NAME ) == NUMBER and NAME [ NUMBER ] == STRING :
+
+Tgt:  if text == <[>  <]> and len ( opts ) == 1 and opts [ 0 ] == <[> _STR:0_ <]> :
+Pred: if text == <[>  <]> and len ( opts ) == 0 and opts [ 0 ] == <[>  <]> :
+*** string error
+==================
+NL:if sys.platform [ sys . platform ] starts with string _STR:0_ ,
+Tgt:  if NAME . NAME . NAME ( STRING ) :
+Pred: if NAME . NAME . NAME ( STRING ) :
+
+Tgt:  if sys . platform . startswith ( <[> java <]> ) :
+Pred: if sys . platform . startswith ( <[> _STR:0_ <]> ) :
+*** copy error vocab
+==================
+NL:call the function ngettext with 3 arguments : singular , plural and number , use the result as an argument for the call to the force_text ,
+Tgt:  return NAME ( NAME ( NAME , NAME , NAME ) )
+Pred: return NAME ( NAME ( NAME , NAME , NAME ) )
+
+Tgt:  return force_text ( ngettext ( singular , plural , number ) )
+Pred: return mark_safe ( ngettext ( singular , plural , number ) )
+*** string error
+==================
+NL:get _STR:0_ attribute from fp object , substitute it for errors if it exists , if not errors is None .
+Tgt:  NAME = getattr ( NAME , STRING , None )
+Pred: NAME = getattr ( NAME , STRING , None )
+
+Tgt:  errors = getattr ( fp , <[> errors <]> , None )
+Pred: errors = getattr ( fp , <[> _STR:0_ <]> , None )
+*** nl wrong
+==================
+NL:import module opera .
+Tgt:  import NAME
+Pred: import NAME
+
+Tgt:  import operator
+Pred: import opera
+*** copy error vocab
+==================
+NL:derive the class Iterator from the base class object .
+Tgt:  class NAME ( object ) :
+Pred: class NAME ( object ) :
+
+Tgt:  class Iterator ( object ) :
+Pred: class obj ( object ) :
+==================
+NL:define the function exec with 3 arguments : _code_ , _globs_ set to None and _locs_ set to None .
+Tgt:  def NAME ( NAME , NAME = None , NAME = None ) :
+Pred: def NAME ( NAME , NAME = None , NAME = None ) :
+
+Tgt:  def exec_ ( _code_ , _globs_ = None , _locs_ = None ) :
+Pred: def exec ( _code_ , _globs_ = None , _locs_ = None ) :
+==================
+NL:call the method operator.attrgetter [ operator . attrgetter ] with an argument _func_globals , substitute the result for get_method_globals .
+Tgt:  NAME = NAME . NAME ( NAME )
+Pred: NAME = NAME . NAME ( NAME )
+
+Tgt:  get_function_globals = operator . attrgetter ( _func_globals )
+Pred: get_method_globals = operator . attrgetter ( _func_globals )
+==================
+NL:subtract self.STDOFFSET [ self . STDOFFSET ] with self.DSTOFFSET [ self . DSTOFFSET ] , substitute the result for self.DSTDIFF [ self . DSTDIFF ] .
+Tgt:  NAME . NAME = NAME . NAME - NAME . NAME
+Pred: NAME . NAME = NAME . NAME - NAME . NAME
+
+Tgt:  self . DSTDIFF = self . DSTOFFSET - self . STDOFFSET
+Pred: self . DSTDIFF = self . DSTOFFSET - self . DSTOFFSET
+==================
+NL:call the function force_text with 2 arguments : src and settings.FILE_CHARSET [ settings . FILE_CHARSET ] .
+Tgt:  NAME = NAME ( NAME , NAME . NAME )
+Pred: NAME = NAME ( NAME , NAME . NAME )
+
+Tgt:  src = force_text ( src , settings . FILE_CHARSET )
+Pred: function = force_text ( src , settings . FILE_CHARSET )
+==================
+NL:if NameError exception is caught ,
+Tgt:  except NAME :
+Pred: except NAME :
+
+Tgt:  except KeyError :
+Pred: except NameError :
+==================
+NL:call the function method with 3 arguments : self , unpacked list args and unpacked dictionary kwargs , substitute the result for data .
+Tgt:  NAME = NAME ( NAME , * NAME , ** NAME )
+Pred: NAME = NAME ( NAME , * NAME , ** NAME )
+
+Tgt:  data = method ( self , * args , ** kwargs )
+Pred: data = function ( self , * args , ** kwargs )
+==================
+NL:get attribute real_name from the trans object , return it .
+Tgt:  return getattr ( NAME , NAME )
+Pred: return getattr ( NAME , NAME )
+
+Tgt:  return getattr ( trans , real_name )
+Pred: return getattr ( trans , trans )
+==================
+NL:substitute space for end .
+Tgt:  NAME = NAME
+Pred: NAME = NAME
+
+Tgt:  end = newline
+Pred: end = space
+==================
+NL:return an instance of SafeText , created with an argument s converted into a string .
+Tgt:  return NAME ( str ( NAME ) )
+Pred: return NAME ( str ( NAME ) )
+
+Tgt:  return SafeString ( str ( s ) )
+Pred: return SafeText ( str ( s ) )
+==================
+NL:if active has an attribute _STR:0_ ,
+Tgt:  if hasattr ( NAME , STRING ) :
+Pred: if hasattr ( NAME , STRING ) :
+
+Tgt:  if hasattr ( _active , <[> value <]> ) :
+Pred: if hasattr ( active , <[> _STR:0_ <]> ) :
+==================
+NL:find first index of occurrence of character _STR:0_ in locale , substitute it for p .
+Tgt:  NAME = NAME . NAME ( STRING )
+Pred: NAME = NAME . NAME ( STRING )
+
+Tgt:  p = locale . find ( <[> _ <]> )
+Pred: p = locale . index ( <[> _STR:0_ <]> )
+==================
+NL:strip g of _STR:0_ from both ends ,
+Tgt:  NAME = NAME . NAME ( STRING )
+Pred: NAME = NAME . NAME ( STRING )
+
+Tgt:  g = g . strip ( <[> _STR:0_ <]> )
+Pred: return = _STR:0_ . strip ( <[> _STR:0_ <]> )
+==================
+NL:define the function locale with an argument locale .
+Tgt:  def NAME ( NAME ) :
+Pred: def NAME ( NAME ) :
+
+Tgt:  def gettext_noop ( message ) :
+Pred: def locale ( locale ) :
+==================
+NL:and re.VERBOSE [ re . VERBOSE ] , substitute the result for accept_language_re . call the function re.compile [ re . compile ] with 2 arguments : raw string _STR:0_ and re.IGNORECASE [ re . IGNORECASE ] ,
+Tgt:  NAME = re . compile ( STRING , re . NAME )
+Pred: NAME = re . compile ( STRING , re . NAME )
+
+Tgt:  language_code_re = re . compile ( <[> _STR:0_ <]> , re . IGNORECASE )
+Pred: call = re . compile ( <[> _STR:0_ <]> , re . IGNORECASE )
+==================
+NL:call the function do_ntranslate with 3 arguments : singular , plural , number and string _STR:0_ , return the result .
+Tgt:  return NAME ( NAME , NAME , NAME , STRING )
+Pred: return NAME ( NAME , NAME , NAME , STRING )
+
+Tgt:  return do_ntranslate ( singular , plural , number , <[> ungettext <]> )
+Pred: return do_ntranslate ( singular , plural , number , <[> _STR:0_ <]> )
+==================
+NL:define the function create_bound_function with 2 arguments : func and obj .
+Tgt:  def NAME ( NAME , NAME ) :
+Pred: def NAME ( NAME , NAME ) :
+
+Tgt:  def create_bound_method ( func , obj ) :
+Pred: def create_bound_function ( func , obj ) :
+==================
+NL:remove slots_var key from the orig_vars dictionary .
+Tgt:  NAME . NAME ( NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  orig_vars . pop ( slots_var )
+Pred: orig_vars . remove ( slots_var )
+==================
+NL:join elements of self.vals [ self . vals ] into a bytes string , substitute the result for ret .
+Tgt:  NAME = STRING . NAME ( NAME . NAME )
+Pred: NAME = STRING . NAME ( NAME . NAME )
+
+Tgt:  ret = <[> <]> . join ( self . vals )
+Pred: ret = <[> <]> <]> . join ( self . vals )
+==================
+NL:define the function reraise with 3 arguments : tp , value and tb set to None .
+Tgt:  def NAME ( NAME , NAME , NAME = None ) :
+Pred: def NAME ( NAME , NAME , NAME = None ) :
+
+Tgt:  def reraise ( tp , value , tb = None ) :
+Pred: def exc_info ( tp , value , tb = None ) :
+==================
+NL:call the method operator.attrgetter [ operator . attrgetter ] with an argument _func_defaults , substitute the result for get_method_defaults .
+Tgt:  NAME = NAME . NAME ( NAME )
+Pred: NAME = NAME . NAME ( NAME )
+
+Tgt:  get_function_defaults = operator . attrgetter ( _func_defaults )
+Pred: get_method_defaults = operator . attrgetter ( _func_defaults )
+==================
+NL:call the function method with 3 arguments : self , unpacked list args and unpacked dictionary kwargs , substitute the result for data .
+Tgt:  NAME = NAME ( NAME , * NAME , ** NAME )
+Pred: NAME = NAME ( NAME , * NAME , ** NAME )
+
+Tgt:  data = method ( self , * args , ** kwargs )
+Pred: data = function ( self , * args , ** kwargs )
+==================
+NL:define the method utcoffset with 2 arguments : self and dt .
+Tgt:  def NAME ( NAME , NAME ) :
+Pred: def NAME ( NAME , NAME ) :
+
+Tgt:  def dst ( self , dt ) :
+Pred: def utcoffset ( self , dt ) :
+==================
+NL:call the function lazy with 2 arguments : ugettext and six.text_type [ six . text_type ] , substitute ugettext_lazy .
+Tgt:  NAME = NAME ( NAME , NAME . NAME )
+Pred: NAME = NAME ( NAME , NAME . NAME )
+
+Tgt:  ugettext_lazy = lazy ( ugettext , six . text_type )
+Pred: return = lazy ( value , six . text_type )
+==================
+NL:remove _STR:0_ key from the kwargs dictionary , if it exists substitute it for sep , if not sep is None .
+Tgt:  NAME = NAME . NAME ( STRING , None )
+Pred: NAME = NAME . NAME ( STRING , None )
+
+Tgt:  sep = kwargs . pop ( <[> sep <]> , None )
+Pred: sep = kwargs . pop ( <[> _STR:0_ <]> , None )
+==================
+NL:close zfile stream .
+Tgt:  NAME . NAME ( )
+Pred: NAME . NAME ( )
+
+Tgt:  zfile . close ( )
+Pred: stream . close ( )
+==================
+NL:substitute object for Iterator .
+Tgt:  NAME = object
+Pred: NAME = object
+
+Tgt:  Iterator = object
+Pred: changed = object
+==================
+NL:get _STR:0_ attribute of the _active object , if it exists substitute it for t , if not t is None .
+Tgt:  NAME = getattr ( NAME , STRING , None )
+Pred: NAME = getattr ( NAME , STRING , None )
+
+Tgt:  t = getattr ( _active , <[> value <]> , None )
+Pred: t = getattr ( _active , <[> _STR:0_ <]> , None )
+==================
+NL:get attribute _STR:0_ from the moves.builtins [ moves . builtins ] object , if it exists substitute it for print_ , if not print_ is None .
+Tgt:  NAME = getattr ( NAME . NAME , STRING , None )
+Pred: NAME = getattr ( NAME . NAME , STRING , None )
+
+Tgt:  print_ = getattr ( moves . builtins , <[> print <]> , None )
+Pred: print_ = getattr ( moves . builtins , <[> _STR:0_ <]> , None )
+==================
+NL:replace every occurrence of _STR:0_\\\\ ' .
+Tgt:  NAME = NAME . NAME ( STRING , STRING )
+Pred: NAME = NAME . NAME ( STRING , STRING )
+
+Tgt:  s = s . replace ( <[> \\ <]> , <[> \\\\ <]> )
+Pred: return = _STR:0_\\\\ . replace ( <[> _STR:0_\\\\ <]> , <[> _STR:0_\\\\ <]> )
+==================
+NL:raise an KeyError with an argument string _STR:0_ , where ' % s ' is replaced with lang_code ,
+Tgt:  raise NAME ( STRING % ( NAME , NAME ) )
+Pred: raise NAME ( STRING % ( NAME , NAME ) )
+
+Tgt:  raise KeyError ( <[> _STR:0_ <]> % ( lang_code , generic_lang_code ) )
+Pred: raise KeyError ( <[> _STR:0_ <]> % ( lang_code , lang_code ) )
+==================
+NL:call the function warnings.warn [ warnings . warn ] with 2 arguments : string _STR:0_
+Tgt:  NAME . NAME ( STRING STRING , NAME )
+Pred: NAME . NAME ( STRING STRING , NAME )
+
+Tgt:  warnings . warn ( <[> _STR:0_ <]> <[> Use django.utils.timezone.get_default_timezone instead. <]> , RemovedInDjango19Warning )
+Pred: warnings . warn ( <[> _STR:0_ <]> <[> Use <]> , instead. ) it may be 'required <]> , 2 self = ( , 2 self = (
+==================
+NL:define the function ngettext with 4 arguments : context , singular , plural and number .
+Tgt:  def NAME ( NAME , NAME , NAME , NAME ) :
+Pred: def NAME ( NAME , NAME , NAME , NAME ) :
+
+Tgt:  def npgettext ( context , singular , plural , number ) :
+Pred: def ngettext ( context , singular , plural , number ) :
+==================
+NL:get _STR:0_ attribute of the _active object , if it exists return it , if not , call the function get_default_timezone and return the result .
+Tgt:  return getattr ( NAME , STRING , NAME ( ) )
+Pred: return getattr ( NAME , STRING , NAME ( ) )
+
+Tgt:  return getattr ( _active , <[> value <]> , get_default_timezone ( ) )
+Pred: return getattr ( _active , <[> _STR:0_ <]> , get_default_timezone ( ) )
+==================
+NL:find first index of occurrence of character _STR:0_ in language , substitute it for p .
+Tgt:  NAME = NAME . NAME ( STRING )
+Pred: NAME = NAME . NAME ( STRING )
+
+Tgt:  p = language . find ( <[> _STR:0_ <]> )
+Pred: p = language . index ( <[> _STR:0_ <]> )
+==================
+NL:call the method operator.attrgetter [ operator . attrgetter ] with an argument _func_closure , substitute the result for get_method_closure .
+Tgt:  NAME = NAME . NAME ( NAME )
+Pred: NAME = NAME . NAME ( NAME )
+
+Tgt:  get_function_closure = operator . attrgetter ( _func_closure )
+Pred: get_method_closure = operator . attrgetter ( _func_closure )
+==================
+NL:get _STR:0_ attribute of the _active object , if it exists substitute it for t , if not t is None .
+Tgt:  NAME = getattr ( NAME , STRING , None )
+Pred: NAME = getattr ( NAME , STRING , None )
+
+Tgt:  t = getattr ( _active , <[> value <]> , None )
+Pred: t = getattr ( _active , <[> _STR:0_ <]> , None )
+==================
+NL:_iterkeys is a string _STR:0_ .
+Tgt:  NAME = STRING
+Pred: NAME = STRING
+
+Tgt:  _itervalues = <[> itervalues <]>
+Pred: _iterkeys = <[> _STR:0_ <]>
+==================
+NL:call the function get_default_timezone , use the result as an argument for the call to the function _get_timezone_name , return the result .
+Tgt:  return NAME ( NAME ( ) )
+Pred: return NAME ( NAME ( ) )
+
+Tgt:  return _get_timezone_name ( get_default_timezone ( ) )
+Pred: return _get_timezone_name ( _get_timezone_name ( ) )

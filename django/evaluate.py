@@ -4,6 +4,7 @@ import argparse
 import torch
 import codecs
 import glob
+import random
 
 import table
 import table.IO
@@ -19,6 +20,16 @@ opt.pre_word_vecs = os.path.join(opt.root_dir, opt.dataset, 'embedding')
 if opt.beam_size > 0:
     opt.batch_size = 1
 
+def write_to_file(file, pred, gold):
+    file.write('==================' + '\n')
+    file.write('NL:' + ' '.join(gold['src']) + '\n')
+    file.write('Tgt:  ' + ' '.join(gold['lay']) + '\n')
+    file.write('Pred: ' + ' '.join(pred.lay) + '\n')
+    file.write('\n')
+    file.write('Tgt:  ' + ' '.join(gold['tgt']) + '\n')
+    file.write('Tgt:  ' + ' '.join(gold['token']) + '\n')
+    file.write('Pred: ' + ' '.join(pred.tgt) + '\n')
+
 
 def main():
     dummy_parser = argparse.ArgumentParser(description='train.py')
@@ -28,7 +39,7 @@ def main():
 
     js_list = table.IO.read_anno_json(opt.anno, opt)
 
-    metric_name_list = ['tgt']
+    metric_name_list = ['tgt', 'lay']
     prev_best = (None, None)
     for fn_model in glob.glob(opt.model_path):
         opt.model = fn_model
@@ -50,9 +61,30 @@ def main():
         assert len(r_list) == len(js_list), 'len(r_list) != len(js_list): {} != {}'.format(
             len(r_list), len(js_list))
 
+        # open correct, corrlayincorrtgt, incorrlay files
+        correct = open(os.path.join(opt.root_dir, 'out/correct.txt'), 'w')
+        lay_corr_name_wrong = open(os.path.join(opt.root_dir, 'out/lay-right-name-wrong.txt'), 'w')
+        lay_wrong = open(os.path.join(opt.root_dir, 'out/lay-wrong.txt'), 'w')
+        pred_gold = []
         # evaluation
         for pred, gold in zip(r_list, js_list):
             pred.eval(gold)
+            pred_gold.append((pred, gold))
+
+        random.shuffle(pred_gold)
+        for pred, gold in pred_gold:
+            if pred.correct['tgt']:
+                write_to_file(correct, pred, gold)
+            elif pred.correct['lay']:
+                print(gold)
+                write_to_file(lay_corr_name_wrong, pred, gold)
+            else:
+                write_to_file(lay_wrong, pred, gold)
+
+        correct.close()
+        lay_corr_name_wrong.close()
+        lay_wrong.close()
+
         print('Results:')
         for metric_name in metric_name_list:
             c_correct = sum((x.correct[metric_name] for x in r_list))

@@ -1,0 +1,2725 @@
+*** nl wrong
+==================
+NL:instantiate class Module_six_moves_urllib with an argument , string _STR:0_ appended to __name__ ,
+Tgt:  NAME . NAME [ NAME + STRING ] = NAME ( NAME + STRING )
+Pred: return NAME ( STRING % ( NAME , NAME ) )
+
+Tgt:  sys . modules [ __name__ + <[> _STR:0_ <]> ] = Module_six_moves_urllib ( __name__ + <[> _STR:0_ <]> )
+Pred: return Module_six_moves_urllib ( <[> _STR:0_ <]> % ( __name__ , __name__ ) )
+*** nl wrong
+*** clearly a function call
+==================
+NL:call the function _add_doc with 2 arguments : reraise and string _STR:0_ '' Reraise an exception._STR:0_ [ exception . _STR:0_ ] '' .
+Tgt:  NAME ( NAME , STRING STRING STRING )
+Pred: NAME = NAME ( NAME , STRING )
+
+Tgt:  _add_doc ( reraise , <[> _STR:0_ <]> <[> _STR:1_ <]> <[> _STR:0_ <]> )
+Pred: '' = _add_doc ( exc_info , <[> _STR:0_ <]> )
+
+*** long logic
+*** copy not done
+==================
+NL:call the function datetime.datetime [ datetime . datetime ] with utc as argument if call to the is_aware ( d ) returns True , if not None is the argument , store the result in now .
+Tgt:  NAME = NAME . NAME . NAME ( NAME if NAME ( NAME ) else None )
+Pred: NAME = NAME . NAME ( NAME ) if NAME is not None else NAME
+
+Tgt:  now = datetime . datetime . now ( utc if is_aware ( d ) else None )
+Pred: now = datetime . datetime ( utc ) if d is not None else d
+
+*** strings
+*** nl wrong
+==================
+NL:call the function _add_doc with 2 arguments : get_unbound_function and string _STR:0_ '' Get the function out of a possibly unbound function_STR:0_ '' .
+Tgt:  NAME ( NAME , STRING STRING STRING )
+Pred: NAME ( NAME , STRING ) % { STRING : NAME ( NAME . NAME ( ) , STRING : NAME . NAME ( NAME . NAME ) , STRING : NAME . NAME ( ) )
+
+Tgt:  _add_doc ( get_unbound_function , <[> _STR:0_ <]> <[> _STR:1_ <]> <[> _STR:0_ <]> )
+Pred: _add_doc ( get_unbound_function , <[> _STR:0_ <]> ) % { <[> rel <]> : possibly ( get_unbound_function . Get ( ) , <[> _STR:0_ <]> : self . Get ( get_unbound_function . Get ) , <[> _STR:0_ <]> : self . Get ( ) )
+
+*** nl wrong
+==================
+NL:call the method _trans.ungettext [ _trans . ungettext ] with 3 arguments singular , plural and number .
+Tgt:  return NAME . NAME ( NAME , NAME , NAME )
+Pred: NAME , NAME = NAME . NAME ( NAME , NAME , NAME )
+
+Tgt:  return _trans . ungettext ( singular , plural , number )
+Pred: _trans , number = _trans . ungettext ( singular , plural , number )
+
+*** verb and type understanding
+==================
+NL:remove _STR:0_ key from the orig_vars dictionary .
+Tgt:  NAME . NAME ( STRING , None )
+Pred: NAME . NAME ( STRING )
+
+Tgt:  orig_vars . pop ( <[> _STR:0_ <]> , None )
+Pred: orig_vars . remove ( <[> _STR:0_ <]> )
+*** nl noisy
+*** copy not done text
+==================
+NL:call the method self.add_truncation_text [ self . add_truncation_text ] with 2 arguments : if end_index is greater than zero , first end_index elements of text ,
+Tgt:  return NAME . NAME ( NAME [ : NAME or NUMBER ] , NAME )
+Pred: NAME = NAME . NAME ( NAME ) > NUMBER [ NUMBER ]
+
+Tgt:  return self . add_truncation_text ( text [ : end_index or 0 ] , truncate )
+Pred: self = self . add_truncation_text ( end_index ) > 0 [ 0 ]
+
+*** verb and type understanding
+==================
+NL:remove first element of text .
+Tgt:  NAME = NAME [ NUMBER : ]
+Pred: NAME . NAME ( NUMBER )
+
+Tgt:  text = text [ 1 : ]
+Pred: text . remove ( 0 )
+*** nl wrong
+==================
+NL:foreground is a dictionary created with elements : x appended to a string _STR:0_ for value under the key x of color_names dictionary ,
+Tgt:  NAME = dict ( ( NAME [ NAME ] , STRING % NAME ) for NAME in range ( NUMBER ) )
+Pred: NAME = dict ( ( NAME [ NAME ] , NAME ) for NAME in NAME . NAME )
+
+Tgt:  foreground = dict ( ( color_names [ x ] , <[> 3%s <]> % x ) for x in range ( 8 ) )
+Pred: foreground = dict ( ( color_names [ x ] , color_names ) for x in color_names . dictionary )
+*** copy not done, a priori
+==================
+NL:if code is contained in _supported and call to the function check_for_language with an argument code evaluates to true ,
+Tgt:  if NAME in NAME and NAME ( NAME ) :
+Pred: if NAME in NAME ( NAME ) :
+
+Tgt:  if code in _supported and check_for_language ( code ) :
+Pred: if code in check_for_language ( code ) :
+
+*** copy not all done
+==================
+NL:if children is true , copy children list to self.children [ self . children ] , otherwise self.children [ self . children ] is an empty list .
+Tgt:  NAME . NAME = NAME [ : ] if NAME else [ ]
+Pred: NAME = [ ] if NAME else [ ]
+
+Tgt:  self . children = children [ : ] if children else [ ]
+Pred: if = [ ] if children else [ ]
+
+*** copy not all done long
+==================
+NL:tt is a tuple with 9 elements : dt.year [ dt . year ] , dt.month [ dt . month ] , dt.day [ dt . day ] , dt.hour [ dt . hour ] , dt.minute [ dt . minute ] , dt.second [ dt . second ] , result of the method dt.weekday [ dt . weekday ] ,
+Tgt:  NAME = ( NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME ( ) , NUMBER , NUMBER )
+Pred: NAME = ( NAME . NAME , NAME . NAME , NAME . NAME ( NAME . NAME , NAME . NAME , NAME . NAME . NAME ( NAME , NAME , NAME . NAME ) ) )
+
+Tgt:  tt = ( dt . year , dt . month , dt . day , dt . hour , dt . minute , dt . second , dt . weekday ( ) , 0 , 0 )
+Pred: tt = ( dt . year , dt . month , dt . hour ( dt . year , dt . day , dt . _meta . hour ( dt , dt.month , dt . day ) ) )
+==================
+NL:tt is an tuple with 9 elements : dt.year [ dt . year ] , dt.month [ dt . month ] , dt.day [ dt . day ] , dt.hour [ dt . hour ] , dt.minute [ dt . minute ] , dt.second [ dt . second ] , result of the function dt.weekday [ dt . weekday ] ,
+Tgt:  NAME = ( NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME ( ) , NUMBER , NUMBER )
+Pred: NAME = ( NAME . NAME , NAME . NAME , NAME . NAME ( NAME . NAME , NAME . NAME , NAME . NAME ( NAME ) , NAME . NAME ( ) ) )
+
+Tgt:  tt = ( dt . year , dt . month , dt . day , dt . hour , dt . minute , dt . second , dt . weekday ( ) , 0 , 0 )
+Pred: tt = ( dt . year , dt . month , dt . hour ( dt . year , dt . day , dt . hour ( db ) , dt . hour ( ) ) )
+
+*** copy not done
+*** name and type prediction
+==================
+NL:if pos is greater than or equal to last ,
+Tgt:  if NAME >= NAME :
+Pred: if NAME >= len ( NAME ) :
+
+Tgt:  if pos >= last :
+Pred: if pos >= len ( pos ) :
+*** string errors
+==================
+NL:msg is an string _STR:0_ .
+Tgt:  NAME = ( STRING )
+Pred: NAME = STRING
+
+Tgt:  msg = ( <[> django.utils.text.javascript_quote() is deprecated. Use django.utils.html.escapejs() instead. <]> )
+Pred: msg = <[> _STR:0_ <]>
+
+*** copy dup
+- characters
+- typo
+==================
+NL:return an instance of EscapeBytes , created with an argument , reuslt of the call to the function bytes with an argument s .
+Tgt:  return NAME ( NAME ( NAME ) )
+Pred: return NAME ( NAME ) . NAME ( NAME )
+
+Tgt:  return EscapeBytes ( bytes ( s ) )
+Pred: return EscapeBytes ( s ) . reuslt ( s )
+*** copy not done
+==================
+NL:call the function ugettext with _STR:0_ as argument , use the result as the argument for the call to the avoid_wrapping function , return the result .
+Tgt:  return NAME ( NAME ( STRING ) )
+Pred: return NAME ( STRING )
+
+Tgt:  return avoid_wrapping ( ugettext ( <[> _STR:0_ <]> ) )
+Pred: return avoid_wrapping ( <[> _STR:0_ <]> )
+
+*** verb and type understanding
+==================
+NL:call the function blankout with 2 arguments : t.contents [ t . contents ] and _STR:0_ , write the result to out .
+Tgt:  NAME . NAME ( NAME ( NAME . NAME , STRING ) )
+Pred: NAME = NAME ( NAME . NAME , STRING )
+
+Tgt:  out . write ( blankout ( t . contents , <[> _STR:0_ <]> ) )
+Pred: out = blankout ( t . contents , <[> _STR:0_ <]> )
+
+*** copy dup
+==================
+NL:if s is an instance of six.text_type [ six . text_type ] or Promise ,
+Tgt:  if isinstance ( NAME , ( NAME . NAME , NAME ) ) :
+Pred: if isinstance ( NAME , NAME . NAME ) or isinstance ( NAME , NAME . NAME ) :
+
+Tgt:  if isinstance ( s , ( six . text_type , Promise ) ) :
+Pred: if isinstance ( s , six . text_type ) or isinstance ( s , six . text_type ) :
+
+*** copy not done
+- doesn't occur in train
+==================
+NL:if length of version does not equals to integer 5 , raise an exception .
+Tgt:  assert len ( NAME ) == NUMBER
+Pred: NAME
+
+Tgt:  assert len ( version ) == 5
+Pred: raise
+
+*** nl wrong
+==================
+NL:substitute if _locs_ is None for _locs_ .
+Tgt:  NAME = NAME . NAME
+Pred: NAME = None
+
+Tgt:  _locs_ = frame . f_locals
+Pred: _locs_ = None
+
+*** copy not done
+==================
+NL:convert byte to its integer representation , return all of the results for every byte in buf .
+Tgt:  return ( ord ( NAME ) for NAME in NAME )
+Pred: return int ( NAME )
+
+Tgt:  return ( ord ( byte ) for byte in buf )
+Pred: return int ( byte )
+==================
+NL:_urllib_request_moved_attributes is an list with 33 elements , all of them are the results of the call to the function MovedAttribute with 3 different string arguments .
+Tgt:  NAME = [ NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , ]
+Pred: NAME = [ NAME ( STRING ) , NAME ( NAME ) ]
+
+Tgt:  _urllib_request_moved_attributes = [ MovedAttribute ( <[> urlopen <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> install_opener <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> build_opener <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> pathname2url <]> , <[> urllib <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> url2pathname <]> , <[> urllib <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> getproxies <]> , <[> urllib <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> Request <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> OpenerDirector <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPDefaultErrorHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPRedirectHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPCookieProcessor <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> ProxyHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> BaseHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPPasswordMgr <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPPasswordMgrWithDefaultRealm <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> AbstractBasicAuthHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPBasicAuthHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> ProxyBasicAuthHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> AbstractDigestAuthHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPDigestAuthHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> ProxyDigestAuthHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPSHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> FileHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> FTPHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> CacheFTPHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> UnknownHandler <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> HTTPErrorProcessor <]> , <[> urllib2 <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> urlretrieve <]> , <[> urllib <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> urlcleanup <]> , <[> urllib <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> URLopener <]> , <[> urllib <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> FancyURLopener <]> , <[> urllib <]> , <[> urllib.request <]> ) , MovedAttribute ( <[> proxy_bypass <]> , <[> urllib <]> , <[> urllib.request <]> ) , ]
+Pred: _urllib_request_moved_attributes = [ MovedAttribute ( <[> 33 <]> ) , MovedAttribute ( different ) ]
+*** nl wrong
+==================
+NL:if identity lambda function returns false , substitute the x for capfirst , if not call the function force_text with an argument x ,
+Tgt:  NAME = lambda NAME : NAME and NAME ( NAME ) [ NUMBER ] . NAME ( ) + NAME ( NAME ) [ NUMBER : ]
+Pred: if not NAME . NAME ( NAME ) or NAME . NAME ( NAME ) :
+
+Tgt:  capfirst = lambda x : x and force_text ( x ) [ 0 ] . upper ( ) + force_text ( x ) [ 1 : ]
+Pred: if not identity . force_text ( x ) or x . force_text ( x ) :
+*** nl wrong
+==================
+NL:call the method __init__ from the base class of the class Truncator ,
+Tgt:  super ( NAME , NAME ) . NAME ( lambda : NAME ( NAME ) )
+Pred: super ( NAME , NAME ) . NAME ( NAME , NAME )
+
+Tgt:  super ( Truncator , self ) . __init__ ( lambda : force_text ( text ) )
+Pred: super ( Truncator , self ) . __init__ ( data , data )
+
+*** never in train, doesn't know 1.0 is float
+==================
+NL:priority is floating point number 1.0 [ 1 . 0 ] .
+Tgt:  NAME = NUMBER
+Pred: NAME = float ( NAME . NAME )
+
+Tgt:  priority = 1.0
+Pred: priority = float ( 1 . 0 )
+*** nl wrong
+==================
+NL:if nor ,
+Tgt:  else :
+Pred: if NAME :
+
+Tgt:  else :
+Pred: if nor :
+
+*** nl wrong
+==================
+NL:string created by concatenating context , CONTEXT_SEPARATOR and plural and number . call the function ungettext with unpacked dictionary msgs_with_ctxt , substitute the result for result .
+Tgt:  NAME = NAME ( * NAME )
+Pred: NAME = NAME ( ** NAME )
+
+Tgt:  result = ungettext ( * msgs_with_ctxt )
+Pred: result = ungettext ( ** msgs_with_ctxt )
+*** verb and type understanding
+==================
+NL:remove the first element from colors , substitute it for fg .
+Tgt:  NAME = NAME . NAME ( )
+Pred: NAME = NAME [ NUMBER : ]
+
+Tgt:  fg = colors . pop ( )
+Pred: fg = colors [ 1 : ]
+*** nl wrong
+==================
+NL:_STR:0_ , _STR:1_ , _STR:2_ , _STR:3_ , _STR:4_ , _STR:5_ , _STR:6_ , _STR:7_ , _STR:8_ , _STR:9_ , _STR:10_ , _STR:11_ , _STR:12_ , _STR:13_ , _STR:14_ , _STR:15_ , _STR:16_ , _STR:17_ , _STR:18_ , _STR:19_ , _STR:20_ and _STR:21_ . LANGUAGE_SESSION_KEY is an string _STR:22_ .
+Tgt:  NAME = STRING
+Pred: NAME = NAME
+
+Tgt:  LANGUAGE_SESSION_KEY = <[> _STR:22_ <]>
+Pred: LANGUAGE_SESSION_KEY = _STR:22_
+==================
+NL:call the function re.compile [ re . compile ] with 2 arguments : raw string _STR:0_ ] * ( ? : ( ? : _STR:1_\\ ] |\\ . ) *_STR:2_ ] * ) + ) | \+ ) '' ,
+Tgt:  
+Pred: NAME = re . compile ( STRING , re . NAME )
+
+Tgt:  
+Pred: '' = re . compile ( <[> _STR:0_ <]> , re . *_STR:2_ )
+*** nl wrong
+==================
+NL:languages set to a list with an element self.__locale [ self . __locale ] , codeset set to a string _STR:0_ and fallback set to use_null_fallback , substitute the result for translation . if translation has an attribute _STR:1_ ,
+Tgt:  if not hasattr ( NAME , STRING ) :
+Pred: if hasattr ( NAME , STRING ) :
+
+Tgt:  if not hasattr ( translation , <[> _STR:1_ <]> ) :
+Pred: if hasattr ( translation , <[> _STR:1_ <]> ) :
+
+*** correct, bug in processing
+==================
+NL:if settings.TIME_ZONE [ settings . TIME_ZONE ] is an instance of six.string_types [ six . string_types ] and pytz is not None ,
+Tgt:  if isinstance ( NAME . NAME , NAME . NAME ) and NAME is not None :
+Pred: if isinstance ( NAME , NAME . NAME ) and NAME is not None :
+
+Tgt:  if isinstance ( settings . TIME_ZONE , six . string_types ) and pytz is not None :
+Pred: if isinstance ( settings.TIME_ZONE , six . string_types ) and pytz is not None :
+*** nl wrong
+==================
+NL:get _STR:0_ attribute from the moves.builtins [ moves . builtins ] object , substitute it for exec_ .
+Tgt:  NAME = getattr ( NAME . NAME , STRING )
+Pred: NAME = getattr ( NAME . NAME , STRING , NAME )
+
+Tgt:  exec_ = getattr ( moves . builtins , <[> exec <]> )
+Pred: exec_ = getattr ( moves . builtins , <[> _STR:0_ <]> , RemovedInDjango19Warning )
+
+*** copy dup
+==================
+NL:call the get_major_version wit version as argument , store the result in major .
+Tgt:  NAME = NAME ( NAME )
+Pred: NAME = NAME . NAME ( NAME )
+
+Tgt:  major = get_major_version ( version )
+Pred: major = major . get ( version )
+*** nl noisy
+==================
+NL:call the method _trans.ngettext [ _trans . ngettext ] with 3 arguments singular , plural and number .
+Tgt:  return NAME . NAME ( NAME , NAME , NAME )
+Pred: NAME . NAME ( NAME , NAME , NAME )
+
+Tgt:  return _trans . ngettext ( singular , plural , number )
+Pred: _trans . ngettext ( singular , plural , number )
+
+*** copy dup
+*** operator knowledge
+==================
+NL:if words is not empty and length is smaller than or equal to integer 0 ,
+Tgt:  if NAME and NAME <= NUMBER :
+Pred: if NAME and ( NAME < NUMBER or len ( NAME ) < NUMBER or NAME == NUMBER ) :
+
+Tgt:  if words and length <= 0 :
+Pred: if words and ( length < 0 or len ( length ) < 0 or length == 0 ) :
+==================
+NL:substitute type for class_types .
+Tgt:  NAME = type ,
+Pred: NAME = type
+
+Tgt:  class_types = type ,
+Pred: class_types = type
+==================
+NL:if s is an instance of six.text_type [ six . text_type ] or Promise ,
+Tgt:  if isinstance ( NAME , ( NAME . NAME , NAME ) ) :
+Pred: if isinstance ( NAME , NAME . NAME ) or isinstance ( NAME , NAME . NAME ) :
+
+Tgt:  if isinstance ( s , ( six . text_type , Promise ) ) :
+Pred: if isinstance ( s , six . text_type ) or isinstance ( s , six . text_type ) :
+==================
+NL:if second element of sys.version_info [ sys . version_info ] is smaller than or equal to integer 1 ,
+Tgt:  if NAME . NAME [ NUMBER ] <= NUMBER :
+Pred: if NAME . NAME [ NUMBER ] >= NUMBER :
+
+Tgt:  if sys . version_info [ 1 ] <= 1 :
+Pred: if sys . version_info [ 1 ] >= 1 :
+==================
+NL:call the method one_percent_re.sub [ one_percent_re . sub ] with 2 arguments : string _STR:0_ and g , substitute the result for .
+Tgt:  NAME = NAME . NAME ( STRING , NAME )
+Pred: NAME = NAME . NAME ( STRING , NUMBER )
+
+Tgt:  g = one_percent_re . sub ( <[> _STR:0_ <]> , g )
+Pred: bits = one_percent_re . sub ( <[> _STR:0_ <]> , 1 )
+==================
+NL:append value under the 0 key of the opt_dict dictionary to code_list .
+Tgt:  NAME . NAME ( NAME [ NAME ] )
+Pred: NAME . NAME ( NAME [ NUMBER ] )
+
+Tgt:  code_list . append ( opt_dict [ o ] )
+Pred: code_list . append ( opt_dict [ 0 ] )
+==================
+NL:otherwise if fourth element of version does not equals to _STR:0_ ,
+Tgt:  elif NAME [ NUMBER ] != STRING :
+Pred: elif NAME [ NUMBER ] == STRING :
+
+Tgt:  elif version [ 3 ] != <[> _STR:0_ <]> :
+Pred: elif version [ 3 ] == <[> _STR:0_ <]> :
+==================
+NL:join elements of list source from index last to the end into a string , substitute it for piece .
+Tgt:  NAME = STRING . NAME ( NAME [ NAME : ] )
+Pred: NAME = STRING . NAME ( NAME )
+
+Tgt:  piece = <[>  <]> . join ( source [ last : ] )
+Pred: piece = <[>  <]> . join ( source )
+==================
+NL:_urllib_robotparser_moved_attributes is a list containing an instance of MovedAttribute class , created with 3 argument : strings ,
+Tgt:  NAME = [ NAME ( STRING , STRING , STRING ) , ]
+Pred: NAME = [ NAME ( STRING , STRING ) , STRING ]
+
+Tgt:  _urllib_robotparser_moved_attributes = [ MovedAttribute ( <[> RobotFileParser <]> , <[> robotparser <]> , <[> urllib.robotparser <]> ) , ]
+Pred: _urllib_robotparser_moved_attributes = [ MovedAttribute ( <[> _STR:0_ <]> , <[>  <]> ) , <[>  <]> ]
+==================
+NL:call the function force_text with 2 arguments : value under the is_dst key of the time.tzname [ time . tzname ] and DEFAULT_LOCALE_ENCODING ,
+Tgt:  return NAME ( NAME . NAME [ NAME ] , NAME )
+Pred: NAME = NAME ( NAME [ NAME ] , NAME )
+
+Tgt:  return force_text ( time . tzname [ is_dst ] , DEFAULT_LOCALE_ENCODING )
+Pred: return = force_text ( time [ is_dst ] , DEFAULT_LOCALE_ENCODING )
+==================
+NL:return a string _STR:0_ formated with 3 elements : result of the function force_text called with an argument i ,
+Tgt:  return STRING % ( NAME ( STRING ) . NAME ( NAME ( NAME ) for NAME in NAME [ : - NUMBER ] ) , NAME ( NAME ) , NAME ( NAME [ - NUMBER ] ) )
+Pred: return STRING % ( NAME ( NAME ) , NAME . NAME ( NAME ) , NAME ( NAME ) , NAME ( NAME ) , NAME ( NAME ) , NAME ( NAME ) , NAME ( NAME ) , NAME ( NAME ) , NAME ( NAME )
+
+Tgt:  return <[> _STR:0_ <]> % ( _ ( <[> ,  <]> ) . join ( force_text ( i ) for i in list_ [ : - 1 ] ) , force_text ( last_word ) , force_text ( list_ [ - 1 ] ) )
+Pred: return <[> _STR:0_ <]> % ( force_text ( i ) , self . text_type ( i ) , force_text ( i ) , force_text ( i ) , force_text ( i ) , force_text ( i ) , force_text ( i ) , force_text ( i ) , force_text ( i )
+==================
+NL:deactivate and deactivate_all are lambda functions returning None .
+Tgt:  NAME = NAME = lambda : None
+Pred: NAME = NAME = None
+
+Tgt:  deactivate = deactivate_all = lambda : None
+Pred: deactivate = deactivate = None
+==================
+NL:replace every occurrence of whitespaces in the previous result for _STR:0_ , substitute the result for s. call the function re.sub [ re . sub ] with 3 arguments : raw string _STR:1_ , an empty string and s , return the result .
+Tgt:  return re . NAME ( STRING , STRING , NAME )
+Pred: return re . NAME ( STRING , STRING , STRING ) . NAME ( STRING , STRING ) . NAME ( STRING , STRING )
+
+Tgt:  return re . sub ( <[> _STR:1_ <]> , <[>  <]> , s )
+Pred: return re . sub ( <[> _STR:1_ <]> , <[>  <]> , <[> s <]> ) . replace ( <[>  <]> , <[> s <]> ) . replace ( <[>  <]> , <[>  <]> )
+==================
+NL:substitute first length elements of words for words .
+Tgt:  NAME = NAME [ : NAME ]
+Pred: NAME = len ( NAME )
+
+Tgt:  words = words [ : length ]
+Pred: words = len ( words )
+==================
+NL:convert text without first element to hexadecimal integer , substitute it for c .
+Tgt:  NAME = int ( NAME [ NUMBER : ] , NUMBER )
+Pred: NAME = int ( NAME ) [ NUMBER : ]
+
+Tgt:  c = int ( text [ 1 : ] , 16 )
+Pred: c = int ( text ) [ 1 : ]
+==================
+NL:while current_len is smaller than or equal to length ,
+Tgt:  while NAME <= NAME :
+Pred: while NAME < len ( NAME ) :
+
+Tgt:  while current_len <= length :
+Pred: while current_len < len ( length ) :
+==================
+NL:set attr.name [ attr . name ] attribute of the Module_six_moves_urllib_parse object to attr .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: setattr ( NAME . NAME , NAME , NAME )
+
+Tgt:  setattr ( Module_six_moves_urllib_parse , attr . name , attr )
+Pred: setattr ( attr . name , Module_six_moves_urllib_parse , attr )
+==================
+NL:instantiate class Module_six_moves_urllib_robotparser with an argument , string _STR:0_ appended to __name__ ,
+Tgt:  NAME . NAME [ NAME + STRING ] = NAME . NAME [ NAME + STRING ] = NAME ( NAME + STRING )
+Pred: return NAME ( STRING % ( NAME , NAME ) )
+
+Tgt:  sys . modules [ __name__ + <[> .moves.urllib_robotparser <]> ] = sys . modules [ __name__ + <[> _STR:0_ <]> ] = Module_six_moves_urllib_robotparser ( __name__ + <[> _STR:0_ <]> )
+Pred: return Module_six_moves_urllib_robotparser ( <[> _STR:0_ <]> % ( __name__ , __name__ ) )
+==================
+NL:append string _STR:0_ to __name__ , use it as an key to get the value from the sys.modules [ sys . modules ] dictionary , substitute it for error .
+Tgt:  NAME = NAME . NAME [ NAME + STRING ]
+Pred: NAME = NAME . NAME ( STRING ) + NAME
+
+Tgt:  error = sys . modules [ __name__ + <[> _STR:0_ <]> ]
+Pred: error = sys . module ( <[> _STR:0_ <]> ) + __name__
+==================
+NL:substitute self.__offset.seconds [ self . __offset . seconds ] for offset .
+Tgt:  NAME = NAME . NAME . NAME // NUMBER
+Pred: NAME = NAME . NAME . NAME
+
+Tgt:  offset = self . __offset . seconds // 60
+Pred: offset = self . __offset . seconds
+==================
+NL:execute code statement _STR:0_ '' exec _code_ in _globs_ , _locs__STR:0_ '' .
+Tgt:  NAME ( STRING STRING )
+Pred: NAME = NAME . NAME ( STRING , STRING )
+
+Tgt:  exec ( <[> _STR:0_ <]> <[> exec _code_ in _globs_, _locs_'_STR:0_' <]> )
+Pred: execute = _globs_ . execute ( <[> _STR:0_ <]> , <[> _locs__STR:0_ <]> )
+==================
+NL:except ImportError .
+Tgt:  except NAME :
+Pred: from NAME
+
+Tgt:  except ImportError :
+Pred: from ImportError
+==================
+NL:append truncate to text , return the result .
+Tgt:  return STRING % ( NAME , NAME )
+Pred: return NAME + NAME
+
+Tgt:  return <[> %s%s <]> % ( text , truncate )
+Pred: return text + truncate
+==================
+NL:substitute str for string_types .
+Tgt:  NAME = str ,
+Pred: NAME = str
+
+Tgt:  string_types = str ,
+Pred: string_types = str
+==================
+NL:if current_len is smaller than or equal to length ,
+Tgt:  if NAME <= NAME :
+Pred: if NAME < len ( NAME ) :
+
+Tgt:  if current_len <= length :
+Pred: if current_len < len ( current_len ) :
+==================
+NL:call the method self._isdst [ self . _isdst ] with an argument dt , use it as an key to get the value from the _time.tzname [ _time . tzname ] dictionary , return it .
+Tgt:  return NAME . NAME [ NAME . NAME ( NAME ) ]
+Pred: return NAME . NAME . NAME ( NAME )
+
+Tgt:  return _time . tzname [ self . _isdst ( dt ) ]
+Pred: return _time . tzname . get ( dt )
+==================
+NL:get the value under the LANGUAGE_SESSION_KEY key of the request.session [ request . session ] dictionary , substitute it for lang_code .
+Tgt:  NAME = NAME . NAME . NAME ( NAME )
+Pred: NAME = NAME . NAME [ NAME ]
+
+Tgt:  lang_code = request . session . get ( LANGUAGE_SESSION_KEY )
+Pred: lang_code = request . session [ LANGUAGE_SESSION_KEY ]
+==================
+NL:call the function write with an argument arg .
+Tgt:  NAME ( NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  write ( arg )
+Pred: arg . write ( arg )
+==================
+NL:call the method Module_six_moves_urllib_request with an argument : string _STR:0_ appended to __name__ ,
+Tgt:  NAME . NAME [ NAME + STRING ] = NAME . NAME [ NAME + STRING ] = NAME ( NAME + STRING )
+Pred: return NAME ( STRING + NAME . NAME ( STRING ) )
+
+Tgt:  sys . modules [ __name__ + <[> .moves.urllib_request <]> ] = sys . modules [ __name__ + <[> _STR:0_ <]> ] = Module_six_moves_urllib_request ( __name__ + <[> _STR:0_ <]> )
+Pred: return Module_six_moves_urllib_request ( <[> _STR:0_ <]> + path . get ( <[>  <]> ) )
+==================
+NL:set attr.name [ attr . name ] attribute of the _MovedItemst object to attr .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: setattr ( NAME . NAME , NAME , NAME )
+
+Tgt:  setattr ( _MovedItems , attr . name , attr )
+Pred: setattr ( attr . name , _MovedItemst , attr )
+==================
+NL:use its __file__ field as an argument for the call to the function upath , substitute the result for settingsfile . call the function os.path.dirname [ os . path . dirname ] with an argument settingsfile , join the result an string _STR:0_ into a file path ,
+Tgt:  NAME = NAME . NAME . NAME ( NAME . NAME . NAME ( NAME ) , STRING )
+Pred: NAME = [ STRING % NAME ( NAME ) ]
+
+Tgt:  localedir = os . path . join ( os . path . dirname ( settingsfile ) , <[> _STR:0_ <]> )
+Pred: os = [ <[> settingsfile <]> % os.path.dirname ( settingsfile ) ]
+==================
+NL:get _iteritems attribute of the class d , call the result with an argument unpacked dictionary kw , convert the result to a iterable ,
+Tgt:  return iter ( getattr ( NAME , NAME ) ( ** NAME ) )
+Pred: NAME = getattr ( NAME , NAME ) ( ** NAME )
+
+Tgt:  return iter ( getattr ( d , _iteritems ) ( ** kw ) )
+Pred: iterable = getattr ( d , d ) ( ** kw )
+==================
+NL:if data is instance of Node and data.negated [ data . negated ] is false , and if data.connector [ data . connector ] equals conn_type or length of data equals integer 1 ,
+Tgt:  if ( isinstance ( NAME , NAME ) and not NAME . NAME and ( NAME . NAME == NAME or len ( NAME ) == NUMBER ) ) :
+Pred: if isinstance ( NAME , NAME . NAME ) and not len ( NAME . NAME ) == NUMBER :
+
+Tgt:  if ( isinstance ( data , Node ) and not data . negated and ( data . connector == conn_type or len ( data ) == 1 ) ) :
+Pred: if isinstance ( data , data . negated ) and not len ( data . negated ) == 0 :
+==================
+NL:create a tuple out a tuple with an element integer 2037 and a list tt elements without the first element , substitute the result for tt .
+Tgt:  NAME = ( NUMBER , ) + NAME [ NUMBER : ]
+Pred: NAME = tuple ( NAME , int ( NAME ) [ NUMBER ] )
+
+Tgt:  tt = ( 2037 , ) + tt [ 1 : ]
+Pred: tt = tuple ( 2037 , int ( tt ) [ 0 ] )
+==================
+NL:write string _STR:0_ to out file .
+Tgt:  NAME . NAME ( STRING )
+Pred: file . NAME ( STRING )
+
+Tgt:  out . write ( <[> _STR:0_ <]> )
+Pred: file . write ( <[> _STR:0_ <]> )
+==================
+NL:re.U [ re . U ] and re.S [ re . S ] , substitute the result for re_words . call the function re.compile [ re . compile ] with 2 arguments : raw string _STR:0_ and bitwise OR performed with 2 operands ,
+Tgt:  NAME = re . compile ( STRING , re . NAME | re . NAME )
+Pred: NAME = re . compile ( STRING , re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME )
+
+Tgt:  re_chars = re . compile ( <[> _STR:0_ <]> , re . U | re . S )
+Pred: re_words = re . compile ( <[> _STR:0_ <]> , re . S | re . S | re . S | re . S | re . S | re . S | re . S )
+==================
+NL:__all__ is an list containing strings : _STR:0_ , _STR:1_ , _STR:2_ , _STR:3_ , _STR:4_ ,
+Tgt:  NAME = [ STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , ]
+Pred: NAME = [ STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING
+
+Tgt:  __all__ = [ <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> get_language_from_request <]> , <[> get_language_info <]> , <[> get_language_bidi <]> , <[> check_for_language <]> , <[> to_locale <]> , <[> templatize <]> , <[> string_concat <]> , <[> gettext <]> , <[> gettext_lazy <]> , <[> gettext_noop <]> , <[> ugettext <]> , <[> ugettext_lazy <]> , <[> ugettext_noop <]> , <[> ngettext <]> , <[> ngettext_lazy <]> , <[> ungettext <]> , <[> ungettext_lazy <]> , <[> pgettext <]> , <[> pgettext_lazy <]> , <[> npgettext <]> , <[> npgettext_lazy <]> , <[> LANGUAGE_SESSION_KEY <]> , ]
+Pred: __all__ = [ <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> :
+==================
+NL:set attr.name [ attr . name ] attribute of the Module_six_moves_urllib_request object to attr .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: setattr ( NAME . NAME , NAME , NAME )
+
+Tgt:  setattr ( Module_six_moves_urllib_request , attr . name , attr )
+Pred: setattr ( attr . name , Module_six_moves_urllib_request , attr )
+==================
+NL:with an argument value evaluates to false , and if _STR:0_ attribute of value object doesnt exists , or is it does is boolean True , should_convert is boolean True , otherwise is boolean False . if should_convert is true , call the function localtime with an argument value and return the result , otherwise return value .
+Tgt:  return NAME ( NAME ) if NAME else NAME
+Pred: return NAME ( NAME ) or ( NAME . NAME ( NAME ) )
+
+Tgt:  return localtime ( value ) if should_convert else value
+Pred: return localtime ( value ) or ( value . localtime ( value ) )
+==================
+NL:converted to an integer . call the method self._init_translation_catalog [ self . _init_translation_catalog ] .
+Tgt:  NAME . NAME ( )
+Pred: NAME . NAME ( int ( NAME ) )
+
+Tgt:  self . _init_translation_catalog ( )
+Pred: self . _init_translation_catalog ( int ( converted ) )
+==================
+NL:integer_types is a tuple with 2 elements int and long .
+Tgt:  NAME = ( int , long )
+Pred: NAME = ( NAME , NAME )
+
+Tgt:  integer_types = ( int , long )
+Pred: integer_types = ( fixture_name , long )
+==================
+NL:warn_msg is a string _STR:0_ ,
+Tgt:  NAME = ( STRING ) % ( NAME , NAME , NAME )
+Pred: NAME = STRING
+
+Tgt:  warn_msg = ( <[> The translator-targeted comment '%s' (%sline %d) was ignored, because it wasn't the last item on the line. <]> ) % ( c , filemsg , comment_lineno_cache )
+Pred: warn_msg = <[> _STR:0_ <]>
+==================
+NL:append string _STR:0_ to __name__ , use it as an key to get the value from the sys.modules [ sys . modules ] dictionary , substitute it for response .
+Tgt:  NAME = NAME . NAME [ NAME + STRING ]
+Pred: NAME = NAME . NAME ( STRING ) + NAME
+
+Tgt:  response = sys . modules [ __name__ + <[> _STR:0_ <]> ]
+Pred: response = sys . module ( <[> _STR:0_ <]> ) + __name__
+
+*** long logic
+==================
+NL:get the absolute path of the __file__ , repo_dir is name of the directory two leveles above it .
+Tgt:  NAME = NAME . NAME . NAME ( NAME . NAME . NAME ( NAME . NAME . NAME ( NAME ) ) )
+Pred: NAME . NAME ( NAME , NAME )
+
+Tgt:  repo_dir = os . path . dirname ( os . path . dirname ( os . path . abspath ( __file__ ) ) )
+Pred: repo_dir . makedirs ( __file__ , repo_dir )
+==================
+NL:call the method blankout with 2 arguments : part and _STR:0_ , write the result to out .
+Tgt:  NAME . NAME ( NAME ( NAME , STRING ) )
+Pred: NAME ( NAME , STRING , NAME )
+
+Tgt:  out . write ( blankout ( part , <[> _STR:0_ <]> ) )
+Pred: out ( part , <[> _STR:0_ <]> , write )
+*** operator knowledge
+==================
+NL:if since is lesser or equal to integer 0 ,
+Tgt:  if NAME <= NUMBER :
+Pred: if NAME < NUMBER :
+
+Tgt:  if since <= 0 :
+Pred: if since < 0 :
+==================
+NL:call the function timedelta with an argument seconds as negative time.altzone [ time . altzone ] , return the result .
+Tgt:  return NAME ( NAME = - NAME . NAME )
+Pred: return NAME ( NAME . NAME ( NAME ) )
+
+Tgt:  return timedelta ( seconds = - time . altzone )
+Pred: return timedelta ( time . altzone ( seconds ) )
+==================
+NL:if count does not equals to integer 0 ,
+Tgt:  if NAME != NUMBER :
+Pred: if not NAME != NUMBER :
+
+Tgt:  if count != 0 :
+Pred: if not count != 0 :
+==================
+NL:and string _STR:0_ , call the method decode on the result with an argument string _STR:1_ , substitute the result for value . call the method re.sub [ re . sub ] with 3 arguments : string _STR:2_ , empty string and value , strip the result of whitespaces from both ends ,
+Tgt:  NAME = re . NAME ( STRING , STRING , NAME ) . NAME ( ) . NAME ( )
+Pred: NAME = re . NAME ( STRING , STRING , NAME ) . NAME ( ) . NAME ( STRING , STRING , STRING )
+
+Tgt:  value = re . sub ( <[> _STR:2_ <]> , <[>  <]> , value ) . strip ( ) . lower ( )
+Pred: return = re . sub ( <[> _STR:2_ <]> , <[>  <]> , value ) . encode ( ) . strip ( <[>  <]> , <[>  <]> , <[>  <]> )
+==================
+NL:get _itervalues attribute of the class d , call the result with an argument unpacked dictionary kw , convert the result to a iterable ,
+Tgt:  return iter ( getattr ( NAME , NAME ) ( ** NAME ) )
+Pred: iter ( NAME ) . NAME ( ** NAME )
+
+Tgt:  return iter ( getattr ( d , _itervalues ) ( ** kw ) )
+Pred: iter ( d ) . iterable ( ** kw )
+==================
+NL:and truncate , return the result . return elements of words joined in a string , separated with whitespaces .
+Tgt:  return STRING . NAME ( NAME )
+Pred: return STRING + STRING + NAME
+
+Tgt:  return <[>   <]> . join ( words )
+Pred: return <[> whitespaces <]> + <[>  <]> + string + be  <]> +
+==================
+NL:_urllib_error_moved_attributes is a list with 3 elements : result of the call to the function MovedAttribute with 3 arguments :
+Tgt:  NAME = [ NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , ]
+Pred: NAME = [ NAME ( STRING , NAME ( NAME ) , NAME = True , NAME = True , NAME = True , NAME = False )
+
+Tgt:  _urllib_error_moved_attributes = [ MovedAttribute ( <[> URLError <]> , <[> urllib2 <]> , <[> urllib.error <]> ) , MovedAttribute ( <[> HTTPError <]> , <[> urllib2 <]> , <[> urllib.error <]> ) , MovedAttribute ( <[> ContentTooShortError <]> , <[> urllib <]> , <[> urllib.error <]> ) , ]
+Pred: _urllib_error_moved_attributes = [ MovedAttribute ( <[> _STR:0_ <]> , MovedAttribute ( final_attrs ) , _urllib_error_moved_attributes = True , _urllib_error_moved_attributes = True , _urllib_error_moved_attributes = True , call = False )
+==================
+NL:for every i in range of integers from 0 to length of result , not included ,
+Tgt:  for NAME in range ( len ( NAME ) ) :
+Pred: NAME = [ NUMBER ] + NAME + NUMBER
+
+Tgt:  for i in range ( len ( result ) ) :
+Pred: else = [ 0 ] + i + 0
+==================
+NL:update the self._catalog [ self . _catalog ] dictionary with other._catalog [ other . _catalog ] .
+Tgt:  NAME . NAME . NAME ( NAME . NAME )
+Pred: NAME . NAME ( NAME . NAME )
+
+Tgt:  self . _catalog . update ( other . _catalog )
+Pred: self . update ( other . _catalog )
+==================
+NL:__all__ is a list with 15 elements : strings _STR:0_ , _STR:1_ , _STR:2_ , _STR:3_ ,
+Tgt:  NAME = [ STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , ]
+Pred: NAME = [ STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING
+
+Tgt:  __all__ = [ <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> get_current_timezone <]> , <[> get_current_timezone_name <]> , <[> activate <]> , <[> deactivate <]> , <[> override <]> , <[> localtime <]> , <[> now <]> , <[> is_aware <]> , <[> is_naive <]> , <[> make_aware <]> , <[> make_naive <]> , ]
+Pred: __all__ = [ <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> BadHeaderError <]> , <[> _STR:3_ <]> :
+==================
+NL:define the method __init__ with 6 arguments : self , name , old_mod , new_mod , old_attr set to None , new_attr set to None .
+Tgt:  def NAME ( NAME , NAME , NAME , NAME , NAME = None , NAME = None ) :
+Pred: def NAME ( NAME , NAME , NAME , NAME , NAME , NAME = None ) :
+
+Tgt:  def __init__ ( self , name , old_mod , new_mod , old_attr = None , new_attr = None ) :
+Pred: def __init__ ( self , name , old_mod , new_mod , new_mod , old_attr = None ) :
+==================
+NL:if fourth element of version equals to string _STR:0_ and fight element of version equals to integer 0 ,
+Tgt:  if NAME [ NUMBER ] == STRING and NAME [ NUMBER ] == NUMBER :
+Pred: if NAME [ NUMBER ] == STRING and NAME [ NUMBER ] == STRING :
+
+Tgt:  if version [ 3 ] == <[> _STR:0_ <]> and version [ 4 ] == 0 :
+Pred: if version [ 3 ] == <[> _STR:0_ <]> and version [ 3 ] == <[> fight <]> :
+==================
+NL:invert self.negated [ self . negated ] .
+Tgt:  NAME . NAME = not NAME . NAME
+Pred: NAME . NAME
+
+Tgt:  self . negated = not self . negated
+Pred: self . negated
+==================
+NL:with self.mutex [ self . mutex ] perform ,
+Tgt:  with NAME . NAME :
+Pred: with open ( NAME . NAME , STRING ) :
+
+Tgt:  with self . mutex :
+Pred: with open ( self . mutex , <[> mutex <]> ) :
+==================
+NL:call the function bytes with an argument tuple with an element i , return the result .
+Tgt:  return NAME ( ( NAME , ) )
+Pred: return NAME ( ( NAME , NAME ) )
+
+Tgt:  return bytes ( ( i , ) )
+Pred: return bytes ( ( i , return ) )
+==================
+NL:sum major and sub , return the result converted to string .
+Tgt:  return str ( NAME + NAME )
+Pred: return str ( NAME ) + str ( NAME )
+
+Tgt:  return str ( major + sub )
+Pred: return str ( major ) + str ( major )
+==================
+NL:and unpacked dictionary kwargs , return the result . call the function MovedModule with 2 arguments : strings _STR:0_ and _STR:1_ ,
+Tgt:  NAME ( NAME ( STRING , STRING ) )
+Pred: return NAME ( STRING , STRING , STRING )
+
+Tgt:  add_move ( MovedModule ( <[> _STR:0_ <]> , <[> _STR:1_ <]> ) )
+Pred: return MovedModule ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:1_ <]> )
+==================
+NL:if first element of s is not contained in _STR:0_ or last element of s is not equal to first element of s ,
+Tgt:  if NAME [ NUMBER ] not in STRING or NAME [ - NUMBER ] != NAME [ NUMBER ] :
+Pred: if NAME [ : - NUMBER ] != NAME [ NUMBER ] != STRING :
+
+Tgt:  if s [ 0 ] not in <[> _STR:0_ <]> or s [ - 1 ] != s [ 0 ] :
+Pred: if s [ : - 1 ] != s [ 0 ] != <[> _STR:0_ <]> :
+==================
+NL:increment piece by firs element of elt .
+Tgt:  NAME += NAME [ NUMBER ]
+Pred: NAME = NAME [ NUMBER ] + NAME [ NUMBER ]
+
+Tgt:  piece += elt [ 0 ]
+Pred: elt = elt [ 1 ] + elt [ 1 ]
+==================
+NL:return next element of the iterable it .
+Tgt:  return NAME . next ( )
+Pred: return NAME . NAME ( )
+
+Tgt:  return it . next ( )
+Pred: return iterable . next ( )
+==================
+NL:call the function exc_type with an argument string _STR:0_ , replace ' % s ' with dt ,
+Tgt:  NAME = NAME ( STRING % NAME )
+Pred: NAME = NAME ( STRING % ( NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME . NAME , NAME
+
+Tgt:  exc_value = exc_type ( <[> _STR:0_ <]> % dt )
+Pred: return = exc_type ( <[> _STR:0_ <]> % ( dt , dt . name , dt . object_name , dt . app_label , dt . app_label , dt . object_name , dt . object_name , dt . object_name , dt . object_name , dt . object_name , dt . object_name , dt
+==================
+NL:convert to strings and concatenate context , CONTEXT_SEPARATOR and message , substitute the result for msg_with_ctxt .
+Tgt:  NAME = STRING % ( NAME , NAME , NAME )
+Pred: NAME = str ( str ( NAME ) , str ( NAME ) )
+
+Tgt:  msg_with_ctxt = <[> %s%s%s <]> % ( context , CONTEXT_SEPARATOR , message )
+Pred: msg_with_ctxt = str ( str ( context ) , str ( message ) )
+==================
+NL:call the function datetime.datetime [ datetime . datetime ] with 3 arguments , d.year [ d . year ] , d.month [ d . month ] and d.day [ d . day ] , substitute the result for d .
+Tgt:  NAME = NAME . NAME ( NAME . NAME , NAME . NAME , NAME . NAME )
+Pred: NAME = NAME . NAME ( NAME , NAME . NAME , NAME . NAME , NAME . NAME )
+
+Tgt:  d = datetime . datetime ( d . year , d . month , d . day )
+Pred: d = datetime . datetime ( 3 , d . year , d . month , d . day )
+==================
+NL:if text is true format with it and RESET a string _STR:0_ , if not format it with an empty string and RESET , substitute the result for text .
+Tgt:  NAME = STRING % ( NAME or STRING , NAME )
+Pred: NAME = NAME or STRING
+
+Tgt:  text = <[> _STR:0_ <]> % ( text or <[>  <]> , RESET )
+Pred: text = text or <[>  <]>
+==================
+NL:raise an KeyError with an argument string _STR:0_
+Tgt:  raise NAME ( STRING STRING STRING % NAME )
+Pred: raise NAME ( STRING STRING % NAME . NAME . NAME )
+
+Tgt:  raise KeyError ( <[> Your dictionary lacks key \'%s\'.  <]> <[> Please provide it, because it is required to  <]> <[> determine whether string is singular or plural. <]> % number )
+Pred: raise KeyError ( <[> _STR:0_ <]> <[> Use <]> % string . __class__ . string )
+==================
+NL:append _STR:0_ to generic_lang_code , if supported_code starts with it ,
+Tgt:  if NAME . NAME ( NAME + STRING ) :
+Pred: NAME = NAME + STRING + NAME
+
+Tgt:  if supported_code . startswith ( generic_lang_code + <[> _STR:0_ <]> ) :
+Pred: generic_lang_code = generic_lang_code + <[> _STR:0_ <]> + supported_code
+==================
+NL:raise an AttributeError with an argument string _STR:0_ , formated with a tuple with an element name .
+Tgt:  raise NAME ( STRING % ( NAME , ) )
+Pred: raise NAME ( STRING % NAME )
+
+Tgt:  raise AttributeError ( <[> _STR:0_ <]> % ( name , ) )
+Pred: raise AttributeError ( <[> _STR:0_ <]> % name )
+==================
+NL:append attr.name [ attr . name ] to attrs for every attr in self._moved_attributes [ self . _moved_attributes ] .
+Tgt:  NAME += [ NAME . NAME for NAME in NAME . NAME ]
+Pred: NAME . NAME = NAME . NAME
+
+Tgt:  attrs += [ attr . name for attr in self . _moved_attributes ]
+Pred: attrs . _moved_attributes = self . _moved_attributes
+==================
+NL:substitute Iterator for create_bound_method .
+Tgt:  NAME = NAME . NAME
+Pred: NAME = NAME
+
+Tgt:  create_bound_method = types . MethodType
+Pred: create_bound_method = MultipleHiddenInput
+==================
+NL:if value.tzinfo [ value . tzinfo ] is not None and call to the method value.tzinfo.utcoffset [ value . tzinfo . utcoffset ] called with an argument value evaluates to not None ,
+Tgt:  return NAME . NAME is not None and NAME . NAME . NAME ( NAME ) is not None
+Pred: if NAME . NAME is not None and NAME . NAME . NAME ( NAME ) is not None ) :
+
+Tgt:  return value . tzinfo is not None and value . tzinfo . utcoffset ( value ) is not None
+Pred: if value . tzinfo is not None and value . tzinfo . utcoffset ( value ) is not None ) :
+==================
+NL:call the function timedelta with an argument seconds as negative time.timezone [ time . timezone ] , return the result .
+Tgt:  return NAME ( NAME = - NAME . NAME )
+Pred: return NAME ( NAME . NAME )
+
+Tgt:  return timedelta ( seconds = - time . timezone )
+Pred: return timedelta ( time . timezone )
+==================
+NL:create a list out of open_tags elements form ( i+1 ) -th index to the end , substitute it for open_tags .
+Tgt:  NAME = NAME [ NAME + NUMBER : ]
+Pred: NAME = list ( NAME ( NAME ) , NAME )
+
+Tgt:  open_tags = open_tags [ i + 1 : ]
+Pred: open_tags = list ( open_tags ( i+1 ) , -th )
+==================
+NL:otherwise if sep is not an instance of string type ,
+Tgt:  elif not isinstance ( NAME , str ) :
+Pred: elif not isinstance ( NAME , STRING ) :
+
+Tgt:  elif not isinstance ( sep , str ) :
+Pred: elif not isinstance ( sep , <[> string <]> ) :
+==================
+NL:set self.name [ self . name ] attribute of the obj object to result .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: NAME . NAME ( getattr ( NAME . NAME , NAME ) )
+
+Tgt:  setattr ( obj , self . name , result )
+Pred: setattr . attribute ( getattr ( obj . name , obj ) )
+==================
+NL:for every char in result of the self.add_truncation_text [ self . add_truncation_text ] , called with 2 arguments : an empty string and truncate .
+Tgt:  for NAME in NAME . NAME ( STRING , NAME ) :
+Pred: NAME = NAME . NAME ( STRING , STRING )
+
+Tgt:  for char in self . add_truncation_text ( <[>  <]> , truncate ) :
+Pred: for = self . add_truncation_text ( <[>  <]> , <[>  <]> )
+==================
+NL:with self.mutex [ self . mutex ] perform ,
+Tgt:  with NAME . NAME :
+Pred: with open ( NAME . NAME , STRING ) :
+
+Tgt:  with self . mutex :
+Pred: with open ( self . mutex , <[> mutex <]> ) :
+==================
+NL:use fourth element of version as a key to get the value from mapping dictionary , append to it fourth element of version converted to string , substitute it for sub .
+Tgt:  NAME = NAME [ NAME [ NUMBER ] ] + str ( NAME [ NUMBER ] )
+Pred: NAME = NAME [ NUMBER ] + str ( NAME ) [ NUMBER ]
+
+Tgt:  sub = mapping [ version [ 3 ] ] + str ( version [ 4 ] )
+Pred: number = mapping [ 3 ] + str ( version ) [ 3 ]
+==================
+NL:call the function pgettext with an argument _STR:0_ , _STR:1_ , substitute the result for truncate .
+Tgt:  NAME = NAME ( STRING , STRING )
+Pred: NAME = NAME ( STRING )
+
+Tgt:  truncate = pgettext ( <[> _STR:0_ <]> , <[> _STR:1_ <]> )
+Pred: truncate = pgettext ( <[> _STR:0_ <]> )
+==================
+NL:get value under the config_string key of the PALETTES dictionary , call the copy method on the result and substitute it for palette .
+Tgt:  NAME = NAME [ NAME ] . NAME ( )
+Pred: NAME = NAME . NAME ( NAME [ NAME ] )
+
+Tgt:  palette = PALETTES [ NOCOLOR_PALETTE ] . copy ( )
+Pred: palette = PALETTES . get ( config_string [ config_string ] )
+==================
+NL:slice language from ( p+1 ) -th index to the end , calculate the length of the obtained segment , if it is greater than integer 2 ,
+Tgt:  if len ( NAME [ NAME + NUMBER : ] ) > NUMBER :
+Pred: if len ( NAME ) > NUMBER :
+
+Tgt:  if len ( language [ p + 1 : ] ) > 2 :
+Pred: if len ( p+1 ) > 2 :
+==================
+NL:if palette equals value under the NOCOLOR_PALETTE key of the PALETTES dictionary ,
+Tgt:  if NAME == NAME [ NAME ] :
+Pred: if NAME [ NAME ] == NAME :
+
+Tgt:  if palette == PALETTES [ NOCOLOR_PALETTE ] :
+Pred: if palette [ NOCOLOR_PALETTE ] == PALETTES :
+==================
+NL:_urllib_response_moved_attributes is a list with 4 elements : result of the function MovedAttribute , called with 3 arguments :
+Tgt:  NAME = [ NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , ]
+Pred: NAME = [ NAME ( STRING , NAME ( NAME ) , NAME = NUMBER ) , NAME = True , NAME = False , NAME = [ NUMBER ] , NAME = [ NUMBER ] , NAME = [ NUMBER ] , NAME = [ NUMBER ] , NAME
+
+Tgt:  _urllib_response_moved_attributes = [ MovedAttribute ( <[> addbase <]> , <[> urllib <]> , <[> urllib.response <]> ) , MovedAttribute ( <[> addclosehook <]> , <[> urllib <]> , <[> urllib.response <]> ) , MovedAttribute ( <[> addinfo <]> , <[> urllib <]> , <[> urllib.response <]> ) , MovedAttribute ( <[> addinfourl <]> , <[> urllib <]> , <[> urllib.response <]> ) , ]
+Pred: _urllib_response_moved_attributes = [ MovedAttribute ( <[> MovedAttribute <]> , called ( called ) , called = 0 ) , _urllib_response_moved_attributes = True , _urllib_response_moved_attributes = False , elements = [ 0 ] , code = [ 0 ] , code = [ 0 ] , code = [ 0 ] , code
+==================
+NL:get the value under the settings.__module__ [ settings . __module__ ] key of the sys.modules [ sys . modules ] dictionary , use its __file__ field as an argument ,
+Tgt:  NAME = NAME . NAME . NAME ( NAME . NAME . NAME ( NAME ( NAME . NAME [ NAME . NAME ] . NAME ) ) , STRING )
+Pred: NAME = NAME . NAME [ NAME . NAME ] . NAME ( NAME . NAME [ NUMBER ] )
+
+Tgt:  globalpath = os . path . join ( os . path . dirname ( upath ( sys . modules [ settings . __module__ ] . __file__ ) ) , <[> locale <]> )
+Pred: sys = sys . modules [ settings . __module__ ] . get ( settings . __module__ [ 1 ] )
+==================
+NL:call the function lazy_number with 6 arguments : npgettext , six.text_type [ six . text_type ] , context set to context , singular set to singular ,
+Tgt:  return NAME ( NAME , NAME . NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME )
+Pred: NAME = NAME ( NAME , NAME . NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME ,
+
+Tgt:  return lazy_number ( npgettext , six . text_type , context = context , singular = singular , plural = plural , number = number )
+Pred: lazy_number = lazy_number ( npgettext , six . text_type , context = context , singular = singular , singular = singular , singular = singular , singular = singular , singular = singular , singular = singular , singular = singular , singular = singular , singular = singular , ** = ( , singular <]> % singular to singular <]> ) ( , singular <]> % ( , singular <]> % ( , singular <]> % ( , singular <]> % ( , singular <]> % ( , singular <]> % ( , singular <]> % ( ,
+==================
+NL:4 for _STR:0_ , 4 for _STR:1_ , 4 for _STR:2_ , 5 for _STR:3_ , 5 for _STR:4_ , 5 for _STR:5_ , 6 for _STR:6_ , 6 for _STR:7_ , 6 for _STR:8_ , 7 for _STR:9_ , 7 for _STR:10_ , 7 for _STR:10_ , 7 for _STR:11_ , 7 for _STR:12_ , 8 for _STR:12_ , 8 for _STR:13_ , 8 for _STR:14_ , 9 for
+Tgt:  return STRING . NAME ( NAME . NAME ( NAME , NAME ) for NAME in NAME . NAME ( ) )
+Pred: NAME = NAME + NAME . NAME + NUMBER
+
+Tgt:  return <[>  <]> . join ( char2number . get ( c , c ) for c in phone . lower ( ) )
+Pred: _STR:12_ = _STR:12_ + self . _STR:14_ + 4
+==================
+NL:delete self.name [ self . name ] attribute from the obj.__class__ [ obj . __class__ ] object .
+Tgt:  delattr ( NAME . NAME , NAME . NAME )
+Pred: del getattr ( NAME . NAME , NAME . NAME )
+
+Tgt:  delattr ( obj . __class__ , self . name )
+Pred: del getattr ( obj . name , self . name )
+==================
+NL:call the method line.lstrip [ line . lstrip ] , if the result starts with TRANSLATOR_COMMENT_MARK ,
+Tgt:  if NAME . NAME ( ) . NAME ( NAME ) :
+Pred: if NAME . NAME ( ) + NAME :
+
+Tgt:  if line . lstrip ( ) . startswith ( TRANSLATOR_COMMENT_MARK ) :
+Pred: if line . lstrip ( ) + TRANSLATOR_COMMENT_MARK :
+==================
+NL:if dt is None is_dst is boolean False , otherwise call the method self._isdst [ self . _isdst ] with an argument dt , substitute the result for is_dst .
+Tgt:  NAME = False if NAME is None else NAME . NAME ( NAME )
+Pred: NAME = NAME . NAME ( NAME ) if NAME is None else NAME
+
+Tgt:  is_dst = False if dt is None else self . _isdst ( dt )
+Pred: is_dst = self . _isdst ( dt ) if dt is None else dt
+==================
+NL:substitute type.__call__ [ type . __call__ ] for __call__ .
+Tgt:  NAME = type . NAME
+Pred: NAME = type ( NAME )
+
+Tgt:  __call__ = type . __call__
+Pred: __call__ = type ( type )
+==================
+NL:call the method self.add_truncation_text [ self . add_truncation_text ] with 2 arguments : elements of words joined in a string , separated with whitespaces ,
+Tgt:  return NAME . NAME ( STRING . NAME ( NAME ) , NAME )
+Pred: NAME . NAME [ NAME ] . NAME ( NAME . NAME . NAME ( NAME ) )
+
+Tgt:  return self . add_truncation_text ( <[>   <]> . join ( words ) , truncate )
+Pred: return . add_truncation_text [ joined ] . join ( self . style . join ( words ) )
+==================
+NL:call the method self._truncate_html [ self . _truncate_html ] with 5 arguments : length , truncate , self._wrapped [ self . _wrapped ] , length and boolean True , return the result .
+Tgt:  return NAME . NAME ( NAME , NAME , NAME . NAME , NAME , True )
+Pred: return NAME . NAME ( NAME , NAME , NAME . NAME , True )
+
+Tgt:  return self . _truncate_html ( length , truncate , self . _wrapped , length , True )
+Pred: return self . _truncate_html ( length , truncate , self . _wrapped , True )
+==================
+NL:call the method self._text_chars [ self . _text_chars ] with 4 arguments : length , truncate , text and truncate_len , return the result .
+Tgt:  return NAME . NAME ( NAME , NAME , NAME , NAME )
+Pred: return NAME . NAME ( len ( NAME ) , NAME , NAME )
+
+Tgt:  return self . _text_chars ( length , truncate , text , truncate_len )
+Pred: return self . _text_chars ( len ( length ) , truncate , truncate_len )
+==================
+NL:opts is a tuple created out of elements s , for every s in styles is s is in the keys of the opt_dict dictionary .
+Tgt:  NAME = tuple ( NAME for NAME in NAME if NAME in NAME . NAME ( ) )
+Pred: NAME = ( NAME [ : NUMBER ] for NAME in NAME if NAME . NAME ( ) ]
+
+Tgt:  opts = tuple ( s for s in styles if s in opt_dict . keys ( ) )
+Pred: opts = ( s [ : 2 ] for s in styles if opt_dict . keys ( ) ]
+==================
+NL:if offset is lesser than integer 0 , sign is set to _STR:0_ , otherwise sign is _STR:1_ ,
+Tgt:  NAME = STRING if NAME < NUMBER else STRING
+Pred: NAME = set ( NAME ) < NUMBER
+
+Tgt:  sign = <[> _STR:0_ <]> if offset < 0 else <[> _STR:1_ <]>
+Pred: sign = set ( offset ) < 0
+==================
+NL:if line ends with a new line character substitute width incremented by integer 1 for max_width , if not substitute width for max_width .
+Tgt:  NAME = min ( ( NAME . NAME ( STRING ) and NAME + NUMBER or NAME ) , NAME )
+Pred: NAME = NAME + NAME . NAME + NUMBER
+
+Tgt:  max_width = min ( ( line . endswith ( <[> \n <]> ) and width + 1 or width ) , width )
+Pred: max_width = width + self . line + 1
+==================
+NL:call the function meta with 3 arguments : name , base and d .
+Tgt:  return NAME ( NAME , NAME , NAME )
+Pred: NAME = NAME ( NAME , NAME , NAME )
+
+Tgt:  return meta ( name , bases , d )
+Pred: return = meta ( name , base , d )
+==================
+NL:join lineno_comment_map dictionary value under the comment_lineno_cache key into a string , separated with _STR:0_ ,
+Tgt:  NAME . NAME ( STRING % STRING . NAME ( NAME [ NAME ] ) )
+Pred: NAME . NAME ( NAME . NAME . NAME ( STRING ) , NAME . NAME ( NAME [ STRING ] ) )
+
+Tgt:  out . write ( <[> # %s <]> % <[> _STR:0_ <]> . join ( lineno_comment_map [ comment_lineno_cache ] ) )
+Pred: separated . append ( lineno_comment_map . path . join ( <[> _STR:0_ <]> ) , lineno_comment_map . join ( comment_lineno_cache [ <[> comment_lineno_cache <]> ] ) )
+==================
+NL:call the datetime.datetime.utcfromtimestamp [ datetime . datetime . utcfromtimestamp ] with timestamp converted to an integer as argument , substitute result for timestamp .
+Tgt:  NAME = NAME . NAME . NAME ( int ( NAME ) )
+Pred: NAME = int ( NAME . NAME . NAME ( NAME ) )
+
+Tgt:  timestamp = datetime . datetime . utcfromtimestamp ( int ( timestamp ) )
+Pred: timestamp = int ( datetime . datetime . utcfromtimestamp ( timestamp ) )
+==================
+NL:get fist max_width incremented by 1 elements from line , find index of the first occurrenece of whitespace from the right side ,
+Tgt:  NAME = NAME [ : NAME + NUMBER ] . NAME ( STRING ) + NUMBER
+Pred: NAME = NAME [ NUMBER : ] + ( NAME + NUMBER )
+
+Tgt:  space = line [ : max_width + 1 ] . rfind ( <[>   <]> ) + 1
+Pred: right = side [ 1 : ] + ( fist + 1 )
+==================
+NL:if self.__language [ self . __language ] equals settings.LANGUAGE_CODE [ settings . LANGUAGE_CODE ] or self.__language [ self . __language ] equals a string _STR:0_ ,
+Tgt:  if NAME . NAME == NAME . NAME or NAME . NAME == STRING :
+Pred: if NAME . NAME == STRING :
+
+Tgt:  if self . __language == settings . LANGUAGE_CODE or self . __language == <[> _STR:0_ <]> :
+Pred: if self . __language == <[> _STR:0_ <]> :
+==================
+NL:set attr.name [ attr . name ] attribute of Module_six_moves_urllib_response object to attr .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: setattr ( NAME . NAME , NAME , NAME )
+
+Tgt:  setattr ( Module_six_moves_urllib_response , attr . name , attr )
+Pred: setattr ( attr . name , Module_six_moves_urllib_response , attr )
+==================
+NL:PALETTES is a dictionary containing 3 elements , a dictionary with 18 pairs of dictionary value and string keys for NOCOLOR_PALETTE ,
+Tgt:  NAME = { NAME : { STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , STRING : { } , } , NAME : { STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING } , STRING : { STRING : STRING } , STRING : { STRING : ( STRING , ) } , STRING : { STRING : ( STRING , ) } , STRING : { } , STRING : { STRING : STRING } , STRING : { STRING : STRING } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , } , NAME : { STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING } , STRING : { STRING : STRING } , STRING : { STRING : ( STRING , ) } , STRING : { STRING : ( STRING , ) } , STRING : { } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , STRING : { STRING : STRING , STRING : ( STRING , ) } , } }
+Pred: NAME = { NAME : NAME , NAME : { STRING : NAME , STRING : NAME , STRING : NAME , }
+
+Tgt:  PALETTES = { NOCOLOR_PALETTE : { <[> ERROR <]> : { } , <[> WARNING <]> : { } , <[> NOTICE <]> : { } , <[> SQL_FIELD <]> : { } , <[> SQL_COLTYPE <]> : { } , <[> SQL_KEYWORD <]> : { } , <[> SQL_TABLE <]> : { } , <[> HTTP_INFO <]> : { } , <[> HTTP_SUCCESS <]> : { } , <[> HTTP_REDIRECT <]> : { } , <[> HTTP_NOT_MODIFIED <]> : { } , <[> HTTP_BAD_REQUEST <]> : { } , <[> HTTP_NOT_FOUND <]> : { } , <[> HTTP_SERVER_ERROR <]> : { } , <[> MIGRATE_HEADING <]> : { } , <[> MIGRATE_LABEL <]> : { } , <[> MIGRATE_SUCCESS <]> : { } , <[> MIGRATE_FAILURE <]> : { } , } , DARK_PALETTE : { <[> ERROR <]> : { <[> fg <]> : <[> red <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> WARNING <]> : { <[> fg <]> : <[> yellow <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> NOTICE <]> : { <[> fg <]> : <[> red <]> } , <[> SQL_FIELD <]> : { <[> fg <]> : <[> green <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> SQL_COLTYPE <]> : { <[> fg <]> : <[> green <]> } , <[> SQL_KEYWORD <]> : { <[> fg <]> : <[> yellow <]> } , <[> SQL_TABLE <]> : { <[> opts <]> : ( <[> bold <]> , ) } , <[> HTTP_INFO <]> : { <[> opts <]> : ( <[> bold <]> , ) } , <[> HTTP_SUCCESS <]> : { } , <[> HTTP_REDIRECT <]> : { <[> fg <]> : <[> green <]> } , <[> HTTP_NOT_MODIFIED <]> : { <[> fg <]> : <[> cyan <]> } , <[> HTTP_BAD_REQUEST <]> : { <[> fg <]> : <[> red <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> HTTP_NOT_FOUND <]> : { <[> fg <]> : <[> yellow <]> } , <[> HTTP_SERVER_ERROR <]> : { <[> fg <]> : <[> magenta <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_HEADING <]> : { <[> fg <]> : <[> cyan <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_LABEL <]> : { <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_SUCCESS <]> : { <[> fg <]> : <[> green <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_FAILURE <]> : { <[> fg <]> : <[> red <]> , <[> opts <]> : ( <[> bold <]> , ) } , } , LIGHT_PALETTE : { <[> ERROR <]> : { <[> fg <]> : <[> red <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> WARNING <]> : { <[> fg <]> : <[> yellow <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> NOTICE <]> : { <[> fg <]> : <[> red <]> } , <[> SQL_FIELD <]> : { <[> fg <]> : <[> green <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> SQL_COLTYPE <]> : { <[> fg <]> : <[> green <]> } , <[> SQL_KEYWORD <]> : { <[> fg <]> : <[> blue <]> } , <[> SQL_TABLE <]> : { <[> opts <]> : ( <[> bold <]> , ) } , <[> HTTP_INFO <]> : { <[> opts <]> : ( <[> bold <]> , ) } , <[> HTTP_SUCCESS <]> : { } , <[> HTTP_REDIRECT <]> : { <[> fg <]> : <[> green <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> HTTP_NOT_MODIFIED <]> : { <[> fg <]> : <[> green <]> } , <[> HTTP_BAD_REQUEST <]> : { <[> fg <]> : <[> red <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> HTTP_NOT_FOUND <]> : { <[> fg <]> : <[> red <]> } , <[> HTTP_SERVER_ERROR <]> : { <[> fg <]> : <[> magenta <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_HEADING <]> : { <[> fg <]> : <[> cyan <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_LABEL <]> : { <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_SUCCESS <]> : { <[> fg <]> : <[> green <]> , <[> opts <]> : ( <[> bold <]> , ) } , <[> MIGRATE_FAILURE <]> : { <[> fg <]> : <[> red <]> , <[> opts <]> : ( <[> bold <]> , ) } , } }
+Pred: PALETTES = { NOCOLOR_PALETTE : value , string : { <[> NOCOLOR_PALETTE <]> : keys , <[> string <]> : keys , <[> string <]> : keys , }
+==================
+NL:char2number is an dictionary , with 26 elements : 2 for _STR:0_ , 2 for _STR:1_ , 2 for _STR:2_ , 3 for _STR:3_ , 3 for _STR:4_ , 3 for _STR:5_ , 4 for _STR:6_ ,
+Tgt:  NAME = { STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING }
+Pred: NAME = { STRING : NUMBER , STRING : NUMBER , STRING : NUMBER , STRING : NUMBER , STRING : NUMBER , STRING : NUMBER , STRING : NUMBER , STRING : NUMBER , STRING : NUMBER , STRING : NAME , STRING : NAME , STRING : NAME
+
+Tgt:  char2number = { <[> _STR:0_ <]> : <[> 2 <]> , <[> _STR:1_ <]> : <[> 2 <]> , <[> _STR:2_ <]> : <[> 2 <]> , <[> _STR:3_ <]> : <[> 3 <]> , <[> _STR:4_ <]> : <[> 3 <]> , <[> _STR:5_ <]> : <[> 3 <]> , <[> _STR:6_ <]> : <[> 4 <]> , <[> h <]> : <[> 4 <]> , <[> i <]> : <[> 4 <]> , <[> j <]> : <[> 5 <]> , <[> k <]> : <[> 5 <]> , <[> l <]> : <[> 5 <]> , <[> m <]> : <[> 6 <]> , <[> n <]> : <[> 6 <]> , <[> o <]> : <[> 6 <]> , <[> p <]> : <[> 7 <]> , <[> q <]> : <[> 7 <]> , <[> r <]> : <[> 7 <]> , <[> s <]> : <[> 7 <]> , <[> t <]> : <[> 8 <]> , <[> u <]> : <[> 8 <]> , <[> v <]> : <[> 8 <]> , <[> w <]> : <[> 9 <]> , <[> x <]> : <[> 9 <]> , <[> y <]> : <[> 9 <]> , <[> z <]> : <[> 9 <]> }
+Pred: char2number = { <[> _STR:0_ <]> : 2 , <[> _STR:1_ <]> : 2 , <[> _STR:2_ <]> : 3 , <[> request <]> : 4 , <[> request <]> : 3 , <[> request <]> : 3 , <[> request <]> : 3 , <[> request <]> : 3 , <[> request <]> : 3 , <[> request <]> : 26 , <[> 26 <]> : 26 , <[> 26 <]> : 26
+==================
+NL:call the method bmatch.group [ bmatch . group ] with an argument integer 1 , use the result as an argument for the call to the function context_re.match [ context_re . match ] ,
+Tgt:  NAME = NAME . NAME ( NAME . NAME ( NUMBER ) )
+Pred: return int ( NAME . NAME ( NUMBER ) )
+
+Tgt:  context_match = context_re . match ( bmatch . group ( 1 ) )
+Pred: return int ( context_re . match ( 1 ) )
+==================
+NL:get the integer representation of the first element of bs , return it .
+Tgt:  return ord ( NAME [ NUMBER ] )
+Pred: return int ( NAME [ NUMBER ] )
+
+Tgt:  return ord ( bs [ 0 ] )
+Pred: return int ( bs [ 0 ] )
+==================
+NL:if i incremented by 1 is lesser than length of chunks ,
+Tgt:  if NAME + NUMBER < len ( NAME ) :
+Pred: if NAME + NUMBER < NAME . NAME ( ) :
+
+Tgt:  if i + 1 < len ( chunks ) :
+Pred: if i + 1 < chunks . lesser ( ) :
+==================
+NL:if dt is None , is_dst is boolean False , otherwise call the method _isdst with an argument dt , substitute the result for is_dst .
+Tgt:  NAME = False if NAME is None else NAME . NAME ( NAME )
+Pred: NAME = NAME ( NAME )
+
+Tgt:  is_dst = False if dt is None else self . _isdst ( dt )
+Pred: is_dst = _isdst ( dt )
+==================
+NL:if s is an instance of bytes or Promise and s._delegate_bytes [ s . _delegate_bytes ] is true ,
+Tgt:  if isinstance ( NAME , NAME ) or ( isinstance ( NAME , NAME ) and NAME . NAME ) :
+Pred: if isinstance ( NAME , NAME ) or isinstance ( NAME , NAME . NAME ) :
+
+Tgt:  if isinstance ( s , bytes ) or ( isinstance ( s , Promise ) and s . _delegate_bytes ) :
+Pred: if isinstance ( s , bytes ) or isinstance ( s , s . _delegate_bytes ) :
+==================
+NL:call the function get_language , split the result by _STR:0_ , substitute the first element of the result for base_lang .
+Tgt:  NAME = NAME ( ) . NAME ( STRING ) [ NUMBER ]
+Pred: NAME = NAME ( ) [ NUMBER ] . NAME ( )
+
+Tgt:  base_lang = get_language ( ) . split ( <[> _STR:0_ <]> ) [ 0 ]
+Pred: base_lang = get_language ( ) [ 0 ] . split ( )
+==================
+NL:call the function ugettext with an argument message .
+Tgt:  return NAME ( NAME )
+Pred: NAME ( NAME )
+
+Tgt:  return ugettext ( message )
+Pred: value ( message )
+==================
+NL:set move.name [ move . name ] attribute of the _MovedItems to move .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: NAME = getattr ( NAME , NAME . NAME ( ) )
+
+Tgt:  setattr ( _MovedItems , move . name , move )
+Pred: move = getattr ( _MovedItems , move . name ( ) )
+==================
+NL:remove _STR:0_ key from the orig_vars dictionary .
+Tgt:  NAME . NAME ( STRING , None )
+Pred: NAME . NAME ( STRING )
+
+Tgt:  orig_vars . pop ( <[> _STR:0_ <]> , None )
+Pred: orig_vars . remove ( <[> _STR:0_ <]> )
+==================
+NL:covert to lowercase language element at ( p+1 ) -th index , append it to the previous result , covert to lowercase language elements from ( p+2 ) -th index to the end , append it to the previous result , return it . convert fist p elements of language to lowercase , append _STR:0_ to it ,
+Tgt:  return NAME [ : NAME ] . NAME ( ) + STRING + NAME [ NAME + NUMBER : ] . NAME ( )
+Pred: NAME = NAME [ : NAME . NAME ( ) for NAME in NAME . NAME ] + STRING
+
+Tgt:  return language [ : p ] . lower ( ) + <[> _STR:0_ <]> + language [ p + 1 : ] . upper ( )
+Pred: covert = language [ : language . lower ( ) for -th in language . -th ] + <[> _STR:0_ <]>
+==================
+NL:substitute _STR:0_ in string _STR:1_ with message_context and result of the function join_tokens ,
+Tgt:  NAME . NAME ( STRING % ( NAME , NAME ( NAME , NAME ) ) )
+Pred: NAME = STRING % ( NAME , NAME ( NAME ) , NAME . NAME ( NAME ) )
+
+Tgt:  out . write ( <[> _STR:1_ <]> % ( message_context , join_tokens ( singular , trimmed ) ) )
+Pred: string = <[> _STR:1_ <]> % ( message_context , join_tokens ( message_context ) , join_tokens . join_tokens ( message_context ) )
+==================
+NL:if attr equals any of the strings _STR:0_ , _STR:1_ or _STR:2_ and self.mod [ self . mod ] is not contained in sys.modules [ sys . modules ] ,
+Tgt:  if ( NAME in ( STRING , STRING , STRING ) and NAME . NAME not in NAME . NAME ) :
+Pred: if not NAME == STRING or ( NAME == NAME . NAME and NAME . NAME not in NAME . NAME ) :
+
+Tgt:  if ( attr in ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> ) and self . mod not in sys . modules ) :
+Pred: if not attr == <[> _STR:0_ <]> or ( attr == self . mod and self . mod not in sys . mod ) :
+==================
+NL:append string _STR:0_ to __name__ , use it as an key to get the value from the sys.modules [ sys . modules ] dictionary , substitute it for robotparser .
+Tgt:  NAME = NAME . NAME [ NAME + STRING ]
+Pred: NAME = NAME . NAME ( STRING ) + NAME
+
+Tgt:  robotparser = sys . modules [ __name__ + <[> _STR:0_ <]> ]
+Pred: robotparser = sys . module ( <[> _STR:0_ <]> ) + __name__
+==================
+NL:call the method _trans.gettext [ _trans . gettext ] with an argument message .
+Tgt:  return NAME . NAME ( NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  return _trans . gettext ( message )
+Pred: _trans . gettext ( message )
+==================
+NL:call the method gettext_module.find [ gettext_module . find ] with 3 arguments : string _STR:0_ , path and list with an element : result of the function ,
+Tgt:  if NAME . NAME ( STRING , NAME , [ NAME ( NAME ) ] ) is not None :
+Pred: NAME . NAME ( STRING , [ NAME ( STRING , STRING ) ] = NAME ( STRING , STRING ) . NAME ( NAME ( STRING , STRING ) )
+
+Tgt:  if gettext_module . find ( <[> _STR:0_ <]> , path , [ to_locale ( lang_code ) ] ) is not None :
+Pred: gettext_module . find ( <[> _STR:0_ <]> , [ path ( <[>  <]> , <[> path <]> ) ] = element ( <[> _STR:0_ <]> , <[>  <]> ) . encode ( _ ( <[>  <]> , <[>  <]> ) )
+==================
+NL:bitwise shift integer 1 to the left by 31 spaces , return the result .
+Tgt:  return NUMBER << NUMBER
+Pred: return NUMBER
+
+Tgt:  return 1 << 31
+Pred: return 1
+==================
+NL:for the call to the function upath , get the directory name of the resulting system path , join the result and string _STR:0_ , into a valid file path , substitute it for globalpath . append settings.LOCALE_PATHS [ settings . LOCALE_PATHS ] converted into a list to a list containing an element globalpath , return it .
+Tgt:  return [ NAME ] + list ( NAME . NAME )
+Pred: return [ NAME . NAME ( ) . NAME ( ) ]
+
+Tgt:  return [ globalpath ] + list ( settings . LOCALE_PATHS )
+Pred: return [ os . LOCALE_PATHS ( ) . append ( ) ]
+==================
+NL:remove first element from styles , split it by the _STR:0_ character , substitute the result for colors .
+Tgt:  NAME = NAME . NAME ( ) . NAME ( STRING )
+Pred: NAME = STRING . NAME ( NUMBER , NUMBER )
+
+Tgt:  colors = styles . pop ( ) . split ( <[> _STR:0_ <]> )
+Pred: colors = <[> _STR:0_ <]> . join ( 0 , 1 )
+==================
+NL:convert fist p elements of locale to lowercase , append _STR:0_ to it ,
+Tgt:  return NAME [ : NAME ] . NAME ( ) + STRING + NAME [ NAME + NUMBER : ] . NAME ( )
+Pred: NAME = NAME [ : NAME ] . NAME ( ) + STRING
+
+Tgt:  return locale [ : p ] . lower ( ) + <[> - <]> + locale [ p + 1 : ] . lower ( )
+Pred: self = locale [ : fist ] . append ( ) + <[> _STR:0_ <]>
+==================
+NL:strings _STR:0_ , _STR:1_ , _STR:2_ , result of the call to the function MovedAttribute with 3 arguments : strings _STR:3_ , _STR:1_ , _STR:2_ and result of the call to the function MovedAttribute with 3 arguments : strings _STR:4_ , _STR:5_ , _STR:2_ . for every attr in _urllib_error_moved_attributes ,
+Tgt:  for NAME in NAME :
+Pred: for NAME in NAME ( STRING , STRING ) :
+
+Tgt:  for attr in _urllib_error_moved_attributes :
+Pred: for attr in MovedAttribute ( <[> _STR:4_ <]> , <[> _STR:2_ <]> ) :
+==================
+NL:call the function force_text with an argument message , return the result .
+Tgt:  NAME = NAME ( NAME )
+Pred: return NAME ( NAME )
+
+Tgt:  result = force_text ( message )
+Pred: return force_text ( message )
+==================
+NL:instantiate Lexer class with 2 argumets src and origin , call the method tokenize from it , for every t in the result ,
+Tgt:  for NAME in NAME ( NAME , NAME ) . NAME ( ) :
+Pred: for NAME in NAME ( NAME , NAME ) . NAME ( NAME ) :
+
+Tgt:  for t in Lexer ( src , origin ) . tokenize ( ) :
+Pred: for t in class ( argumets , origin ) . tokenize ( e ) :
+==================
+NL:multiply delta.days [ delta . days ] , integer 24 , integer 60 and integer 60 add delta.seconds [ delta . seconds ] to it , substitute the result for since .
+Tgt:  NAME = NAME . NAME * NUMBER * NUMBER * NUMBER + NAME . NAME
+Pred: NAME = NAME . NAME * NUMBER + NAME . NAME + ( NAME . NAME // NUMBER )
+
+Tgt:  since = delta . days * 24 * 60 * 60 + delta . seconds
+Pred: since = delta . days * 24 + delta . seconds + ( delta . seconds // 60 )
+==================
+NL:if first element of text is contained in _STR:0_ .
+Tgt:  if NAME [ NUMBER ] in STRING :
+Pred: if NAME [ NUMBER ] in NAME :
+
+Tgt:  if text [ 0 ] in <[> _STR:0_ <]> :
+Pred: if text [ 0 ] in _STR:0_ :
+==================
+NL:call the method Module_six_moves_urllib_request with an argument : string _STR:0_ appended to __name__ ,
+Tgt:  NAME . NAME [ NAME + STRING ] = NAME . NAME [ NAME + STRING ] = NAME ( NAME + STRING )
+Pred: return NAME ( STRING + NAME . NAME ( STRING ) )
+
+Tgt:  sys . modules [ __name__ + <[> .moves.urllib_error <]> ] = sys . modules [ __name__ + <[> _STR:0_ <]> ] = Module_six_moves_urllib_error ( __name__ + <[> _STR:0_ <]> )
+Pred: return Module_six_moves_urllib_request ( <[> _STR:0_ <]> + path . get ( <[>  <]> ) )
+==================
+NL:call the function m.group [ m . group ] , if the result evaluates to true ,
+Tgt:  if NAME . NAME ( NUMBER ) :
+Pred: if NAME . NAME ( ) :
+
+Tgt:  if m . group ( 1 ) :
+Pred: if m . group ( ) :
+==================
+NL:get the integer representation of the i-th element of buf , return it .
+Tgt:  return ord ( NAME [ NAME ] )
+Pred: return int ( NAME ) + NAME
+
+Tgt:  return ord ( buf [ i ] )
+Pred: return int ( buf ) + buf
+==================
+NL:substitute iter for iterbytes .
+Tgt:  NAME = iter
+Pred: NAME = NAME
+
+Tgt:  iterbytes = iter
+Pred: iterbytes = super
+==================
+NL:read data from buf , yield the result .
+Tgt:  yield NAME . NAME ( )
+Pred: yield NAME
+
+Tgt:  yield buf . read ( )
+Pred: yield buf
+==================
+NL:define the function timeuntil with 2 arguments , d and now defaulting to none .
+Tgt:  def NAME ( NAME , NAME = None ) :
+Pred: def NAME ( NAME , NAME , NAME = NAME ) :
+
+Tgt:  def timeuntil ( d , now = None ) :
+Pred: def timeuntil ( d , d , now = none ) :
+==================
+NL:call avoid_wrapping function with name2 modulus count2 as argument , call the ugettext with _STR:0_ as argument , add previous 2 results , increment variable result by it .
+Tgt:  NAME += NAME ( STRING ) + NAME ( NAME % NAME )
+Pred: NAME += NAME ( NAME ( NAME ) + STRING )
+
+Tgt:  result += ugettext ( <[> _STR:0_ <]> ) + avoid_wrapping ( name2 % count2 )
+Pred: results += avoid_wrapping ( name2 ( name2 ) + <[> _STR:0_ <]> )
+==================
+NL:if elt is an instance of Choice or NonCapture classes ,
+Tgt:  if isinstance ( NAME , ( NAME , NAME ) ) :
+Pred: if isinstance ( NAME , NAME ) or isinstance ( NAME , NAME ) :
+
+Tgt:  if isinstance ( elt , ( Choice , NonCapture ) ) :
+Pred: if isinstance ( elt , Choice ) or isinstance ( elt , NonCapture ) :
+==================
+NL:if value is an instance of datetime and settings.USE_TZ [ settings . USE_TZ ] if use_tz is None else use_tz and call to the function is_naive ,
+Tgt:  NAME = ( isinstance ( NAME , NAME ) and ( NAME . NAME if NAME is None else NAME ) and not NAME ( NAME ) and getattr ( NAME , STRING , True ) )
+Pred: if isinstance ( NAME , NAME ) and NAME . NAME and NAME . NAME :
+
+Tgt:  should_convert = ( isinstance ( value , datetime ) and ( settings . USE_TZ if use_tz is None else use_tz ) and not is_naive ( value ) and getattr ( value , <[> convert_to_local_time <]> , True ) )
+Pred: if isinstance ( value , datetime ) and settings . USE_TZ and settings . USE_TZ :
+==================
+NL:for every c in self.children [ self . children ] . return string _STR:0_ , formated with self.connector [ self . connector ] and string created by joining c into a string , separated by _STR:1_ ,
+Tgt:  return STRING % ( NAME . NAME , STRING . NAME ( [ str ( NAME ) for NAME in NAME . NAME ] ) )
+Pred: NAME = STRING % ( NAME . NAME , NAME . NAME . NAME ( NAME ) )
+
+Tgt:  return <[> _STR:0_ <]> % ( self . connector , <[> _STR:1_ <]> . join ( [ str ( c ) for c in self . children ] ) )
+Pred: return = <[> _STR:0_ <]> % ( self . connector , self . _meta . MIGRATE_LABEL ( joining ) )
+==================
+NL:convert lang_string to lowercase , split by the result string accept_language_re , substitute the result for pieces .
+Tgt:  NAME = NAME . NAME ( NAME . NAME ( ) )
+Pred: NAME = NAME . NAME ( )
+
+Tgt:  pieces = accept_language_re . split ( lang_string . lower ( ) )
+Pred: pieces = lang_string . lower ( )
+==================
+NL:call the method gettext_module.translation [ gettext_module . translation ] with 5 arguments : domain set to string _STR:0_ , localedir set to localedir ,
+Tgt:  NAME = NAME . NAME ( NAME = STRING , NAME = NAME , NAME = [ NAME . NAME ] , NAME = STRING , NAME = NAME )
+Pred: NAME . NAME ( NAME = STRING , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = [ ] , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME
+
+Tgt:  translation = gettext_module . translation ( domain = <[> _STR:0_ <]> , localedir = localedir , languages = [ self . __locale ] , codeset = <[> utf-8 <]> , fallback = use_null_fallback )
+Pred: gettext_module . append ( domain = <[> _STR:0_ <]> , localedir = localedir , localedir = localedir , localedir = localedir , localedir = localedir , localedir = localedir , localedir = [ ] , localedir = localedir , localedir = localedir , localedir = localedir , localedir = localedir , localedir
+==================
+NL:if pytz is true , substitute pytz.utc [ pytz . utc ] for utc , otherwise substitute result of the function UTC for utc .
+Tgt:  NAME = NAME . NAME if NAME else NAME ( )
+Pred: NAME = NAME ( NAME . NAME ) if NAME else NAME ( NAME )
+
+Tgt:  utc = pytz . utc if pytz else UTC ( )
+Pred: utc = UTC ( pytz . utc ) if pytz else UTC ( utc )
+==================
+NL:otherwise if end is not an instance of string type ,
+Tgt:  elif not isinstance ( NAME , str ) :
+Pred: elif not isinstance ( NAME , STRING ) :
+
+Tgt:  elif not isinstance ( end , str ) :
+Pred: elif not isinstance ( end , <[> string <]> ) :
+==================
+NL:otherwise if , type of s doesnt equal to six.text_type [ six . text_type ] ,
+Tgt:  elif type ( NAME ) != NAME . NAME :
+Pred: elif type ( NAME ) == NAME . NAME :
+
+Tgt:  elif type ( s ) != six . text_type :
+Pred: elif type ( s ) == six . text_type :
+==================
+NL:call the function gettext with an argument message , use the result as an argument for the call to the force_text function , return the result .
+Tgt:  return NAME ( NAME ( NAME ) )
+Pred: return NAME ( NAME )
+
+Tgt:  return force_text ( gettext ( message ) )
+Pred: return force_text ( message )
+==================
+NL:divide since by seconds , store the floored result in count .
+Tgt:  NAME = NAME // NAME
+Pred: NAME = NAME // NUMBER
+
+Tgt:  count = since // seconds
+Pred: count = since // 1
+==================
+NL:return a list containing first element of source and a list containing params .
+Tgt:  return [ NAME [ NUMBER ] ] , [ NAME ]
+Pred: return [ NAME ] , [ NAME ]
+
+Tgt:  return [ source [ 0 ] ] , [ params ]
+Pred: return [ source ] , [ source ]
+==================
+NL:call the method regex.search [ regex . search ] with 2 arguments : text and pos .
+Tgt:  NAME = NAME . NAME ( NAME , NAME )
+Pred: NAME . NAME ( NAME , NAME )
+
+Tgt:  m = regex . search ( text , pos )
+Pred: regex . search ( text , pos )
+==================
+NL:if role is contained in value under the NOCOLOR_PALETTE key of the PALETTES dictionary and definition is true ,
+Tgt:  if NAME in NAME [ NAME ] and NAME :
+Pred: if NAME in NAME [ STRING ] :
+
+Tgt:  if role in PALETTES [ NOCOLOR_PALETTE ] and definition :
+Pred: if role in PALETTES [ <[> NOCOLOR_PALETTE <]> ] :
+==================
+NL:with self.mutex [ self . mutex ] perform ,
+Tgt:  with NAME . NAME :
+Pred: with open ( NAME . NAME , STRING ) :
+
+Tgt:  with self . mutex :
+Pred: with open ( self . mutex , <[> mutex <]> ) :
+==================
+NL:class_types is a tuple with 2 elements : type and types.ClassType [ types . ClassType ] .
+Tgt:  NAME = ( type , NAME . NAME )
+Pred: NAME = ( type ( NAME . NAME ) , NAME . NAME )
+
+Tgt:  class_types = ( type , types . ClassType )
+Pred: class_types = ( type ( types . ClassType ) , types . ClassType )
+==================
+NL:if s_len is greater than length ,
+Tgt:  if NAME > NAME :
+Pred: if NAME > len ( NAME ) :
+
+Tgt:  if s_len > length :
+Pred: if s_len > len ( s_len ) :
+==================
+NL:substitute self.__class__.__doc__ [ self . __class__ . __doc__ ] for self.__doc__ [ self . __doc__ ] .
+Tgt:  NAME . NAME = NAME . NAME . NAME
+Pred: NAME . NAME . NAME = NAME . NAME . NAME
+
+Tgt:  self . __doc__ = self . __class__ . __doc__
+Pred: self . __class__ . __doc__ = self . __class__ . __doc__
+==================
+NL:append string _STR:0_ to singular , where ' % s ' is replaced with t.contents [ t . contents ] .
+Tgt:  NAME . NAME ( STRING % NAME . NAME )
+Pred: NAME += STRING % NAME . NAME
+
+Tgt:  singular . append ( <[> _STR:0_ <]> % t . contents )
+Pred: singular += <[> _STR:0_ <]> % t . contents
+==================
+NL:if s is an instance of SafeData or EscapeData ,
+Tgt:  if isinstance ( NAME , ( NAME , NAME ) ) :
+Pred: if isinstance ( NAME , NAME ) or isinstance ( NAME , NAME ) :
+
+Tgt:  if isinstance ( s , ( SafeData , EscapeData ) ) :
+Pred: if isinstance ( s , SafeData ) or isinstance ( s , EscapeData ) :
+==================
+NL:with different 3 string arguments , the others are results of the call to the function MovedModule called with 3 string arguments . for every attr in _moved_attributes ,
+Tgt:  for NAME in NAME :
+Pred: for NAME in NAME ( NAME ) :
+
+Tgt:  for attr in _moved_attributes :
+Pred: for attr in MovedModule ( different ) :
+==================
+NL:call the function lazy_number with 5 arguments : ngettext , str , singular set to singular , plural set to plural ,
+Tgt:  return NAME ( NAME , str , NAME = NAME , NAME = NAME , NAME = NAME )
+Pred: NAME = NAME ( NAME , str ( NAME , str ( NAME ) , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME
+
+Tgt:  return lazy_number ( ngettext , str , singular = singular , plural = plural , number = number )
+Pred: lazy_number = lazy_number ( ngettext , str ( cc , str ( singular ) , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural
+==================
+NL:remove first and last elements of s , replace every occurrence of string _STR:0_ formated with quote with quote ,
+Tgt:  return NAME [ NUMBER : - NUMBER ] . NAME ( STRING % NAME , NAME ) . NAME ( STRING , STRING )
+Pred: NAME = NAME [ : - NUMBER ] . NAME ( STRING , STRING ) % NAME . NAME [ NUMBER : ]
+
+Tgt:  return s [ 1 : - 1 ] . replace ( <[> _STR:0_ <]> % quote , quote ) . replace ( <[> \\ <]> , <[> \\ <]> )
+Pred: self = s [ : - 1 ] . replace ( <[> _STR:0_ <]> , <[>  <]> ) % self . occurrence [ 1 : ]
+==================
+NL:append truncate_text to out .
+Tgt:  NAME += NAME
+Pred: NAME . NAME ( NAME )
+
+Tgt:  out += truncate_text
+Pred: out . append ( truncate_text )
+==================
+NL:split p into two parts at the first _STR:0_ , use the second element of the result to format string _STR:1_ , write it to out .
+Tgt:  NAME . NAME ( STRING % NAME . NAME ( STRING , NUMBER ) [ NUMBER ] )
+Pred: NAME . NAME ( STRING % NAME ( NAME , NAME [ NUMBER ] ) )
+
+Tgt:  out . write ( <[>  %s  <]> % p . split ( <[> _STR:0_ <]> , 1 ) [ 1 ] )
+Pred: format . write ( <[> _STR:0_ <]> % string ( p , result [ 1 ] ) )
+==================
+NL:substitute int for integer_types .
+Tgt:  NAME = int ,
+Pred: NAME = NAME
+
+Tgt:  integer_types = int ,
+Pred: integer_types = fixture_name
+==================
+NL:call the function write with an argument sep .
+Tgt:  NAME ( NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  write ( sep )
+Pred: return . write ( sep )
+==================
+NL:raise an ValueError with an argument string _STR:0_ , substitute _STR:1_ with timezone .
+Tgt:  raise NAME ( STRING % NAME )
+Pred: raise NAME ( STRING STRING % NAME )
+
+Tgt:  raise ValueError ( <[> _STR:0_ <]> % timezone )
+Pred: raise ValueError ( <[> Unable <]> <[> string <]> %  )  <]> <[> = ( timezone timezone timezone and ValueError are not a valid settings of
+==================
+NL:divide absolute offset by module 60 , use the result to format string _STR:0_ , substitute it for hhmm .
+Tgt:  NAME = STRING % divmod ( abs ( NAME ) , NUMBER )
+Pred: NAME = STRING % NAME
+
+Tgt:  hhmm = <[> _STR:0_ <]> % divmod ( abs ( offset ) , 60 )
+Pred: hhmm = <[> _STR:0_ <]> % divide
+==================
+NL:append i_args to args , append new_args with the result .
+Tgt:  NAME . NAME ( NAME [ : ] + NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  new_args . append ( args [ : ] + i_args )
+Pred: new_args . append ( i_args )
+==================
+NL:substitute _STR:0_ in string _STR:1_ with result of the function join_tokens , called with 2 arguments : singular ,
+Tgt:  NAME . NAME ( STRING % NAME ( NAME , NAME ) )
+Pred: NAME . NAME ( STRING , NAME ( NAME , NAME ) )
+
+Tgt:  out . write ( <[> _STR:1_ <]> % join_tokens ( singular , trimmed ) )
+Pred: called . append ( <[> _STR:0_ <]> , join_tokens ( singular , singular ) )
+==================
+NL:call the method activate with an argument self.old_language [ self . old_language ] .
+Tgt:  NAME ( NAME . NAME )
+Pred: NAME . NAME ( NAME . NAME )
+
+Tgt:  activate ( self . old_language )
+Pred: activate . activate ( self . old_language )
+==================
+NL:insert tagname at the beginning of open_tags .
+Tgt:  NAME . NAME ( NUMBER , NAME )
+Pred: NAME . NAME ( NUMBER )
+
+Tgt:  open_tags . insert ( 0 , tagname )
+Pred: open_tags . insert ( 0 )
+==================
+NL:pos and last are integer 0 .
+Tgt:  NAME = NAME = NUMBER
+Pred: NAME = NUMBER
+
+Tgt:  pos = last = 0
+Pred: pos = 0
+==================
+NL:return lambda function with text as argument and return value being result of the function colorize , called with 3 arguments : text ,
+Tgt:  return lambda NAME : NAME ( NAME , NAME , ** NAME )
+Pred: return lambda NAME : NAME ( NAME , NAME = NAME , NAME = NAME . NAME , NAME = NAME . NAME , NAME = NAME . NAME , NAME = NAME . NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME =
+
+Tgt:  return lambda text : colorize ( text , opts , ** kwargs )
+Pred: return lambda k : colorize ( text , colorize = colorize , being = colorize . colorize , colorize = colorize . colorize , colorize = colorize . colorize , colorize = colorize . colorize , colorize = colorize , colorize = colorize , colorize = colorize , colorize = False not False <]> <[> = ( , 1 2 <]> % ( , 1 <]> : = ( , 1 colorize <]> % <[> in being <]> , 2 being being <]> % <[> ,  <]> . ( , 1 <]> : = ( , 1 called
+==================
+NL:raise an value.with_traceback [ value . with_traceback ] exception with an argument tb .
+Tgt:  raise NAME . NAME ( NAME )
+Pred: raise NAME ( NAME )
+
+Tgt:  raise value . with_traceback ( tb )
+Pred: raise value ( tb )
+==================
+NL:set real_name attribute of the self object to value of real_name attribute of trans object .
+Tgt:  setattr ( NAME , NAME , getattr ( NAME , NAME ) )
+Pred: setattr ( NAME , NAME , NAME )
+
+Tgt:  setattr ( self , real_name , getattr ( trans , real_name ) )
+Pred: setattr ( self , real_name , trans )
+==================
+NL:define the function timesince with d , now defaulting to None , reversed defaulting to False as arguments .
+Tgt:  def NAME ( NAME , NAME = None , reversed = False ) :
+Pred: def NAME ( NAME , NAME = None , NAME = False ) :
+
+Tgt:  def timesince ( d , now = None , reversed = False ) :
+Pred: def timesince ( d , now = None , reverse = False ) :
+==================
+NL:mapping is a dictionary with 3 initial entries : _STR:0_ for _STR:1_ , _STR:2_ for _STR:3_ and _STR:4_ for _STR:5_ .
+Tgt:  NAME = { STRING : STRING , STRING : STRING , STRING : STRING }
+Pred: NAME = { STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , }
+
+Tgt:  mapping = { <[> _STR:1_ <]> : <[> _STR:0_ <]> , <[> _STR:3_ <]> : <[> _STR:2_ <]> , <[> _STR:5_ <]> : <[> _STR:4_ <]> }
+Pred: mapping = { <[> _STR:1_ <]> : <[> _STR:0_ <]> , <[> _STR:3_ <]> : <[> _STR:2_ <]> , <[> _STR:4_ <]> : <[> _STR:4_ <]> , <[> _STR:4_ <]> : <[> _STR:4_ <]> , }
+==================
+NL:if t.token_type [ t . token_type ] equals TOKEN_BLOCK and t.contents [ t . contents ] equals _STR:0_ ,
+Tgt:  if NAME . NAME == NAME and NAME . NAME == STRING :
+Pred: if NAME . NAME == STRING and NAME . NAME == STRING :
+
+Tgt:  if t . token_type == TOKEN_BLOCK and t . contents == <[> _STR:0_ <]> :
+Pred: if t . token_type == <[> _STR:0_ <]> and t . contents == <[> t.contents <]> :
+==================
+NL:call the method activate with an argument self.timezone [ self . timezone ] .
+Tgt:  NAME ( NAME . NAME )
+Pred: NAME . NAME ( NAME . NAME )
+
+Tgt:  activate ( self . timezone )
+Pred: activate . activate ( self . timezone )
+==================
+NL:find first index of whitespace occurrence in line , add integer 1 to it , substitute the result for space .
+Tgt:  NAME = NAME . NAME ( STRING ) + NUMBER
+Pred: NAME = NAME . NAME ( NUMBER , NUMBER )
+
+Tgt:  space = line . find ( <[>   <]> ) + 1
+Pred: space = line . index ( 0 , 1 )
+==================
+NL:rais an AppRegistryNotReady exception with an argument string _STR:0_
+Tgt:  raise NAME ( STRING STRING )
+Pred: raise NAME ( STRING STRING % ( NAME , NAME ) )
+
+Tgt:  raise AppRegistryNotReady ( <[> _STR:0_ <]> <[> apps registry is ready. Check that you don't make non-lazy gettext calls at import time. <]> )
+Pred: raise AppRegistryNotReady ( <[> _STR:0_ <]> <[> Use <]> % ( %s , string ) )
+==================
+NL:if rhs is an instance of dict type and number is true ,
+Tgt:  if isinstance ( NAME , dict ) and NAME :
+Pred: if isinstance ( NAME , dict ) :
+
+Tgt:  if isinstance ( rhs , dict ) and number :
+Pred: if isinstance ( rhs , dict ) :
+==================
+NL:call the method _trans.gettext_noop [ _trans . gettext_noop ] with an argument message .
+Tgt:  return NAME . NAME ( NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  return _trans . gettext_noop ( message )
+Pred: _trans . gettext_noop ( message )
+==================
+NL:append _STR:0_ to string created from first p elements of languages converted to lowercase ,
+Tgt:  return NAME [ : NAME ] . NAME ( ) + STRING + NAME [ NAME + NUMBER : ] . NAME ( )
+Pred: NAME . NAME ( STRING % ( NAME [ NUMBER ] , NAME ) )
+
+Tgt:  return language [ : p ] . lower ( ) + <[> _STR:0_ <]> + language [ p + 1 : ] . upper ( )
+Pred: lowercase . append ( <[> _STR:0_ <]> % ( languages [ 0 ] , languages ) )
+==================
+NL:set attr.name [ attr . name ] attribute of the Module_six_moves_urllib_error object to attr .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: setattr ( NAME . NAME , NAME , NAME )
+
+Tgt:  setattr ( Module_six_moves_urllib_error , attr . name , attr )
+Pred: setattr ( attr . name , Module_six_moves_urllib_error , attr )
+==================
+NL:call the function _add_doc with 2 arguments : b and string _STR:0_ '' Byte literal_STR:0_ '' .
+Tgt:  NAME ( NAME , STRING STRING )
+Pred: NAME ( NAME , STRING % NAME )
+
+Tgt:  _add_doc ( b , <[> _STR:0_ <]> <[> Byte literal'_STR:0_' <]> )
+Pred: _add_doc ( b , <[> _STR:0_ <]> % Byte )
+==================
+NL:if value.tzinfo [ value . tzinfo ] is None and call to the method value.tzinfo.utcoffset [ value . tzinfo . utcoffset ] called with an argument value evaluates to None ,
+Tgt:  return NAME . NAME is None or NAME . NAME . NAME ( NAME ) is None
+Pred: if NAME . NAME is None and NAME . NAME . NAME ( NAME ) is None :
+
+Tgt:  return value . tzinfo is None or value . tzinfo . utcoffset ( value ) is None
+Pred: if value . tzinfo is None and value . tzinfo . utcoffset ( value ) is None :
+==================
+NL:get _iterlists attribute of the class d , call the result with an argument unpacked dictionary kw , convert the result to a iterable ,
+Tgt:  return iter ( getattr ( NAME , NAME ) ( ** NAME ) )
+Pred: NAME = getattr ( NAME , NAME ) ( ** NAME )
+
+Tgt:  return iter ( getattr ( d , _iterlists ) ( ** kw ) )
+Pred: iterable = getattr ( d , _iterlists ) ( ** kw )
+==================
+NL:use the result as an argument for the call to the add_move function . call the function MovedModule with 2 arguments : strings _STR:0_ and _STR:1_ ,
+Tgt:  NAME ( NAME ( STRING , STRING ) )
+Pred: NAME = [ STRING , STRING ]
+
+Tgt:  add_move ( MovedModule ( <[> _STR:0_ <]> , <[> _STR:1_ <]> ) )
+Pred: return = [ <[> _STR:0_ <]> , <[> _STR:1_ <]> ]
+==================
+NL:call the function lazy with 2 arguments : func and resultclass , call the result with an argument , unpacked dictionary kwargs ,
+Tgt:  NAME = NAME ( NAME , NAME ) ( ** NAME )
+Pred: return NAME ( NAME , NAME , NAME ) ( ** NAME )
+
+Tgt:  proxy = lazy ( func , resultclass ) ( ** kwargs )
+Pred: return lazy ( func , resultclass , call ) ( ** kwargs )
+==================
+NL:call the function timedelta with an argument seconds as negative time.timezone [ time . timezone ] , subtract the result from the result of the call ,
+Tgt:  return NAME ( NAME = - NAME . NAME ) - NAME ( NAME = - NAME . NAME )
+Pred: NAME = NAME ( NAME = - NAME . NAME ) - NAME
+
+Tgt:  return timedelta ( seconds = - time . altzone ) - timedelta ( seconds = - time . timezone )
+Pred: call = timedelta ( seconds = - time . timezone ) - seconds
+==================
+NL:msg is a string _STR:0_ .
+Tgt:  NAME = ( STRING )
+Pred: NAME = STRING
+
+Tgt:  msg = ( <[> The use of the language code '%s' is deprecated. Please use the '%s' translation instead. <]> )
+Pred: msg = <[> _STR:0_ <]>
+==================
+NL:join source list elements from last till pos indexes into a string , substitute the result for piece .
+Tgt:  NAME = STRING . NAME ( NAME [ NAME : NAME ] )
+Pred: NAME = STRING . NAME ( list ( NAME ) )
+
+Tgt:  piece = <[>  <]> . join ( source [ last : pos ] )
+Pred: piece = <[>  <]> . join ( list ( last ) )
+==================
+NL:get the first space decremented with integer 1 elements from string line , append newline character to it , and yield the result .
+Tgt:  yield STRING % NAME [ : NAME - NUMBER ]
+Pred: yield STRING % ( NAME // NUMBER )
+
+Tgt:  yield <[> %s\n <]> % line [ : space - 1 ]
+Pred: yield <[> %s <]> % ( line // 1 )
+==================
+NL:color_names is a tuple with 8 elements : strings _STR:0_ , _STR:1_ , _STR:2_ , _STR:3_ , _STR:4_ , _STR:5_ , _STR:6_ and _STR:7_ .
+Tgt:  NAME = ( STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING )
+Pred: NAME = ( STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING
+
+Tgt:  color_names = ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> _STR:5_ <]> , <[> _STR:6_ <]> , <[> _STR:7_ <]> )
+Pred: color_names = ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> , <[> _STR:6_ <]> :
+==================
+NL:reverse the order of elements of styles .
+Tgt:  NAME . NAME ( )
+Pred: NAME = reversed ( NAME )
+
+Tgt:  styles . reverse ( )
+Pred: styles = reversed ( styles )
+==================
+NL:call the method datetime.utcnow [ datetime . utcnow ] , on the result call the method replace with an argument tzinfo set to utc , return the result .
+Tgt:  return NAME . NAME ( ) . NAME ( NAME = NAME )
+Pred: return NAME . NAME ( NAME = NAME ) . NAME ( NAME = NAME )
+
+Tgt:  return datetime . utcnow ( ) . replace ( tzinfo = utc )
+Pred: return datetime . replace ( tzinfo = utc ) . replace ( tzinfo = utc )
+==================
+NL:delete name attribute of the _MovedItems object .
+Tgt:  delattr ( NAME , NAME )
+Pred: del getattr ( NAME , NAME )
+
+Tgt:  delattr ( _MovedItems , name )
+Pred: del getattr ( _MovedItems , name )
+==================
+NL:append string _STR:0_ to plural , where ' % s ' is replaced with t.contents [ t . contents ] .
+Tgt:  NAME . NAME ( STRING % NAME . NAME )
+Pred: NAME += STRING % NAME . NAME
+
+Tgt:  plural . append ( <[> _STR:0_ <]> % t . contents )
+Pred: plural += <[> _STR:0_ <]> % t . contents
+==================
+NL:zfile is an instance of GzipFile class , created with 3 arguments : mode set to string _STR:0_ , compresslevel set to integer 6 ,
+Tgt:  NAME = NAME ( NAME = STRING , NAME = NUMBER , NAME = NAME )
+Pred: NAME = NAME ( NAME = STRING , NAME = NUMBER , NAME = NAME , NAME = False , NAME = NAME , NAME = False , NAME = NAME , NAME = NAME , NAME = NAME , NAME = False )
+
+Tgt:  zfile = GzipFile ( mode = <[> _STR:0_ <]> , compresslevel = 6 , fileobj = buf )
+Pred: zfile = GzipFile ( mode = <[> _STR:0_ <]> , compresslevel = 6 , compresslevel = compresslevel , compresslevel = False , compresslevel = compresslevel , compresslevel = False , compresslevel = compresslevel , compresslevel = connection , compresslevel = connection , compresslevel = False )
+==================
+NL:instantiate class Module_six_moves_urllib_response with an argument , string _STR:0_ appended to __name__ ,
+Tgt:  NAME . NAME [ NAME + STRING ] = NAME . NAME [ NAME + STRING ] = NAME ( NAME + STRING )
+Pred: return NAME ( STRING % ( NAME , NAME ) )
+
+Tgt:  sys . modules [ __name__ + <[> .moves.urllib_response <]> ] = sys . modules [ __name__ + <[> _STR:0_ <]> ] = Module_six_moves_urllib_response ( __name__ + <[> _STR:0_ <]> )
+Pred: return Module_six_moves_urllib_response ( <[> _STR:0_ <]> % ( __name__ , __name__ ) )
+==================
+NL:self.plural [ self . plural ] is an lambda function with an argument n , which returns result of boolean expression n not equal to integer 1 ,
+Tgt:  NAME . NAME = lambda NAME : int ( NAME != NUMBER )
+Pred: NAME . NAME = lambda NAME : NAME + NUMBER or NAME . NAME ( NUMBER ) != NUMBER
+
+Tgt:  self . plural = lambda n : int ( n != 1 )
+Pred: return . plural = lambda n : n + 1 or self . plural ( 1 ) != 1
+==================
+NL:substitute _globs_ with an argument _locs_ .
+Tgt:  NAME = NAME
+Pred: NAME = NAME . NAME ( NAME )
+
+Tgt:  _locs_ = _globs_
+Pred: substitute = _globs_ . _globs_ ( _locs_ )
+==================
+NL:result of multiplication of integers : 60,60,24,365 , and return value of ungettext_lazy with 2 arguments : _STR:0_ , _STR:1_ , result of multiplication of integers : 60,60,24,30 , and return value of ungettext_lazy with 2 arguments : _STR:2_ , _STR:2_ , result of multiplication of integers : 60,60,24,7 , and return value of ungettext_lazy with 2 arguments : _STR:3_ , _STR:3_ , result of multiplication of integers : 60,60,24
+Tgt:  if not isinstance ( NAME , NAME . NAME ) :
+Pred: return NAME ( STRING , STRING , NUMBER ) % { STRING : NAME , STRING : NAME , STRING : NAME , STRING : NAME , STRING : NAME , STRING : NAME , STRING : NAME , STRING : NAME , STRING : NAME , STRING : NAME
+
+Tgt:  if not isinstance ( d , datetime . datetime ) :
+Pred: return integers ( <[> 60,60,24,365 <]> , <[>  <]> , 0 ) % { <[> _STR:3_ <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication , <[> request <]> : multiplication
+==================
+NL:if lang_code is contained in _supported and lang_code is not None and result of the function check_for_language ,
+Tgt:  if NAME in NAME and NAME is not None and NAME ( NAME ) :
+Pred: if ( NAME in NAME and NAME ( NAME ) is not None and NAME ( NAME . NAME ) ) :
+
+Tgt:  if lang_code in _supported and lang_code is not None and check_for_language ( lang_code ) :
+Pred: if ( lang_code in _supported and lang_code ( lang_code ) is not None and check_for_language ( lang_code . check_for_language ) ) :
+==================
+NL:if reversed is True substitute difference of d and now for delta , if not substitute the difference of now and d for delta .
+Tgt:  NAME = ( NAME - NAME ) if reversed else ( NAME - NAME )
+Pred: NAME = NAME - NAME [ NAME ]
+
+Tgt:  delta = ( d - now ) if reversed else ( now - d )
+Pred: delta = d - now [ d ]
+==================
+NL:return string _STR:0_ , formated with self.connector [ self . connector ] and string created by joining c into a string , separated by _STR:1_ ,
+Tgt:  return STRING % ( NAME . NAME , STRING . NAME ( [ str ( NAME ) for NAME in NAME . NAME ] ) )
+Pred: return STRING % ( NAME . NAME , NAME . NAME . NAME ( NAME ) )
+
+Tgt:  return <[> _STR:0_ <]> % ( self . connector , <[> _STR:1_ <]> . join ( [ str ( c ) for c in self . children ] ) )
+Pred: return <[> _STR:0_ <]> % ( self . connector , self . _meta . MIGRATE_LABEL ( joining ) )
+==================
+NL:substitute offset.seconds [ offset . seconds ] for offset .
+Tgt:  NAME = NAME . NAME // NUMBER
+Pred: NAME = NAME . NAME
+
+Tgt:  offset = offset . seconds // 60
+Pred: offset = offset . seconds
+==================
+NL:call the method re_camel_case.sub [ re_camel_case . sub ] with 2 arguments : raw string _STR:0_ and value , strip the result of whitespaces from both ends ,
+Tgt:  return NAME . NAME ( STRING , NAME ) . NAME ( ) . NAME ( )
+Pred: NAME = NAME . NAME ( STRING , NAME ) . NAME ( )
+
+Tgt:  return re_camel_case . sub ( <[> _STR:0_ <]> , value ) . strip ( ) . lower ( )
+Pred: return = re_camel_case . sub ( <[> _STR:0_ <]> , value ) . strip ( )
+==================
+NL:convert fist p elements of language to lowercase , append _STR:0_ to it ,
+Tgt:  return NAME [ : NAME ] . NAME ( ) + STRING + NAME [ NAME + NUMBER : ] . NAME ( )
+Pred: NAME = NAME [ : NAME ] . NAME ( ) + STRING
+
+Tgt:  return language [ : p ] . lower ( ) + <[> _STR:0_ <]> + language [ p + 1 : ] . lower ( )
+Pred: self = language [ : fist ] . append ( ) + <[> _STR:0_ <]>
+==================
+NL:convert the first element of the result to uppercase , append to it the rest of the result , substitute it for capfirst . call the function allow_lazy with 3 arguments : capfirst and six.text_type [ six . text_type ] .
+Tgt:  NAME = NAME ( NAME , NAME . NAME )
+Pred: NAME ( NAME , NAME . NAME )
+
+Tgt:  capfirst = allow_lazy ( capfirst , six . text_type )
+Pred: allow_lazy ( capfirst , six . text_type )
+==================
+NL:call the method e.encode [ e . encode ] with an argument string _STR:0_ .
+Tgt:  return NAME . NAME ( STRING )
+Pred: NAME . NAME ( STRING )
+
+Tgt:  return s . encode ( <[> _STR:0_ <]> )
+Pred: e . encode ( <[> _STR:0_ <]> )
+==================
+NL:otherwise if , first element of message_context is equal to _STR:0_ ,
+Tgt:  elif NAME [ NUMBER ] == STRING :
+Pred: elif NAME [ : NUMBER ] == STRING :
+
+Tgt:  elif message_context [ 0 ] == <[> _STR:0_ <]> :
+Pred: elif message_context [ : 1 ] == <[> _STR:0_ <]> :
+==================
+NL:re.U [ re . U ] and re.S [ re . S ] , substitute the result for re_chars . call the function re.compile [ re . compile ] with 2 arguments : raw string _STR:0_ and bitwise OR performed with 2 operands ,
+Tgt:  NAME = re . compile ( STRING , re . NAME )
+Pred: NAME = re . compile ( STRING , re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME )
+
+Tgt:  re_tag = re . compile ( <[> _STR:0_ <]> , re . S )
+Pred: re_chars = re . compile ( <[> _STR:0_ <]> , re . S | re . S | re . S | re . S | re . S | re . S | re . S )
+==================
+NL:call the function force_text with an argument s , strip the result of whitespaces from both ends ,
+Tgt:  NAME = NAME ( NAME ) . NAME ( ) . NAME ( STRING , STRING )
+Pred: NAME = NAME ( NAME ) . NAME ( )
+
+Tgt:  s = force_text ( s ) . strip ( ) . replace ( <[>   <]> , <[> _ <]> )
+Pred: return = force_text ( s ) . strip ( )
+==================
+NL:call the method cmatch.group [ cmatch . group ] with an argument integer 1 , format with the result string _STR:0_ , write it to out .
+Tgt:  NAME . NAME ( STRING % NAME . NAME ( NUMBER ) )
+Pred: NAME . NAME ( NUMBER , NAME . NAME ( NUMBER ) )
+
+Tgt:  out . write ( <[> _STR:0_ <]> % cmatch . group ( 1 ) )
+Pred: out . write ( 1 , cmatch . group ( 1 ) )
+==================
+NL:get translation_function attribute of the _default object , call the result with 3 arguments : singular , plural and number , return the result .
+Tgt:  return getattr ( NAME , NAME ) ( NAME , NAME , NAME )
+Pred: return getattr ( NAME , NAME , NAME ) ( NAME , NAME )
+
+Tgt:  return getattr ( _default , translation_function ) ( singular , plural , number )
+Pred: return getattr ( _default , translation_function , number ) ( singular , number )
+==================
+NL:call the function datetime.datetime [ datetime . datetime ] with 3 arguments , now.year [ now . year ] , now.month [ now . month ] and now.day [ now . day ] , substitute the result for now .
+Tgt:  NAME = NAME . NAME ( NAME . NAME , NAME . NAME , NAME . NAME )
+Pred: NAME = NAME . NAME ( ) . NAME , NAME . NAME , NAME . NAME
+
+Tgt:  now = datetime . datetime ( now . year , now . month , now . day )
+Pred: now = datetime . datetime ( ) . year , now . month , now . day
+==================
+NL:append param to i-th element of result_args .
+Tgt:  NAME [ NAME ] . NAME ( NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  result_args [ i ] . append ( param )
+Pred: result_args . append ( result_args )
+==================
+NL:from datetime import datetime , timedelta and tzinfo into default name space .
+Tgt:  from NAME import NAME , NAME , NAME
+Pred: from NAME import NAME , NAME , NAME , NAME
+
+Tgt:  from datetime import datetime , timedelta , tzinfo
+Pred: from datetime import datetime , timedelta , timedelta , tzinfo
+==================
+NL:substitute attr for the obtained value . delete attr .
+Tgt:  del NAME
+Pred: NAME . NAME = NAME
+
+Tgt:  del attr
+Pred: attr . kwargs = attr
+==================
+NL:get the value under the settings.__module__ [ settings . __module__ ] key of the sys.modules [ sys . modules ] dictionary ,
+Tgt:  NAME = NAME ( NAME . NAME [ NAME . NAME ] . NAME )
+Pred: NAME = NAME . NAME [ NAME . NAME ]
+
+Tgt:  settingsfile = upath ( sys . modules [ settings . __module__ ] . __file__ )
+Pred: sys = sys . modules [ settings . __module__ ]
+==================
+NL:and convert it to lowercase , substitute the result for value . call the function re.sub [ re . sub ] with 3 arguments : string _STR:0_ , string _STR:1_ and value , use the result as an argument for the call to the ,
+Tgt:  return NAME ( re . NAME ( STRING , STRING , NAME ) )
+Pred: NAME = re . NAME ( STRING , STRING , NAME )
+
+Tgt:  return mark_safe ( re . sub ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , value ) )
+Pred: return = re . sub ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , value )
+==================
+NL:zfile is an instance of GzipFile class , created with 3 arguments : mode set to string _STR:0_ , compresslevel set to integer 6 ,
+Tgt:  NAME = NAME ( NAME = STRING , NAME = NUMBER , NAME = NAME )
+Pred: NAME = NAME ( NAME = STRING , NAME = NUMBER , NAME = NAME , NAME = False , NAME = NAME , NAME = False , NAME = NAME , NAME = NAME , NAME = NAME , NAME = False )
+
+Tgt:  zfile = GzipFile ( mode = <[> _STR:0_ <]> , compresslevel = 6 , fileobj = zbuf )
+Pred: zfile = GzipFile ( mode = <[> _STR:0_ <]> , compresslevel = 6 , compresslevel = compresslevel , compresslevel = False , compresslevel = compresslevel , compresslevel = False , compresslevel = compresslevel , compresslevel = connection , compresslevel = connection , compresslevel = False )
+==================
+NL:return a tuple with an element self.__dt [ self . __dt ] .
+Tgt:  return NAME . NAME ,
+Pred: return ( NAME . NAME , )
+
+Tgt:  return self . __dt ,
+Pred: return ( self . __dt , )
+==================
+NL:call the method unicodedata.normalize [ unicodedata . normalize ] with 2 arguments : string _STR:0_ and value , encode the result with 2 arguments : string _STR:1_ ,
+Tgt:  NAME = NAME . NAME ( STRING , NAME ) . NAME ( STRING , STRING ) . NAME ( STRING )
+Pred: NAME . NAME ( STRING , NAME ( NAME . NAME ) , NAME . NAME ( NAME ) )
+
+Tgt:  value = unicodedata . normalize ( <[> _STR:0_ <]> , value ) . encode ( <[> _STR:1_ <]> , <[> ignore <]> ) . decode ( <[> _STR:1_ <]> )
+Pred: unicodedata . extend ( <[> _STR:0_ <]> , flatatt ( self . value ) , unicodedata . normalize ( path ) )
+==================
+NL:bitwise shift integer 1 to the left by 31 spaces , substitute integer 1 from the result , convert the result to a integer , substitute it for MAXSIZE .
+Tgt:  NAME = int ( ( NUMBER << NUMBER ) - NUMBER )
+Pred: NAME = int ( NAME ) % NUMBER
+
+Tgt:  MAXSIZE = int ( ( 1 << 31 ) - 1 )
+Pred: MAXSIZE = int ( 31 ) % 1
+==================
+NL:sum item and i_item together , append the result to new_result .
+Tgt:  NAME . NAME ( NAME + NAME )
+Pred: NAME += NAME + NAME + NAME
+
+Tgt:  new_result . append ( item + i_item )
+Pred: new_result += item + i_item + i_item
+==================
+NL:for every i in range of integers from 0 to length of result , not included ,
+Tgt:  for NAME in range ( len ( NAME ) ) :
+Pred: NAME = [ NUMBER ] + NAME + NUMBER
+
+Tgt:  for i in range ( len ( result ) ) :
+Pred: else = [ 0 ] + i + 0
+==================
+NL:_urllib_parse_moved_attributes is a list with 16 elemetns , all of them are the results of the call to the function MovedAttribute with different 3 string arguments .
+Tgt:  NAME = [ NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , ]
+Pred: NAME = [ NAME ( NAME ) , NAME . NAME ( NAME ) ]
+
+Tgt:  _urllib_parse_moved_attributes = [ MovedAttribute ( <[> ParseResult <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> SplitResult <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> parse_qs <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> parse_qsl <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> urldefrag <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> urljoin <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> urlparse <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> urlsplit <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> urlunparse <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> urlunsplit <]> , <[> urlparse <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> quote <]> , <[> urllib <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> quote_plus <]> , <[> urllib <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> unquote <]> , <[> urllib <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> unquote_plus <]> , <[> urllib <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> urlencode <]> , <[> urllib <]> , <[> urllib.parse <]> ) , MovedAttribute ( <[> splitquery <]> , <[> urllib <]> , <[> urllib.parse <]> ) , ]
+Pred: _urllib_parse_moved_attributes = [ MovedAttribute ( 16 ) , them . MovedAttribute ( different ) ]
+==================
+NL:call the method imatch.group [ imatch . group ] with an argument integer 2 , use the result as an argument for the call to the method context_re.match [ context_re . match ] ,
+Tgt:  NAME = NAME . NAME ( NAME . NAME ( NUMBER ) )
+Pred: return int ( NAME . NAME ( NUMBER ) )
+
+Tgt:  context_match = context_re . match ( imatch . group ( 2 ) )
+Pred: return int ( context_re . match ( 2 ) )
+==================
+NL:call the method _trans.npgettext [ _trans . npgettext ] with 4 arguments context , singular , plural and number .
+Tgt:  return NAME . NAME ( NAME , NAME , NAME , NAME )
+Pred: NAME . NAME ( NAME , NAME , NAME , NAME )
+
+Tgt:  return _trans . npgettext ( context , singular , plural , number )
+Pred: _trans . npgettext ( context , singular , plural , number )
+==================
+NL:call the function exec_ with an argument string _STR:0_ '' def reraise ( tp , value , tb=None ) : raise tp , value , tb_STR:0_ '' .
+Tgt:  NAME ( STRING STRING )
+Pred: NAME = NAME ( STRING , NAME , NAME , NAME )
+
+Tgt:  exec_ ( <[> _STR:0_ <]> <[> def reraise(tp, value, tb=None):     raise tp, value, tb '_STR:0_' <]> )
+Pred: return = exec_ ( <[> _STR:0_ <]> , tp , tb=None , tb_STR:0_ )
+==================
+NL:bitwise shift integer 1 to the left by 31 spaces , substitute integer 1 from the result , convert the result to a integer , substitute it for MAXSIZE .
+Tgt:  NAME = int ( ( NUMBER << NUMBER ) - NUMBER )
+Pred: NAME = int ( NAME ) % NUMBER
+
+Tgt:  MAXSIZE = int ( ( 1 << 31 ) - 1 )
+Pred: MAXSIZE = int ( 31 ) % 1
+==================
+NL:if fourth element of version does not equals to string _STR:0_ or _STR:1_ or _STR:2_ or _STR:3_ , raise an exception .
+Tgt:  assert NAME [ NUMBER ] in ( STRING , STRING , STRING , STRING )
+Pred: except NAME [ NUMBER ] in ( STRING , STRING , STRING ) :
+
+Tgt:  assert version [ 3 ] in ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> )
+Pred: except version [ 3 ] in ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> ) :
+==================
+NL:assign StringIO.StringIO [ StringIO . StringIO ] to StringIO and BytesIO .
+Tgt:  NAME = NAME = NAME . NAME
+Pred: NAME = NAME . NAME
+
+Tgt:  StringIO = BytesIO = StringIO . StringIO
+Pred: StringIO = StringIO . StringIO
+==================
+NL:html4_singlets is a tuple with 9 elements : strings _STR:0_ , _STR:1_ , _STR:2_ , _STR:3_ , _STR:4_ , _STR:5_ , _STR:6_ , _STR:7_ and _STR:8_ .
+Tgt:  NAME = ( STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING )
+Pred: NAME = ( STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING
+
+Tgt:  html4_singlets = ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> _STR:5_ <]> , <[> _STR:6_ <]> , <[> _STR:7_ <]> , <[> _STR:8_ <]> )
+Pred: html4_singlets = ( <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]> , <[> _STR:8_ <]>
+==================
+NL:with self.mutex [ self . mutex ] perform ,
+Tgt:  with NAME . NAME :
+Pred: with open ( NAME . NAME , STRING ) :
+
+Tgt:  with self . mutex :
+Pred: with open ( self . mutex , <[> mutex <]> ) :
+==================
+NL:get _STR:0_ attribute of the _active object
+Tgt:  NAME . NAME = getattr ( NAME , STRING , None )
+Pred: getattr ( NAME , STRING , None )
+
+Tgt:  self . old_timezone = getattr ( _active , <[> _STR:0_ <]> , None )
+Pred: getattr ( _active , <[> _STR:0_ <]> , None )
+==================
+NL:instantiate class X , get its length .
+Tgt:  len ( NAME ( ) )
+Pred: NAME = NAME ( )
+
+Tgt:  len ( X ( ) )
+Pred: instantiate = X ( )
+==================
+NL:substitute gettext for gettext_noop , gettext_lazy and _ .
+Tgt:  NAME = NAME = NAME = NAME
+Pred: NAME , NAME , NAME = NAME
+
+Tgt:  gettext_noop = gettext_lazy = _ = gettext
+Pred: gettext_noop , gettext_lazy , _ = gettext
+==================
+NL:define the function get_complete_version with in argument version , defaulting to None .
+Tgt:  def NAME ( NAME = None ) :
+Pred: def NAME ( NAME , NAME = None ) :
+
+Tgt:  def get_complete_version ( version = None ) :
+Pred: def get_complete_version ( version , version = None ) :
+==================
+NL:for every x in sequence of integers from 0 to 7. background is a dictionary created with elements : x appended to a string _STR:0_ for value under the key x of color_names dictionary ,
+Tgt:  NAME = dict ( ( NAME [ NAME ] , STRING % NAME ) for NAME in range ( NUMBER ) )
+Pred: NAME [ NAME ] = dict ( ( NAME , NAME [ NAME ] ) for NAME in range ( NAME . NAME , NAME ) )
+
+Tgt:  background = dict ( ( color_names [ x ] , <[> 4%s <]> % x ) for x in range ( 8 ) )
+Pred: background [ key ] = dict ( ( x , color_names [ x ] ) for x in range ( x . appended , appended ) )
+==================
+NL:if s is an instance of bytes or Promise and s._delegate_bytes [ s . _delegate_bytes ] is true ,
+Tgt:  if isinstance ( NAME , NAME ) or ( isinstance ( NAME , NAME ) and NAME . NAME ) :
+Pred: if isinstance ( NAME , NAME ) or isinstance ( NAME , NAME . NAME ) :
+
+Tgt:  if isinstance ( s , bytes ) or ( isinstance ( s , Promise ) and s . _delegate_bytes ) :
+Pred: if isinstance ( s , bytes ) or isinstance ( s , s . _delegate_bytes ) :
+==================
+NL:for every c in lineno_comment_map dictionary value under the comment_lineno_cache key ,
+Tgt:  for NAME in NAME [ NAME ] :
+Pred: for NAME in NAME [ STRING ] :
+
+Tgt:  for c in lineno_comment_map [ comment_lineno_cache ] :
+Pred: for c in lineno_comment_map [ <[> comment_lineno_cache <]> ] :
+==================
+NL:assign integer 2 to parts if third element of version equals to zero , otherwise assign it integer 3 .
+Tgt:  NAME = NUMBER if NAME [ NUMBER ] == NUMBER else NUMBER
+Pred: NAME = NUMBER or NAME [ NUMBER ] == NUMBER
+
+Tgt:  parts = 2 if version [ 2 ] == 0 else 3
+Pred: parts = 3 or version [ 2 ] == 0
+==================
+NL:substitute 3 successive elements starting from the i-th index of pieces for first , lang and priority , respectively .
+Tgt:  NAME , NAME , NAME = NAME [ NAME : NAME + NUMBER ]
+Pred: NAME , NAME , NAME = NAME [ NAME : ]
+
+Tgt:  first , lang , priority = pieces [ i : i + 3 ]
+Pred: end , lang , priority = pieces [ i : ]
+==================
+NL:call the subprocess.Popen [ subprocess . Popen ] function with , _STR:0_ , stdout set to subprocess.PIPE [ subprocess . PIPE ] ,
+Tgt:  NAME = NAME . NAME ( STRING , NAME = NAME . NAME , NAME = NAME . NAME , NAME = True , NAME = NAME , NAME = True )
+Pred: NAME = NAME . NAME ( STRING , NAME = NAME . NAME , NAME = True , NAME = True , NAME = True , NAME = True , NAME = True , NAME = True , NAME = True , NAME = True , NAME = True ,
+
+Tgt:  git_log = subprocess . Popen ( <[> _STR:0_ <]> , stdout = subprocess . PIPE , stderr = subprocess . PIPE , shell = True , cwd = repo_dir , universal_newlines = True )
+Pred: subprocess = subprocess . Popen ( <[> _STR:0_ <]> , stdout = subprocess . PIPE , PIPE = True , PIPE = True , PIPE = True , subprocess = True , subprocess = True , subprocess = True , subprocess = True , subprocess = True , connection = True , ** = ( ,
+==================
+NL:append string _STR:0_ to __name__ , use it as an key to get the value from the sys.modules [ sys . modules ] dictionary , substitute it for parse .
+Tgt:  NAME = NAME . NAME [ NAME + STRING ]
+Pred: NAME = NAME . NAME . NAME ( STRING ) + NAME
+
+Tgt:  parse = sys . modules [ __name__ + <[> _STR:0_ <]> ]
+Pred: parse = sys . modules . get ( <[> _STR:0_ <]> ) + __name__
+==================
+NL:call the function re.compile [ re . compile ] with 2 arguments : raw string _STR:0_ and bitwise OR performed with 2 operands ,
+Tgt:  NAME = re . compile ( STRING , re . NAME | re . NAME )
+Pred: NAME = re . compile ( STRING , re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re . NAME | re .
+
+Tgt:  re_words = re . compile ( <[> _STR:0_ <]> , re . U | re . S )
+Pred: performed = re . compile ( <[> _STR:0_ <]> , re . OR | re . call | re . call | re . call | re . OR | re . OR | re . OR | re . OR | re . OR | re . OR | re . re re.compile operands <]> , 1 2 operands <]> % ( , 1 string <]> : operands operands <]> , 1 2 operands <]> % ( , 1 string <]> : operands operands <]> , 1 2 operands <]> % ( , 1 string <]> : operands
+==================
+NL:format truncate with a dictionary with an element : text for _STR:0_ , return the result .
+Tgt:  return NAME % { STRING : NAME }
+Pred: return NAME format STRING
+
+Tgt:  return truncate % { <[> _STR:0_ <]> : text }
+Pred: return truncate format <[> _STR:0_ <]>
+==================
+NL:convert whitespace character to unicode and substitute the result for space .
+Tgt:  NAME = unicode ( STRING )
+Pred: NAME = NAME . NAME ( )
+
+Tgt:  space = unicode ( <[>   <]> )
+Pred: space = unicode . lower ( )
+==================
+NL:replace every occurrence of raw string _STR:0_\\\\ ' , use the result and string _STR:1_ ,
+Tgt:  return unicode ( NAME . NAME ( STRING , STRING ) , STRING )
+Pred: NAME = [ STRING % NAME . NAME ( STRING , STRING ) , STRING ]
+
+Tgt:  return unicode ( s . replace ( <[> \\ <]> , <[> \\\\ <]> ) , <[> _STR:1_ <]> )
+Pred: result = [ <[> _STR:0_\\\\ <]> % self . replace ( <[> _STR:0_\\\\ <]> , <[> _STR:1_ <]> ) , <[> _STR:1_ <]> ]
+==================
+NL:params is a list with second element of source as a element .
+Tgt:  NAME = [ NAME [ NUMBER ] ]
+Pred: NAME = [ NAME for NAME in NAME ]
+
+Tgt:  params = [ source [ 1 ] ]
+Pred: params = [ source for source in source ]
+==================
+NL:substitute _STR:0_ in string _STR:1_ with message_context , result of the function join_tokens ,
+Tgt:  NAME . NAME ( STRING % ( NAME , NAME ( NAME , NAME ) , NAME ( NAME , NAME ) ) )
+Pred: NAME . NAME ( STRING % NAME ( NAME , NAME ) )
+
+Tgt:  out . write ( <[> _STR:1_ <]> % ( message_context , join_tokens ( singular , trimmed ) , join_tokens ( plural , trimmed ) ) )
+Pred: string . warn ( <[> message_context <]> % %s ( %s , message_context ) )
+==================
+NL:reverse the order of colors elements ,
+Tgt:  NAME . NAME ( )
+Pred: try :
+
+Tgt:  colors . reverse ( )
+Pred: try :
+==================
+NL:call the method self.add_truncation_text [ self . add_truncation_text ] with 2 arguments : an empty string and truncate , substitute it for truncate_text .
+Tgt:  NAME = NAME . NAME ( STRING , NAME )
+Pred: NAME = NAME . NAME ( STRING , STRING )
+
+Tgt:  truncate_text = self . add_truncation_text ( <[>  <]> , truncate )
+Pred: truncate_text = self . add_truncation_text ( <[>  <]> , <[>  <]> )
+==================
+NL:use the remainder of the division of name by count as the argument for the call to the avoid_wrapping function , store the result in result .
+Tgt:  NAME = NAME ( NAME % NAME )
+Pred: NAME = NAME ( NAME )
+
+Tgt:  result = avoid_wrapping ( name % count )
+Pred: result = avoid_wrapping ( name )
+==================
+NL:call the method blankout with 2 arguments : part and _STR:0_ , write the result to out .
+Tgt:  NAME . NAME ( NAME ( NAME , STRING ) )
+Pred: NAME ( NAME , STRING , NAME )
+
+Tgt:  out . write ( blankout ( part , <[> _STR:0_ <]> ) )
+Pred: out ( part , <[> _STR:0_ <]> , write )
+==================
+NL:raise an SyntaxError with an argument string _STR:0_ ,
+Tgt:  raise NAME ( STRING % ( NAME . NAME , NAME , NAME . NAME ) )
+Pred: raise NAME ( STRING % NAME . NAME )
+
+Tgt:  raise SyntaxError ( <[> _STR:0_ <]> % ( t . contents , filemsg , t . lineno ) )
+Pred: raise SyntaxError ( <[> _STR:0_ <]> % self . __name__ )
+==================
+NL:multiply seconds by count , subtract it from since , divide the result by seconds2 , store the floored result in count2 .
+Tgt:  NAME = ( NAME - ( NAME * NAME ) ) // NAME
+Pred: NAME = NAME - NAME + NAME
+
+Tgt:  count2 = ( since - ( seconds * count ) ) // seconds2
+Pred: count2 = since - count + count
+==================
+NL:define the method _truncate_html with 6 arguments : self , length , truncate , text , truncate_len and words .
+Tgt:  def NAME ( NAME , NAME , NAME , NAME , NAME , NAME ) :
+Pred: def NAME ( NAME , NAME , NAME , NAME , NAME , NAME , NAME ) :
+
+Tgt:  def _truncate_html ( self , length , truncate , text , truncate_len , words ) :
+Pred: def _truncate_html ( self , length , truncate , text , truncate_len , truncate_len , words ) :
+==================
+NL:substitute _STR:0_ in string _STR:1_ with result of the function join_tokens , called with 2 arguments : singular ,
+Tgt:  NAME . NAME ( STRING % ( NAME ( NAME , NAME ) , NAME ( NAME , NAME ) ) )
+Pred: NAME . NAME ( STRING , NAME ( NAME , NAME ) )
+
+Tgt:  out . write ( <[> _STR:1_ <]> % ( join_tokens ( singular , trimmed ) , join_tokens ( plural , trimmed ) ) )
+Pred: called . append ( <[> _STR:0_ <]> , join_tokens ( singular , singular ) )
+==================
+NL:call the method Module_six_moves_urllib_request with an argument : string _STR:0_ appended to __name__ ,
+Tgt:  NAME . NAME [ NAME + STRING ] = NAME . NAME [ NAME + STRING ] = NAME ( NAME + STRING )
+Pred: return NAME ( STRING + NAME . NAME ( STRING ) )
+
+Tgt:  sys . modules [ __name__ + <[> _STR:0_ <]> ] = sys . modules [ __name__ + <[> .moves.urllib.parse <]> ] = Module_six_moves_urllib_parse ( __name__ + <[> _STR:0_ <]> )
+Pred: return Module_six_moves_urllib_request ( <[> _STR:0_ <]> + path . get ( <[>  <]> ) )
+==================
+NL:_translations dictionary value , under the language key is an instance of DjangoTranslation class , created with an argument language .
+Tgt:  NAME [ NAME ] = NAME ( NAME )
+Pred: NAME = NAME ( NAME ) . NAME ( NAME )
+
+Tgt:  _translations [ language ] = DjangoTranslation ( language )
+Pred: language = DjangoTranslation ( language ) . language ( language )
+==================
+NL:call the function blankout with 2 arguments : p and _STR:0_ , write the result to out .
+Tgt:  NAME . NAME ( NAME ( NAME , STRING ) )
+Pred: NAME ( NAME , STRING ) . NAME ( NAME , STRING )
+
+Tgt:  out . write ( blankout ( p , <[> _STR:0_ <]> ) )
+Pred: out ( p , <[> _STR:0_ <]> ) . write ( p , <[> _STR:0_ <]> )
+==================
+NL:if _STR:0_ is contained in klass.__dict__ [ klass . __dict__ ] for any klass in __mro__ field of the obj class , return boolean True , otherwise return False .
+Tgt:  return any ( STRING in NAME . NAME for NAME in type ( NAME ) . NAME )
+Pred: return STRING in NAME . NAME if STRING in NAME . NAME
+
+Tgt:  return any ( <[> _STR:0_ <]> in klass . __dict__ for klass in type ( obj ) . __mro__ )
+Pred: return <[> _STR:0_ <]> in klass . __dict__ if <[> _STR:0_ <]> in klass . __dict__
+==================
+NL:define the method __getattr__ with 2 arguments : self and attr set to None .
+Tgt:  def NAME ( NAME , NAME ) :
+Pred: def NAME ( NAME , NAME = None ) :
+
+Tgt:  def __getattr__ ( self , attr ) :
+Pred: def __getattr__ ( self , attr = None ) :
+==================
+NL:call the function lazy with 2 arguments : lambda function with unpacked dictionary kwargs as an argument and return value an instance of NumberAwareString class and NumberAwareString , call the result with an argument unpacked dictionary kwargs , substitute the result for proxy .
+Tgt:  NAME = NAME ( lambda ** NAME : NAME ( ) , NAME ) ( ** NAME )
+Pred: NAME = NAME ( lambda NAME : NAME . NAME ( ) , NAME . NAME ( NAME ) )
+
+Tgt:  proxy = lazy ( lambda ** kwargs : NumberAwareString ( ) , NumberAwareString ) ( ** kwargs )
+Pred: proxy = lazy ( lambda kwargs : self . dictionary ( ) , NumberAwareString . NumberAwareString ( kwargs ) )
+==================
+NL:if line ends with a new line character substitute width incremented by integer 1 for max_width , if not substitute width for max_width .
+Tgt:  NAME = min ( ( NAME . NAME ( STRING ) and NAME + NUMBER or NAME ) , NAME )
+Pred: NAME = NAME + NAME . NAME + NUMBER
+
+Tgt:  max_width = min ( ( line . endswith ( <[> \n <]> ) and width + 1 or width ) , width )
+Pred: max_width = width + self . line + 1
+==================
+NL:call the method type.__new__ [ type . __new__ ] with 4 arguments : cls , name , empty tuple and d , return the result .
+Tgt:  return type . NAME ( NAME , NAME , ( ) , NAME )
+Pred: return NAME . NAME ( NAME , ( NAME , NAME , NAME ) )
+
+Tgt:  return type . __new__ ( cls , name , ( ) , d )
+Pred: return type . __new__ ( cls , ( name , args , d ) )
+==================
+NL:if self.active_writers [ self . active_writers ] and self.waiting_writers [ self . waiting_writers ] both equal to integer 0 ,
+Tgt:  if NAME . NAME == NUMBER and NAME . NAME == NUMBER :
+Pred: if NAME . NAME and NAME . NAME == NUMBER :
+
+Tgt:  if self . active_writers == 0 and self . waiting_writers == 0 :
+Pred: if self . active_writers and self . waiting_writers == 0 :
+==================
+NL:remover _STR:0_ key from the kwargs dictionary , if it exists substitute it for fp , if not substitute sys.stdout [ sys . stdout ] for fp .
+Tgt:  NAME = NAME . NAME ( STRING , NAME . NAME )
+Pred: NAME . NAME = NAME . NAME ( STRING , NAME . NAME )
+
+Tgt:  fp = kwargs . pop ( <[> file <]> , sys . stdout )
+Pred: fp . stdout = kwargs . get ( <[> _STR:0_ <]> , sys . stdout )
+==================
+NL:convert x into a string for every x in list of version elements up to the parts index , join the previous into a string separated by _STR:0_ , assign the result to major .
+Tgt:  NAME = STRING . NAME ( str ( NAME ) for NAME in NAME [ : NAME ] )
+Pred: NAME = STRING . NAME ( NAME )
+
+Tgt:  major = <[> _STR:0_ <]> . join ( str ( x ) for x in version [ : parts ] )
+Pred: major = <[> _STR:0_ <]> . join ( x )
+==================
+NL:substitute the result for tag . if tag is false or current_len is greater or equal to truncate_len ,
+Tgt:  if not NAME or NAME >= NAME :
+Pred: if not NAME or ( NAME >= NAME ) :
+
+Tgt:  if not tag or current_len >= truncate_len :
+Pred: if not tag or ( tag >= truncate_len ) :
+==================
+NL:strip t.contents [ t . contents ] from the left side of whitespaces , if the result starts with TRANSLATOR_COMMENT_MARK ,
+Tgt:  if NAME . NAME . NAME ( ) . NAME ( NAME ) :
+Pred: NAME = NAME . NAME . NAME ( NAME . NAME . NAME ( NAME ) )
+
+Tgt:  if t . contents . lstrip ( ) . startswith ( TRANSLATOR_COMMENT_MARK ) :
+Pred: if = t . contents . join ( t . contents . starts ( TRANSLATOR_COMMENT_MARK ) )
+==================
+NL:call the method _trans.pgettext [ _trans . pgettext ] with 2 arguments context and message .
+Tgt:  return NAME . NAME ( NAME , NAME )
+Pred: NAME . NAME ( NAME , NAME )
+
+Tgt:  return _trans . pgettext ( context , message )
+Pred: _trans . pgettext ( context , message )
+==================
+NL:sort result in reversed order by the key as lambda function with an argument k and reeturn value second element of k .
+Tgt:  NAME . NAME ( NAME = lambda NAME : NAME [ NUMBER ] , NAME = True )
+Pred: NAME = reversed ( NAME [ NUMBER ] , NAME [ NUMBER ] )
+
+Tgt:  result . sort ( key = lambda k : k [ 1 ] , reverse = True )
+Pred: lambda = reversed ( k [ 1 ] , k [ 1 ] )
+==================
+NL:substitute basestring for string_types .
+Tgt:  NAME = basestring ,
+Pred: NAME = NAME
+
+Tgt:  string_types = basestring ,
+Pred: string_types = basestring
+==================
+NL:get_language_bidi is lambda function returning boolean True if settings.LANGUAGE_CODE [ settings . LANGUAGE_CODE ] is contained in settings.LANGUAGES_BIDI [ settings . LANGUAGES_BIDI ] .
+Tgt:  NAME = lambda : NAME . NAME in NAME . NAME
+Pred: NAME = lambda NAME . NAME :
+
+Tgt:  get_language_bidi = lambda : settings . LANGUAGE_CODE in settings . LANGUAGES_BIDI
+Pred: settings = lambda settings . LANGUAGE_CODE :
+==================
+NL:if words is true , substitute re_words for regex , if not substitute re_chars for regex .
+Tgt:  NAME = NAME if NAME else NAME
+Pred: NAME = NAME or NAME . NAME
+
+Tgt:  regex = re_words if words else re_chars
+Pred: regex = re_words or self . re_chars
+==================
+NL:result_args is a list containing an empty list .
+Tgt:  NAME = [ [ ] ]
+Pred: NAME = [ ]
+
+Tgt:  result_args = [ [ ] ]
+Pred: result_args = [ ]
+==================
+NL:return a list with 5 elements : strings _STR:0_ , _STR:1_ , _STR:2_ , _STR:3_ and _STR:4_ .
+Tgt:  return [ STRING , STRING , STRING , STRING , STRING ]
+Pred: return [ STRING , STRING , STRING , STRING , STRING , STRING , STRING , STRING ]
+
+Tgt:  return [ <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> ]
+Pred: return [ <[> _STR:0_ <]> , <[> _STR:1_ <]> , <[> _STR:2_ <]> , <[> _STR:3_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> , <[> _STR:4_ <]> ]
+==================
+NL:get translation_function attribute of the t object , call the result with 3 arguments : singular , plural and number , return the result .
+Tgt:  return getattr ( NAME , NAME ) ( NAME , NAME , NAME )
+Pred: return getattr ( NAME , NAME , NAME ) ( NAME , NAME , NAME )
+
+Tgt:  return getattr ( t , translation_function ) ( singular , plural , number )
+Pred: return getattr ( t , translation_function , number ) ( singular , plural , number )
+==================
+NL:remove all the elements from space index of line .
+Tgt:  NAME = NAME [ NAME : ]
+Pred: NAME . NAME ( NAME )
+
+Tgt:  line = line [ space : ]
+Pred: line . remove ( line )
+==================
+NL:if count2 does not equals to integer 0 ,
+Tgt:  if NAME != NUMBER :
+Pred: if not NAME != NUMBER :
+
+Tgt:  if count2 != 0 :
+Pred: if not count2 != 0 :
+==================
+NL:call the method blankout with 2 arguments : part and _STR:0_ , write the result to out .
+Tgt:  NAME . NAME ( NAME ( NAME , STRING ) )
+Pred: NAME ( NAME , STRING , NAME )
+
+Tgt:  out . write ( blankout ( part , <[> _STR:0_ <]> ) )
+Pred: out ( part , <[> _STR:0_ <]> , write )
+==================
+NL:for every s in strings , call the function force_text with an argument s , join the results in a string , return the result .
+Tgt:  return STRING . NAME ( NAME ( NAME ) for NAME in NAME )
+Pred: return STRING . NAME ( NAME )
+
+Tgt:  return <[>  <]> . join ( force_text ( s ) for s in strings )
+Pred: return <[>  <]> . join ( s )
+==================
+NL:create a list out of fist end_text_pos text elemnts , substitue it for out .
+Tgt:  NAME = NAME [ : NAME ]
+Pred: NAME = list ( NAME . NAME ( NAME ) )
+
+Tgt:  out = text [ : end_text_pos ]
+Pred: out = list ( os . end_text_pos ( elemnts ) )
+==================
+NL:format string _STR:0_ with message_context and g , write it to out .
+Tgt:  NAME . NAME ( STRING % ( NAME , NAME ) )
+Pred: NAME . NAME ( STRING , NAME )
+
+Tgt:  out . write ( <[> _STR:0_ <]> % ( message_context , g ) )
+Pred: out . write ( <[> _STR:0_ <]> , message_context )
+==================
+NL:split self._wrapped [ self . _wrapped ] into words , substitute the result for words .
+Tgt:  NAME = NAME . NAME . NAME ( )
+Pred: NAME = NAME . NAME . NAME ( NAME )
+
+Tgt:  words = self . _wrapped . split ( )
+Pred: words = self . _wrapped . split ( words )
+==================
+NL:if t.token_type [ t . token_type ] == TOKEN_TEXT :
+Tgt:  elif NAME . NAME == NAME :
+Pred: if NAME . NAME . NAME ( NAME ) :
+
+Tgt:  elif t . token_type == TOKEN_TEXT :
+Pred: if t . token_type . TOKEN_TEXT ( TOKEN_TEXT ) :
+==================
+NL:gett self.attr [ self . attr ] from the module object , return it .
+Tgt:  return getattr ( NAME , NAME . NAME )
+Pred: return iter ( NAME . NAME )
+
+Tgt:  return getattr ( module , self . attr )
+Pred: return iter ( self . attr )
+==================
+NL:get _iterkeys attribute of the class d , call the result with an argument unpacked dictionary kw , convert the result to a iterable ,
+Tgt:  return iter ( getattr ( NAME , NAME ) ( ** NAME ) )
+Pred: NAME = getattr ( NAME , NAME ) ( ** NAME )
+
+Tgt:  return iter ( getattr ( d , _iterkeys ) ( ** kw ) )
+Pred: iterable = getattr ( d , d ) ( ** kw )
+==================
+NL:append string _STR:0_ to __name__ , use it as an key to get the value from the sys.modules [ sys . modules ] dictionary , substitute it for request .
+Tgt:  NAME = NAME . NAME [ NAME + STRING ]
+Pred: NAME = NAME . NAME ( STRING ) + NAME
+
+Tgt:  request = sys . modules [ __name__ + <[> _STR:0_ <]> ]
+Pred: request = sys . module ( <[> _STR:0_ <]> ) + request
+==================
+NL:separated by result of the function _ called with an argument string _STR:0_ , for every i in list_ without last element , result of the function force_text called with an argument last_word , result of the function force_text called with an argument : last element of list_ . call the function allow_lazy with 2 arguments : get_text_list and six.text_type [ six . text_type ] , substitute the result for
+Tgt:  NAME = NAME ( NAME , NAME . NAME )
+Pred: NAME = NAME ( NAME , NAME . NAME ) [ NUMBER ] for NAME in NAME [ NUMBER ]
+
+Tgt:  get_text_list = allow_lazy ( get_text_list , six . text_type )
+Pred: every = allow_lazy ( match , six . text_type ) [ 1 ] for i in list_ [ 1 ]
+==================
+NL:self.__name [ self . __name ] is a string _STR:0_ , replace ' % s ' with sign , _STR:1_ is replaced with absolute value of offset divided by 60 ,
+Tgt:  NAME . NAME = STRING % ( NAME , abs ( NAME ) / NUMBER , abs ( NAME ) % NUMBER )
+Pred: NAME . NAME = STRING % ( NAME [ NUMBER ] , NAME [ NUMBER ] )
+
+Tgt:  self . __name = <[> _STR:0_ <]> % ( sign , abs ( offset ) / 60. , abs ( offset ) % 60 )
+Pred: self . __name = <[> _STR:0_ <]> % ( offset [ 0 ] , replaced [ 2 ] )
+==================
+NL:append string _STR:0_ to __name__ , use it as an argument to instantiate _MovedItems class , assign it to moves ,
+Tgt:  NAME = NAME . NAME [ NAME + STRING ] = NAME ( NAME + STRING )
+Pred: NAME = NAME ( NAME . NAME + STRING )
+
+Tgt:  moves = sys . modules [ __name__ + <[> .moves <]> ] = _MovedItems ( __name__ + <[> .moves <]> )
+Pred: moves = _MovedItems ( self . __name__ + <[> _STR:0_ <]> )
+==================
+NL:call the method lineno_comment_map.setdefault [ lineno_comment_map . setdefault ] with 2 arguments : t.lineno [ t . lineno ] and an empty list , append t.contents [ t . contents ] to the result .
+Tgt:  NAME . NAME ( NAME . NAME , [ ] ) . NAME ( NAME . NAME )
+Pred: NAME . NAME ( NAME . NAME , [ ] ) . NAME ( NAME . NAME , STRING )
+
+Tgt:  lineno_comment_map . setdefault ( t . lineno , [ ] ) . append ( t . contents )
+Pred: lineno_comment_map . setdefault ( t . lineno , [ ] ) . append ( t . lineno , <[>  <]> )
+==================
+NL:for every i in range of integers from integer 0 to the length of pieces decremented by one , with step of integer 3 ,
+Tgt:  for NAME in range ( NUMBER , len ( NAME ) - NUMBER , NUMBER ) :
+Pred: for NAME in range ( NUMBER , NAME + len ( NAME ) ) :
+
+Tgt:  for i in range ( 0 , len ( pieces ) - 1 , 3 ) :
+Pred: for i in range ( 0 , step + len ( step ) ) :
+==================
+NL:get the unicode representation of result of the method match.group [ match . group ] called with an integer 1 , format with in a string _STR:0_ ,
+Tgt:  return STRING % ord ( NAME . NAME ( NUMBER ) )
+Pred: format = NAME . NAME ( NUMBER , format % NUMBER )
+
+Tgt:  return <[> _STR:0_ <]> % ord ( match . group ( 1 ) )
+Pred: format = match . group ( 1 , format % 2 )
+==================
+NL:call strip s of the surrounding whitespaces , substitute every occurrence of the whitespace in the trim_whitespace_re with previous result , return the result .
+Tgt:  return NAME . NAME ( STRING , NAME . NAME ( ) )
+Pred: return NAME ( NAME . NAME ( ) )
+
+Tgt:  return trim_whitespace_re . sub ( <[>   <]> , s . strip ( ) )
+Pred: return trim_whitespace_re ( whitespaces . split ( ) )
+==================
+NL:replace every occurrence of string _STR:0_ in message with _STR:1_ , replace every occurrence of string _STR:2_ ,
+Tgt:  NAME = NAME . NAME ( str ( STRING ) , str ( STRING ) ) . NAME ( str ( STRING ) , str ( STRING ) )
+Pred: NAME = [ STRING % NAME . NAME ( STRING , STRING ) for NAME in NAME . NAME ]
+
+Tgt:  eol_message = message . replace ( str ( <[> _STR:0_ <]> ) , str ( <[> _STR:1_ <]> ) ) . replace ( str ( <[> _STR:2_ <]> ) , str ( <[> _STR:1_ <]> ) )
+Pred: return = [ <[> _STR:0_ <]> % message . replace ( <[> _STR:1_ <]> , <[> _STR:2_ <]> ) for message in message . occurrence ]
+==================
+NL:opt_dict is an dictionary with 5 elements : _STR:0_ for _STR:1_ , _STR:2_ for _STR:3_ , _STR:4_ for _STR:5_ , _STR:6_ for _STR:7_ ,
+Tgt:  NAME = { STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING , STRING : STRING }
+Pred: NAME = { STRING : STRING , STRING : STRING , STRING : STRING , }
+
+Tgt:  opt_dict = { <[> _STR:1_ <]> : <[> _STR:0_ <]> , <[> _STR:3_ <]> : <[> _STR:2_ <]> , <[> _STR:5_ <]> : <[> _STR:4_ <]> , <[> _STR:7_ <]> : <[> _STR:6_ <]> , <[> conceal <]> : <[> 8 <]> }
+Pred: opt_dict = { <[> _STR:1_ <]> : <[> _STR:0_ <]> , <[> _STR:3_ <]> : <[>  <]> , <[> _STR:4_ <]> : <[> _STR:0_ <]> , }
+==================
+NL:get the value under the settings.LANGUAGE_COOKIE_NAME [ settings . LANGUAGE_COOKIE_NAME ] key of the request.COOKIES [ request . COOKIES ] dictionary , substitute it for lang_code .
+Tgt:  NAME = NAME . NAME . NAME ( NAME . NAME )
+Pred: NAME = NAME . NAME [ NAME . NAME ]
+
+Tgt:  lang_code = request . COOKIES . get ( settings . LANGUAGE_COOKIE_NAME )
+Pred: lang_code = request . COOKIES [ settings . LANGUAGE_COOKIE_NAME ]
+==================
+NL:while length of line is grater than max_width ,
+Tgt:  while len ( NAME ) > NAME :
+Pred: while NAME > len ( NAME ) :
+
+Tgt:  while len ( line ) > max_width :
+Pred: while line > len ( line ) :
+==================
+NL:count occurrences of _STR:0_ in t.contents [ t . contents ] , add the result to t.lineno [ t . lineno ] , substitute the result for cur_lineno .
+Tgt:  NAME = NAME . NAME + NAME . NAME . NAME ( STRING )
+Pred: NAME = NAME . NAME + STRING + NAME . NAME + STRING
+
+Tgt:  cur_lineno = t . lineno + t . contents . count ( <[> _STR:0_ <]> )
+Pred: cur_lineno = t . contents + <[> _STR:0_ <]> + t . contents + <[> _STR:0_ <]>
+==================
+NL:chunks is a tuple containing 6 initial tuples :
+Tgt:  NAME = ( ( NUMBER * NUMBER * NUMBER * NUMBER , NAME ( STRING , STRING ) ) , ( NUMBER * NUMBER * NUMBER * NUMBER , NAME ( STRING , STRING ) ) , ( NUMBER * NUMBER * NUMBER * NUMBER , NAME ( STRING , STRING ) ) , ( NUMBER * NUMBER * NUMBER , NAME ( STRING , STRING ) ) , ( NUMBER * NUMBER , NAME ( STRING , STRING ) ) , ( NUMBER , NAME ( STRING , STRING ) ) )
+Pred: NAME = ( ( NAME , ) )
+
+Tgt:  chunks = ( ( 60 * 60 * 24 * 365 , ungettext_lazy ( <[> %d year <]> , <[> %d years <]> ) ) , ( 60 * 60 * 24 * 30 , ungettext_lazy ( <[> %d month <]> , <[> %d months <]> ) ) , ( 60 * 60 * 24 * 7 , ungettext_lazy ( <[> %d week <]> , <[> %d weeks <]> ) ) , ( 60 * 60 * 24 , ungettext_lazy ( <[> %d day <]> , <[> %d days <]> ) ) , ( 60 * 60 , ungettext_lazy ( <[> %d hour <]> , <[> %d hours <]> ) ) , ( 60 , ungettext_lazy ( <[> %d minute <]> , <[> %d minutes <]> ) ) )
+Pred: chunks = ( ( chunks , ) )
+==================
+NL:convert newline character to unicode and substitute the result for newline .
+Tgt:  NAME = unicode ( STRING )
+Pred: NAME = STRING + NAME
+
+Tgt:  newline = unicode ( <[> \n <]> )
+Pred: newline = <[> newline <]> + unicode
+==================
+NL:call the function lazy_number with 5 arguments : ungettext , six.text_type [ six . text_type ] , singular set to singular , plural set to plural ,
+Tgt:  return NAME ( NAME , NAME . NAME , NAME = NAME , NAME = NAME , NAME = NAME )
+Pred: NAME = NAME ( NAME , NAME . NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME , NAME = NAME ,
+
+Tgt:  return lazy_number ( ungettext , six . text_type , singular = singular , plural = plural , number = number )
+Pred: lazy_number = lazy_number ( ungettext , six . text_type , singular = singular , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural = plural , plural plural singular singular <]> , plural singular <]> % ( , plural <]> , plural plural <]> , plural <]> , plural <]> , plural <]> , plural <]> , plural <]> , plural <]> , plural <]> , plural <]> , plural <]> , plural <]> ,
+==================
+NL:for every lineno and line is enumerated result of the method content.splitlines [ content . splitlines ] , called with an argument boolean True ,
+Tgt:  for NAME , NAME in enumerate ( NAME . NAME ( True ) ) :
+Pred: for NAME , NAME in enumerate ( NAME . NAME ( NAME ) ) :
+
+Tgt:  for lineno , line in enumerate ( content . splitlines ( True ) ) :
+Pred: for key , line in enumerate ( content . splitlines ( boolean ) ) :
+==================
+NL:substitute klass.__dict__ [ klass . __dict__ ] for next .
+Tgt:  next = NAME
+Pred: NAME = NAME . NAME
+
+Tgt:  next = advance_iterator
+Pred: next = klass . __dict__
+==================
+NL:strings _STR:0_ , _STR:1_ and _STR:2_ , result of the function MovedAttribute , called with 3 arguments : strings _STR:3_ , _STR:1_ , _STR:2_ , result of the function MovedAttribute , called with 3 arguments : strings _STR:4_ , _STR:1_ , _STR:2_ and result of the function MovedAttribute , called with 3 arguments : strings _STR:5_ , _STR:1_ , _STR:2_ . for every attr in _urllib_response_moved_attributes ,
+Tgt:  for NAME in NAME :
+Pred: for NAME in NAME ( STRING , STRING ) :
+
+Tgt:  for attr in _urllib_response_moved_attributes :
+Pred: for attr in MovedAttribute ( <[> _STR:0_ <]> , <[> _STR:1_ <]> ) :
+==================
+NL:read data from buf , yield the result .
+Tgt:  yield NAME . NAME ( )
+Pred: yield NAME
+
+Tgt:  yield buf . read ( )
+Pred: yield buf
+==================
+NL:find index of the occurrence of string _STR:0_ in p , if its greater or equal to integer 0 ,
+Tgt:  if NAME . NAME ( STRING ) >= NUMBER :
+Pred: if NAME [ NAME ] != NUMBER :
+
+Tgt:  if p . find ( <[> _STR:0_ <]> ) >= 0 :
+Pred: if p [ p ] != 0 :
+==================
+NL:get translation_function attribute of the object t , call the result with an argument eol_message , substitute the result for result .
+Tgt:  NAME = getattr ( NAME , NAME ) ( NAME )
+Pred: NAME = getattr ( NAME , NAME , NAME ) ( NAME )
+
+Tgt:  result = getattr ( t , translation_function ) ( eol_message )
+Pred: result = getattr ( t , translation_function , translation_function ) ( eol_message )
+==================
+NL:call the function re.compile [ re . compile ] with 2 arguments : raw string _STR:0_ ,
+Tgt:  
+Pred: NAME = re . compile ( STRING , re . NAME )
+
+Tgt:  
+Pred: return = re . compile ( <[> _STR:0_ <]> , re . call )
+==================
+NL:check_for_language is lambda function that returns boolean True for every argument x .
+Tgt:  NAME = lambda NAME : True
+Pred: NAME = lambda NAME : NAME
+
+Tgt:  check_for_language = lambda x : True
+Pred: x = lambda x : x
+==================
+NL:reverse settings.LOCALE_PATHS [ settings . LOCALE_PATHS ] element order , for every localedir in the result ,
+Tgt:  for NAME in reversed ( NAME . NAME ) :
+Pred: for NAME in NAME . NAME [ : ] :
+
+Tgt:  for localedir in reversed ( settings . LOCALE_PATHS ) :
+Pred: for localedir in settings . LOCALE_PATHS [ : ] :
+==================
+NL:set attr.name [ attr . name ] attribute of Module_six_moves_urllib_robotparser object to attr .
+Tgt:  setattr ( NAME , NAME . NAME , NAME )
+Pred: setattr ( NAME . NAME , NAME , NAME )
+
+Tgt:  setattr ( Module_six_moves_urllib_robotparser , attr . name , attr )
+Pred: setattr ( attr . name , Module_six_moves_urllib_robotparser , attr )
+==================
+NL:if fp is an instance of file and data is an instance of unicode and fp.encoding [ fp . encoding ] is not None ,
+Tgt:  if ( isinstance ( NAME , file ) and isinstance ( NAME , unicode ) and NAME . NAME is not None ) :
+Pred: if isinstance ( NAME , NAME ) is not None and isinstance ( NAME , NAME ) is not None :
+
+Tgt:  if ( isinstance ( fp , file ) and isinstance ( data , unicode ) and fp . encoding is not None ) :
+Pred: if isinstance ( fp , unicode ) is not None and isinstance ( data , fp ) is not None :
+==================
+NL:get the element of chunks at the ( i+1 ) -the index , assign it to the seconds2 and name2 , respectively .
+Tgt:  NAME , NAME = NAME [ NAME + NUMBER ]
+Pred: NAME , NAME = NAME [ NAME ]
+
+Tgt:  seconds2 , name2 = chunks [ i + 1 ]
+Pred: seconds2 , name2 = chunks [ -the ]
+==================
+NL:is length of list_ equals integer 0 ,
+Tgt:  if len ( NAME ) == NUMBER :
+Pred: NAME = NUMBER if len ( NAME ) == NUMBER
+
+Tgt:  if len ( list_ ) == 0 :
+Pred: if = 0 if len ( list_ ) == 0
+==================
+NL:join elements of code_list in a string , separated by _STR:0_ , format string _STR:1_ with it , append text to the result if exists ,
+Tgt:  return STRING % ( ( STRING % STRING . NAME ( NAME ) ) , NAME or STRING )
+Pred: NAME = NAME . NAME ( STRING , STRING . NAME ( NAME ) + NAME )
+
+Tgt:  return <[> %s%s <]> % ( ( <[> _STR:1_ <]> % <[> _STR:0_ <]> . join ( code_list ) ) , text or <[>  <]> )
+Pred: if = code_list . join ( <[> _STR:0_ <]> , <[>  <]> .  ( code_list ) + code_list )
+==================
+NL:evaluate the function timesince with d , now and reversed set to boolean true as arguments , return the result .
+Tgt:  return NAME ( NAME , NAME , reversed = True )
+Pred: return NAME ( NAME , NAME , NAME = True )
+
+Tgt:  return timesince ( d , now , reversed = True )
+Pred: return timesince ( d , now , reverse = True )
+==================
+NL:if now equals to boolean True and now is not an instance of datetime.datetime [ datetime . datetime ] ,
+Tgt:  if NAME and not isinstance ( NAME , NAME . NAME ) :
+Pred: if not NAME == NAME and not isinstance ( NAME , NAME . NAME ) :
+
+Tgt:  if now and not isinstance ( now , datetime . datetime ) :
+Pred: if not now == now and not isinstance ( now , datetime . datetime ) :
+==================
+NL:_moved_attributes is a list with 55 initial elements , 13 of them are the results of the call to the function MovedAttribute ,
+Tgt:  NAME = [ NAME ( STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING , STRING , STRING ) , NAME ( STRING , STRING ) , NAME ( STRING , STRING ) , NAME ( STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING ) , NAME ( STRING , STRING ) , NAME ( STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , NAME + STRING , STRING ) , NAME ( STRING , NAME + STRING , STRING ) , NAME ( STRING , NAME + STRING , NAME + STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING , STRING ) , NAME ( STRING , STRING ) , ]
+Pred: NAME = [ NAME ( NAME ) for NAME in NAME ]
+
+Tgt:  _moved_attributes = [ MovedAttribute ( <[> cStringIO <]> , <[> cStringIO <]> , <[> io <]> , <[> StringIO <]> ) , MovedAttribute ( <[> filter <]> , <[> itertools <]> , <[> builtins <]> , <[> ifilter <]> , <[> filter <]> ) , MovedAttribute ( <[> filterfalse <]> , <[> itertools <]> , <[> itertools <]> , <[> ifilterfalse <]> , <[> filterfalse <]> ) , MovedAttribute ( <[> input <]> , <[> __builtin__ <]> , <[> builtins <]> , <[> raw_input <]> , <[> input <]> ) , MovedAttribute ( <[> map <]> , <[> itertools <]> , <[> builtins <]> , <[> imap <]> , <[> map <]> ) , MovedAttribute ( <[> range <]> , <[> __builtin__ <]> , <[> builtins <]> , <[> xrange <]> , <[> range <]> ) , MovedAttribute ( <[> reload_module <]> , <[> __builtin__ <]> , <[> imp <]> , <[> reload <]> ) , MovedAttribute ( <[> reduce <]> , <[> __builtin__ <]> , <[> functools <]> ) , MovedAttribute ( <[> StringIO <]> , <[> StringIO <]> , <[> io <]> ) , MovedAttribute ( <[> UserString <]> , <[> UserString <]> , <[> collections <]> ) , MovedAttribute ( <[> xrange <]> , <[> __builtin__ <]> , <[> builtins <]> , <[> xrange <]> , <[> range <]> ) , MovedAttribute ( <[> zip <]> , <[> itertools <]> , <[> builtins <]> , <[> izip <]> , <[> zip <]> ) , MovedAttribute ( <[> zip_longest <]> , <[> itertools <]> , <[> itertools <]> , <[> izip_longest <]> , <[> zip_longest <]> ) , MovedModule ( <[> builtins <]> , <[> __builtin__ <]> ) , MovedModule ( <[> configparser <]> , <[> ConfigParser <]> ) , MovedModule ( <[> copyreg <]> , <[> copy_reg <]> ) , MovedModule ( <[> dbm_gnu <]> , <[> gdbm <]> , <[> dbm.gnu <]> ) , MovedModule ( <[> http_cookiejar <]> , <[> cookielib <]> , <[> http.cookiejar <]> ) , MovedModule ( <[> http_cookies <]> , <[> Cookie <]> , <[> http.cookies <]> ) , MovedModule ( <[> html_entities <]> , <[> htmlentitydefs <]> , <[> html.entities <]> ) , MovedModule ( <[> html_parser <]> , <[> HTMLParser <]> , <[> html.parser <]> ) , MovedModule ( <[> http_client <]> , <[> httplib <]> , <[> http.client <]> ) , MovedModule ( <[> email_mime_multipart <]> , <[> email.MIMEMultipart <]> , <[> email.mime.multipart <]> ) , MovedModule ( <[> email_mime_text <]> , <[> email.MIMEText <]> , <[> email.mime.text <]> ) , MovedModule ( <[> email_mime_base <]> , <[> email.MIMEBase <]> , <[> email.mime.base <]> ) , MovedModule ( <[> BaseHTTPServer <]> , <[> BaseHTTPServer <]> , <[> http.server <]> ) , MovedModule ( <[> CGIHTTPServer <]> , <[> CGIHTTPServer <]> , <[> http.server <]> ) , MovedModule ( <[> SimpleHTTPServer <]> , <[> SimpleHTTPServer <]> , <[> http.server <]> ) , MovedModule ( <[> cPickle <]> , <[> cPickle <]> , <[> pickle <]> ) , MovedModule ( <[> queue <]> , <[> Queue <]> ) , MovedModule ( <[> reprlib <]> , <[> repr <]> ) , MovedModule ( <[> socketserver <]> , <[> SocketServer <]> ) , MovedModule ( <[> _thread <]> , <[> thread <]> , <[> _thread <]> ) , MovedModule ( <[> tkinter <]> , <[> Tkinter <]> ) , MovedModule ( <[> tkinter_dialog <]> , <[> Dialog <]> , <[> tkinter.dialog <]> ) , MovedModule ( <[> tkinter_filedialog <]> , <[> FileDialog <]> , <[> tkinter.filedialog <]> ) , MovedModule ( <[> tkinter_scrolledtext <]> , <[> ScrolledText <]> , <[> tkinter.scrolledtext <]> ) , MovedModule ( <[> tkinter_simpledialog <]> , <[> SimpleDialog <]> , <[> tkinter.simpledialog <]> ) , MovedModule ( <[> tkinter_tix <]> , <[> Tix <]> , <[> tkinter.tix <]> ) , MovedModule ( <[> tkinter_ttk <]> , <[> ttk <]> , <[> tkinter.ttk <]> ) , MovedModule ( <[> tkinter_constants <]> , <[> Tkconstants <]> , <[> tkinter.constants <]> ) , MovedModule ( <[> tkinter_dnd <]> , <[> Tkdnd <]> , <[> tkinter.dnd <]> ) , MovedModule ( <[> tkinter_colorchooser <]> , <[> tkColorChooser <]> , <[> tkinter.colorchooser <]> ) , MovedModule ( <[> tkinter_commondialog <]> , <[> tkCommonDialog <]> , <[> tkinter.commondialog <]> ) , MovedModule ( <[> tkinter_tkfiledialog <]> , <[> tkFileDialog <]> , <[> tkinter.filedialog <]> ) , MovedModule ( <[> tkinter_font <]> , <[> tkFont <]> , <[> tkinter.font <]> ) , MovedModule ( <[> tkinter_messagebox <]> , <[> tkMessageBox <]> , <[> tkinter.messagebox <]> ) , MovedModule ( <[> tkinter_tksimpledialog <]> , <[> tkSimpleDialog <]> , <[> tkinter.simpledialog <]> ) , MovedModule ( <[> urllib_parse <]> , __name__ + <[> .moves.urllib_parse <]> , <[> urllib.parse <]> ) , MovedModule ( <[> urllib_error <]> , __name__ + <[> .moves.urllib_error <]> , <[> urllib.error <]> ) , MovedModule ( <[> urllib <]> , __name__ + <[> .moves.urllib <]> , __name__ + <[> .moves.urllib <]> ) , MovedModule ( <[> urllib_robotparser <]> , <[> robotparser <]> , <[> urllib.robotparser <]> ) , MovedModule ( <[> xmlrpc_client <]> , <[> xmlrpclib <]> , <[> xmlrpc.client <]> ) , MovedModule ( <[> xmlrpc_server <]> , <[> xmlrpclib <]> , <[> xmlrpc.server <]> ) , MovedModule ( <[> winreg <]> , <[> _winreg <]> ) , ]
+Pred: _moved_attributes = [ MovedAttribute ( 55 ) for 55 in MovedAttribute ]
+==================
+NL:for every lineno and line is enumerated result of the method content.splitlines [ content . splitlines ] , called with an argument boolean True ,
+Tgt:  for NAME , NAME in enumerate ( NAME . NAME ( True ) ) :
+Pred: for NAME , NAME in enumerate ( NAME . NAME ( NAME ) ) :
+
+Tgt:  for lineno , line in enumerate ( content . splitlines ( True ) ) :
+Pred: for key , line in enumerate ( content . splitlines ( boolean ) ) :
+==================
+NL:call the function blankout with 2 arguments : t.contents [ t . contents ] and _STR:0_ , write the result to out .
+Tgt:  NAME . NAME ( NAME ( NAME . NAME , STRING ) )
+Pred: NAME = NAME ( NAME . NAME , STRING )
+
+Tgt:  out . write ( blankout ( t . contents , <[> _STR:0_ <]> ) )
+Pred: out = blankout ( t . contents , <[> _STR:0_ <]> )
+==================
+NL:convert config_string to lowercase and split it by _STR:0_ character , substitute the result for parts .
+Tgt:  NAME = NAME . NAME ( ) . NAME ( STRING )
+Pred: NAME = NAME . NAME ( )
+
+Tgt:  parts = config_string . lower ( ) . split ( <[> _STR:0_ <]> )
+Pred: parts = config_string . lower ( )
+==================
+NL:msgs_with_ctxt is a tuple containing 2 elements : string created by concatenating context , CONTEXT_SEPARATOR and singular ,
+Tgt:  NAME = ( STRING % ( NAME , NAME , NAME ) , STRING % ( NAME , NAME , NAME ) , NAME )
+Pred: NAME = ( STRING , NAME , NAME )
+
+Tgt:  msgs_with_ctxt = ( <[> %s%s%s <]> % ( context , CONTEXT_SEPARATOR , singular ) , <[> %s%s%s <]> % ( context , CONTEXT_SEPARATOR , plural ) , number )
+Pred: msgs_with_ctxt = ( <[> concatenating <]> , CONTEXT_SEPARATOR , singular )
+==================
+NL:call the method call the function warnings.warn [ warnings . warn ] with 3 arguments : msg formatted with language and value under the language key ,
+Tgt:  NAME . NAME ( NAME % ( NAME , NAME [ NAME ] ) , NAME , NAME = NUMBER )
+Pred: NAME . NAME ( NAME , NAME [ NAME ] , NAME [ NAME ] , NAME = NUMBER )
+
+Tgt:  warnings . warn ( msg % ( language , _DJANGO_DEPRECATED_LOCALES [ language ] ) , RemovedInDjango19Warning , stacklevel = 2 )
+Pred: warnings . warn ( formatted , language [ language ] , language [ language ] , language = 2 )
+==================
+NL:bitwise shift integer 1 to the left by 63 spaces , substitute integer 1 from the result , convert the result to a integer , substitute it for MAXSIZE .
+Tgt:  NAME = int ( ( NUMBER << NUMBER ) - NUMBER )
+Pred: NAME = int ( NAME ) % NUMBER
+
+Tgt:  MAXSIZE = int ( ( 1 << 63 ) - 1 )
+Pred: MAXSIZE = int ( 63 ) % 1
+==================
+NL:call the function _add_doc with 2 arguments : u and string _STR:0_ '' Text literal_STR:0_ '' .
+Tgt:  NAME ( NAME , STRING STRING STRING )
+Pred: NAME ( NAME , STRING % NAME )
+
+Tgt:  _add_doc ( u , <[> _STR:0_ <]> <[> _STR:1_ <]> <[> _STR:0_ <]> )
+Pred: _add_doc ( u , <[> _STR:0_ <]> % Text )
+==================
+NL:call the function self._truncate_html [ self . _truncate_html ] with 5 arguments : length , truncate , text , truncate_len and boolean False , return the result .
+Tgt:  return NAME . NAME ( NAME , NAME , NAME , NAME , False )
+Pred: return NAME . NAME ( NAME , NAME , NAME , False )
+
+Tgt:  return self . _truncate_html ( length , truncate , text , truncate_len , False )
+Pred: return self . _truncate_html ( length , truncate , text , False )
+==================
+NL:value under the comment_lineno_cache key of the lineno_comment_map dictionary is an empty string .
+Tgt:  NAME [ NAME ] = [ ]
+Pred: NAME [ NAME ] = STRING
+
+Tgt:  lineno_comment_map [ comment_lineno_cache ] = [ ]
+Pred: lineno_comment_map [ comment_lineno_cache ] = <[>  <]>
+==================
+NL:otherwise if first element of message_context equals to character _STR:0_ ,
+Tgt:  elif NAME [ NUMBER ] == STRING :
+Pred: elif NAME [ : NUMBER ] == STRING :
+
+Tgt:  elif message_context [ 0 ] == <[> _STR:0_ <]> :
+Pred: elif message_context [ : 1 ] == <[> _STR:0_ <]> :
+==================
+NL:get_language is a lambda function returning settings.LANGUAGE_CODE [ settings . LANGUAGE_CODE ] .
+Tgt:  NAME = lambda : NAME . NAME
+Pred: NAME = lambda NAME . NAME ( )
+
+Tgt:  get_language = lambda : settings . LANGUAGE_CODE
+Pred: get_language = lambda settings . LANGUAGE_CODE ( )
+==================
+NL:return a tuple with an element self.__offset [ self . __offset ] .
+Tgt:  return NAME . NAME ,
+Pred: return ( NAME . NAME , )
+
+Tgt:  return self . __offset ,
+Pred: return ( self . __offset , )
+==================
+NL:if value.__traceback__ [ value . __traceback__ ] is not tb ,
+Tgt:  if NAME . NAME is not NAME :
+Pred: if NAME . NAME :
+
+Tgt:  if value . __traceback__ is not tb :
+Pred: if value . __traceback__ :
+==================
+NL:call the method _trans.gettext_noop [ _trans . gettext_noop ] with an argument message .
+Tgt:  return NAME . NAME ( NAME )
+Pred: NAME . NAME ( NAME )
+
+Tgt:  return _trans . ugettext ( message )
+Pred: _trans . gettext_noop ( message )
+==================
+NL:convert fist p elements of language to lowercase , append _STR:0_ to it ,
+Tgt:  return NAME [ : NAME ] . NAME ( ) + STRING + NAME [ NAME + NUMBER ] . NAME ( ) + NAME [ NAME + NUMBER : ] . NAME ( )
+Pred: NAME = NAME [ : NAME ] . NAME ( ) + STRING
+
+Tgt:  return language [ : p ] . lower ( ) + <[> _STR:0_ <]> + language [ p + 1 ] . upper ( ) + language [ p + 2 : ] . lower ( )
+Pred: self = language [ : fist ] . append ( ) + <[> _STR:0_ <]>
+==================
+NL:call the method apps.get_app_configs [ apps . get_app_configs ] , convert the result in a list , reverse the order of elements , substitute the result for app_configs .
+Tgt:  NAME = reversed ( list ( NAME . NAME ( ) ) )
+Pred: NAME = list ( NAME . NAME ( ) )
+
+Tgt:  app_configs = reversed ( list ( apps . get_app_configs ( ) ) )
+Pred: app_configs = list ( apps . get_app_configs ( ) )
+==================
+NL:concatenate __name__ , string _STR:0_ and attr.name [ attr . name ] together , use it as an key to get the value from the sys.modules [ sys . modules ] dictionary ,
+Tgt:  NAME . NAME [ NAME + STRING + NAME . NAME ] = NAME
+Pred: NAME = NAME . NAME ( )
+
+Tgt:  sys . modules [ __name__ + <[> .moves. <]> + attr . name ] = attr
+Pred: sys = sys . modules ( )
